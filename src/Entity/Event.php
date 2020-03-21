@@ -24,12 +24,12 @@ class Event
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $type;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -60,6 +60,8 @@ class Event
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime;
+        $this->updatedAt = new \DateTime;
         $this->tags = new ArrayCollection();
     }
 
