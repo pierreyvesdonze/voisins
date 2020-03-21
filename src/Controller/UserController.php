@@ -25,9 +25,9 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="user_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, RoleRepository $roleRepository): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -49,10 +49,10 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Vous êtes enregistré. Vous pouvez maintenant vous connecter.');
 
-            return $this->redirectToRoute('applogin');
+            return $this->redirectToRoute('login');
         }
 
-        return $this->render('auser/new.html.twig', [
+        return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
