@@ -38,6 +38,22 @@ class User
      */
     private $avatar;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Role")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $role;
+
+    public function __construct()
+    {
+        $this->stars = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->username;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,5 +105,64 @@ class User
         $this->avatar = $avatar;
 
         return $this;
+    }
+
+    /**
+     * Get the value of roles
+     */
+    public function getRolesCollection()
+    {
+        return $this->roles;
+    }
+
+    public function getRoles()
+    {
+        return array($this->getRole()->getRoleString());
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    // bcrypt n'utilise pas de sel
+    public function getSalt()
+    {
+    }
+
+    // Aucune donnée sensible dans notre objet User donc on laisse vide
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, array('allowed_classes' => false));
     }
 }
