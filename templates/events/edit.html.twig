@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Éditer l'événement{% endblock %}
+
+{% block body %}
+
+    <div class="container-password">
+
+		<div class="left">
+			<h2>Ajouter</h2>
+
+			{{ include('events/_form.html.twig', {'button_label': 'Update'}) }}
+		</div>
+<hr>
+		<div class="right">
+		</div>
+{% endblock %}

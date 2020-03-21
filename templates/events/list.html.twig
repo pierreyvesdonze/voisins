@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+	<h2>Tous les événements</h2>
+	<ul>
+		{% for event in events %}
+
+			<li>
+				Le
+				<span class="list-events">{{ event.date|date("d/m/Y à h:i") }}
+				</span>
+			</li>
+			<li>
+				Événement :
+				<span class="list-events">{{ event.title }}
+				</span>
+			</li>
+			<li>
+				Type :
+				{%  if event.type %}
+					<span class="list-events">{{ event.type }}
+					</span>
+				{% else %}
+					non défini
+				{% endif %}
+			</li>
+			<li>
+				Lieu :
+				<span class="list-events">{{ event.lieu }}
+				</span>
+			</li>
+			<li>
+				<p class="list-event-description">
+					{{ event.text }}
+				</p>
+			</li>
+			{% if is_granted('ROLE_USER') %}
+				<a href="{{ path('event_update',{'id': event.id}) }}" class="button-icon">
+					<img src="{{ asset('assets/images/update.png') }}" alt="delete_icon">
+				</a>
+				<a href="{{ path('event_delete',{'id': event.id}) }}" class="button-icon">
+					<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon">
+				</a>
+			{% endif %}
+
+			<hr>
+
+		{% endfor %}
+	</ul>
+{% endblock %}

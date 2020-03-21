@@ -33,7 +33,7 @@ class EventController extends AbstractController
         $events = $eventRepository->findAll();
 
         return $this->render(
-            'events/event.html.twig',
+            'events/list.html.twig',
             [
                 'events'   => $events,
             ]
@@ -99,13 +99,13 @@ class EventController extends AbstractController
 
             $this->addFlash("success", "L'événement a bien été modifié");
 
-            return $this->redirectToRoute('events_list', ['id' => $event->getId()]);
+            return $this->redirectToRoute('event_list', ['id' => $event->getId()]);
         }
 
         return $this->render(
-            "events/update.html.twig",
+            "events/edit.html.twig",
             [
-                "formView" => $form->createView()
+                "form" => $form->createView()
             ]
         );
     }
@@ -121,7 +121,7 @@ class EventController extends AbstractController
         $manager->remove($event);
         $manager->flush();
 
-        $this->addFlash("success", "L'objet a bien été supprimé");
+        $this->addFlash("success", "L'événement a bien été supprimé");
 
         return $this->redirectToRoute('event_list');
     }
