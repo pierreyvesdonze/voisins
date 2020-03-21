@@ -54,23 +54,12 @@ class Event
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\EventUser", mappedBy="eventId")
-     */
-    private $eventUsers;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="events")
      */
     private $tags;
 
     public function __construct()
     {
-        $this->eventUsers = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
@@ -159,34 +148,6 @@ class Event
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|EventUser[]
-     */
-    public function getEventUsers(): Collection
-    {
-        return $this->eventUsers;
-    }
-
-    public function addEventUser(EventUser $eventUser): self
-    {
-        if (!$this->eventUsers->contains($eventUser)) {
-            $this->eventUsers[] = $eventUser;
-            $eventUser->addEventId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEventUser(EventUser $eventUser): self
-    {
-        if ($this->eventUsers->contains($eventUser)) {
-            $this->eventUsers->removeElement($eventUser);
-            $eventUser->removeEventId($this);
-        }
 
         return $this;
     }

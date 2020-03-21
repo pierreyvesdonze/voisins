@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,74 +17,42 @@ class EventUser
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $userId;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Event", inversedBy="eventUsers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $eventId;
-
-    public function __construct()
-    {
-        $this->userId = new ArrayCollection();
-        $this->eventId = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
+    public function getUserId(): ?User
     {
         return $this->userId;
     }
 
-    public function addUserId(User $userId): self
+    public function setUserId(?User $userId): self
     {
-        if (!$this->userId->contains($userId)) {
-            $this->userId[] = $userId;
-        }
+        $this->userId = $userId;
 
         return $this;
     }
 
-    public function removeUserId(User $userId): self
-    {
-        if ($this->userId->contains($userId)) {
-            $this->userId->removeElement($userId);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Event[]
-     */
-    public function getEventId(): Collection
+    public function getEventId(): ?Event
     {
         return $this->eventId;
     }
 
-    public function addEventId(Event $eventId): self
+    public function setEventId(?Event $eventId): self
     {
-        if (!$this->eventId->contains($eventId)) {
-            $this->eventId[] = $eventId;
-        }
-
-        return $this;
-    }
-
-    public function removeEventId(Event $eventId): self
-    {
-        if ($this->eventId->contains($eventId)) {
-            $this->eventId->removeElement($eventId);
-        }
+        $this->eventId = $eventId;
 
         return $this;
     }
