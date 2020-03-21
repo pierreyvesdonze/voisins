@@ -1,0 +1,19 @@
+@import "./settings";
+
+/*
+***********************************
+LIST EVENTS
+***********************************
+*/
+.flex-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-title {
+    font-size: 2.3em;
+}
+
+.card .list-events {
+    font-weight: bold;
+}

@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<div class="card">
+		<h5 class="card-header">
+
+			<span class="list-events">{{ event.type }}
+			</span>
+
+		</h5>
+		<div class="card-body">
+			<h5 class="card-title">{{ event.title }}</h5>
+			<span>{{ event.lieu }}</span>
+			<hr>
+			<p class="card-text">{{ event.text }}</p>
+			<hr>
+			<div class="control">
+				{% if is_granted('ROLE_USER') %}
+					<a href="{{ path('event_update',{'id': event.id}) }}">
+						<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
+					</a>
+					<a href="{{ path('event_delete',{'id': event.id}) }}">
+						<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
+					</a>
+				{% endif %}
+				<hr>
+				<a href="#" class="btn btn-primary">Participer !</a>
+			</div>
+
+		</div>
+		<div class="card-footer text-muted">
+			Le
+			<span class="date-events">{{ event.date|date("d/m/Y à h:i") }}
+			</span>
+		</div>
+	</div>
+
+{% endblock %}

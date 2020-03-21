@@ -1,0 +1,56 @@
+/*
+***********************************
+COLORS
+***********************************
+*/
+:root {
+  --primary-color: rgb(57, 66, 68);
+  --secondary-color: rgb(33, 38, 39);
+  --tertiary-color: rgb(18, 20, 20);
+
+  --font-color-1: rgb(172, 158, 149);
+  --font-color-2: rgb(156, 151, 134);
+  --font-color-3: #ffffff;
+  --font-color-4: rgba(13, 216, 74, 0.443);
+
+  --button-color-1: #566472;
+  --button-color-danger: #f12207;
+}
+
+/*
+***********************************
+ICONS
+***********************************
+*/
+.button-icon {
+  width: 30px !important;
+  filter: grayscale(50%);
+  -webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.button-icon:hover {
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+  -webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+} 
+
+/*
+***********************************
+LISTS
+***********************************
+*/
+ul li {
+  list-style-type: none;
+}
+
+/*
+***********************************
+CONTROL
+***********************************
+*/
+.control {
+  display: flex;
+  justify-content: space-evenly;
+}

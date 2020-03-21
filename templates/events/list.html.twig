@@ -4,49 +4,41 @@
 {% block body %}
 
 	<h2>Tous les événements</h2>
-	<ul>
+
+	<div class="flex-container">
+
 		{% for event in events %}
+			<div class="card text-center">
+				<div class="card-header">
+					{%  if event.type %}
+						<span class="list-events">{{ event.type }}
+						</span>
+					{% else %}
+						<span class="list-events">
+							non défini
+						</span>
+					{% endif %}
+					<br>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">
+						{{ event.title }}
+					</h5>
 
-			<li>
-				Le
-				<span class="list-events">{{ event.date|date("d/m/Y à h:i") }}
-				</span>
-			</li>
-			<li>
-				Événement :
-				<span class="list-events">{{ event.title }}
-				</span>
-			</li>
-			<li>
-				Type :
-				{%  if event.type %}
-					<span class="list-events">{{ event.type }}
+					Lieu :
+					<span class="list-events">{{ event.lieu }}
 					</span>
-				{% else %}
-					non défini
-				{% endif %}
-			</li>
-			<li>
-				Lieu :
-				<span class="list-events">{{ event.lieu }}
-				</span>
-			</li>
-			<li>
-				<p class="list-event-description">
-					{{ event.text }}
-				</p>
-			</li>
-			{% if is_granted('ROLE_USER') %}
-				<a href="{{ path('event_update',{'id': event.id}) }}" class="button-icon">
-					<img src="{{ asset('assets/images/update.png') }}" alt="delete_icon">
-				</a>
-				<a href="{{ path('event_delete',{'id': event.id}) }}" class="button-icon">
-					<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon">
-				</a>
-			{% endif %}
 
-			<hr>
+					<hr>
+					<div class="control">
+						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
+						<a href="#" class="btn btn-primary">Participer !</a>
+					</div>
+				</div>
 
+			</div>
 		{% endfor %}
-	</ul>
+	</div>
+
+
 {% endblock %}
