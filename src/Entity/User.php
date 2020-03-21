@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,15 +45,20 @@ class User implements UserInterface
      */
     private $avatar;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Role")
      * @ORM\JoinColumn(nullable=false)
      */
     private $role;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingList", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $shoppingList;
+
     public function __construct()
     {
-        $this->stars = new ArrayCollection();
+        $this->shoppingList = new ArrayCollection();
     }
 
     public function __toString()
@@ -170,5 +176,34 @@ class User implements UserInterface
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    /**
+     * @return Collection|ShoppingList[]
+     */
+    public function getShoppingList(): Collection
+    {
+        return $this->shoppingList;
+    }
+
+    public function addShoppingList(ShoppingList $shoppingList): self
+    {
+        if (!$this->shoppingList->contains($shoppingList)) {
+            $this->shoppingList[] = $shoppingList;
+            $shoppingList->setUser($this);
+        }
+        return $this;
+    }
+
+    public function removeShoppingList(ShoppingList $shoppingList): self
+    {
+        if ($this->shoppingList->contains($shoppingList)) {
+            $this->shoppingList->removeElement($shoppingList);
+            // set the owning side to null (unless already changed)
+            if ($shoppingList->getUser() === $this) {
+                $shoppingList->setUser(null);
+            }
+        }
+        return $this;
     }
 }

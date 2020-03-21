@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\RoleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,21 +12,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/user")
+ * @Route("/groceries")
  */
-class UserController extends AbstractController 
+class GroceriesController extends AbstractController
 {
-
     public function index()
     {
         $projectDir = $this->getParameter('kernel.project_dir');
         $adminEmail = $this->getParameter('app.admin_email');
     }
 
+
     /**
-     * @Route("/new", name="new", methods={"GET","POST"})
+     * @Route("/request")
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder, RoleRepository $roleRepository): Response
+    public function groceriesRequest(Request $request): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -35,19 +34,14 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $plainPassword = $form->get('plain_password')->getData();
-            $encodedPassword = $encoder->encodePassword($user, $plainPassword);
-
-            $user->setPassword($encodedPassword);
-
-            $role = $roleRepository->findOneByRoleString('ROLE_USER');
-            $user->setRole($role);
+            $event = $form->getData();
+            $event->setUser($this->getUser());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Vous êtes enregistré. Vous pouvez maintenant vous connecter.');
+            $this->addFlash('success', 'Enregistré.');
 
             return $this->redirectToRoute('login');
         }
@@ -55,20 +49,6 @@ class UserController extends AbstractController
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ]);
-    }
-
-
-    /**
-     * @Route("/myprofile", name="user_profile", methods={"GET"})
-     * @IsGranted("ROLE_USER")
-     */
-    public function myProfile(): Response
-    {
-        $user = $this->getUser();
-
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
         ]);
     }
 }
