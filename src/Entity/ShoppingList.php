@@ -34,20 +34,22 @@ class ShoppingList
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="shoppingList")
-     */
-    private $user;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ShoppingListIngredient", mappedBy="shoppingList", cascade={"remove"} ) 
      */
     private $shoppingListIngredients;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="shoppingLists")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $event;
 
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
         $this->shoppingListIngredients = new ArrayCollection();
+        $this->createdAt = new \DateTime;
+        $this->updatedAt = new \DateTime;
     }
 
     public function getId(): ?int
@@ -96,18 +98,6 @@ class ShoppingList
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|ShoppingListIngredient[]
      */
@@ -136,5 +126,17 @@ class ShoppingList
             }
         }
         return $this;
-    }  
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
+
+        return $this;
+    }
 }

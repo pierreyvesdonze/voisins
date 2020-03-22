@@ -40,26 +40,10 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $avatar;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Role")
      * @ORM\JoinColumn(nullable=false)
      */
     private $role;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingList", mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $shoppingList;
-
-    public function __construct()
-    {
-        $this->shoppingList = new ArrayCollection();
-    }
 
     public function __toString()
     {
@@ -103,18 +87,6 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    public function getAvatar(): ?string
-    {
-        return $this->avatar;
-    }
-
-    public function setAvatar(string $avatar): self
-    {
-        $this->avatar = $avatar;
 
         return $this;
     }
@@ -176,34 +148,5 @@ class User implements UserInterface
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized, array('allowed_classes' => false));
-    }
-
-    /**
-     * @return Collection|ShoppingList[]
-     */
-    public function getShoppingList(): Collection
-    {
-        return $this->shoppingList;
-    }
-
-    public function addShoppingList(ShoppingList $shoppingList): self
-    {
-        if (!$this->shoppingList->contains($shoppingList)) {
-            $this->shoppingList[] = $shoppingList;
-            $shoppingList->setUser($this);
-        }
-        return $this;
-    }
-
-    public function removeShoppingList(ShoppingList $shoppingList): self
-    {
-        if ($this->shoppingList->contains($shoppingList)) {
-            $this->shoppingList->removeElement($shoppingList);
-            // set the owning side to null (unless already changed)
-            if ($shoppingList->getUser() === $this) {
-                $shoppingList->setUser(null);
-            }
-        }
-        return $this;
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\ShoppingList;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -32,10 +32,15 @@ class EventController extends AbstractController
         $eventRepository = $this->getDoctrine()->getRepository(Event::class);
         $events = $eventRepository->findAll();
 
+        /** @var ShoppingListRepository */
+        $shoppingListRepository = $this->getDoctrine()->getRepository(ShoppingList::class);
+        $shoppingLists = $shoppingListRepository->findAll();
+
         return $this->render(
             'events/list.html.twig',
             [
-                'events'   => $events,
+                'events'        => $events,
+                'shoppingLists' => $shoppingLists,
             ]
         );
     }
@@ -45,9 +50,13 @@ class EventController extends AbstractController
      */
     public function eventView(Event $event)
     {
+         /** @var ShoppingListRepository */
+         $shoppingListRepository = $this->getDoctrine()->getRepository(ShoppingList::class);
+         $shoppingLists = $shoppingListRepository->findAll();
 
         return $this->render('events/view.html.twig', [
-            'event' => $event
+            'event'         => $event,
+            'shoppingLists' => $shoppingLists
         ]);
     }
 

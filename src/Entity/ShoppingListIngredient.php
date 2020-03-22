@@ -17,16 +17,6 @@ class ShoppingListIngredient
     private $id;
 
     /**
-     * @ORM\Column(type="float")
-     */
-    private $amount;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $unit;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Ingredient",
      *  inversedBy="shoppingListIngredients",
      *  fetch="EAGER",
@@ -46,30 +36,6 @@ class ShoppingListIngredient
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAmount(): ?string
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(string $amount): self
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    public function getUnit(): ?string
-    {
-        return $this->unit;
-    }
-
-    public function setUnit(string $unit): self
-    {
-        $this->unit = $unit;
-
-        return $this;
     }
 
     public function getIngredient(): ?Ingredient

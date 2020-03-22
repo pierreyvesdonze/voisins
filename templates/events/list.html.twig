@@ -28,11 +28,13 @@
 					Lieu :
 					<span class="list-events">{{ event.lieu }}
 					</span>
-
+					<br>
+					Le
+					<span class="date-events">{{ event.date|date("d/m/Y à h:i") }}
+					</span>
 					<hr>
 					<div class="control">
 						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
-						<a href="#" class="btn btn-primary">Participer !</a>
 					</div>
 				</div>
 

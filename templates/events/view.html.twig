@@ -25,7 +25,7 @@
 					</a>
 				{% endif %}
 				<hr>
-				<a href="#" class="btn btn-primary">Participer !</a>
+				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Participer !</a>
 			</div>
 
 		</div>
@@ -34,6 +34,24 @@
 			<span class="date-events">{{ event.date|date("d/m/Y à h:i") }}
 			</span>
 		</div>
+{% for shoppingList in shoppingLists %}
+		<div class="card" style="width: 18rem;">
+			<img src="..." class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">{{ shoppingList.title }}</h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+			</ul>
+			<div class="card-body">
+				<a href="#" class="card-link">Card link</a>
+				<a href="#" class="card-link">Another link</a>
+			</div>
+		</div>
+		{% endfor %}
 	</div>
 
 {% endblock %}

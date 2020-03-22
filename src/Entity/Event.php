@@ -58,11 +58,17 @@ class Event
      */
     private $tags;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingList", mappedBy="event")
+     */
+    private $shoppingLists;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
         $this->tags = new ArrayCollection();
+        $this->shoppingLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +195,37 @@ class Event
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
             $tag->removeEvent($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShoppingList[]
+     */
+    public function getShoppingLists(): Collection
+    {
+        return $this->shoppingLists;
+    }
+
+    public function addShoppingList(ShoppingList $shoppingList): self
+    {
+        if (!$this->shoppingLists->contains($shoppingList)) {
+            $this->shoppingLists[] = $shoppingList;
+            $shoppingList->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingList(ShoppingList $shoppingList): self
+    {
+        if ($this->shoppingLists->contains($shoppingList)) {
+            $this->shoppingLists->removeElement($shoppingList);
+            // set the owning side to null (unless already changed)
+            if ($shoppingList->getEvent() === $this) {
+                $shoppingList->setEvent(null);
+            }
         }
 
         return $this;

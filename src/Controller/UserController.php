@@ -49,7 +49,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Vous êtes enregistré. Vous pouvez maintenant vous connecter.');
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('user/new.html.twig', [
