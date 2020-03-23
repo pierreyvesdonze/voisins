@@ -54,11 +54,6 @@ class Event
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="events")
-     */
-    private $tags;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ShoppingList", mappedBy="event")
      */
     private $shoppingLists;
@@ -67,7 +62,6 @@ class Event
     {
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
-        $this->tags = new ArrayCollection();
         $this->shoppingLists = new ArrayCollection();
     }
 
@@ -168,34 +162,6 @@ class Event
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-            $tag->addEvent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-            $tag->removeEvent($this);
-        }
 
         return $this;
     }

@@ -44,22 +44,13 @@ class ShoppingListController extends AbstractController
 
         $shoppingList = new ShoppingList();
         $shoppingList->setEvent($event);
-        $shoppingListIngredient = new ShoppingListIngredient;
+        $shoppingList->setUser($this->getUser());
 
-        $defaultData = ['message' => 'Type your message here'];
-        $form = $this->createFormBuilder($defaultData)
-            ->add('name', TextType::class)
-            ->add('message', TextareaType::class)
-            ->add('send', SubmitType::class)
-            ->getForm();
-
-
-
+        $form = $this->createForm(ShoppingListType::class, $shoppingList);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $data = $form->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($shoppingList);
@@ -73,7 +64,6 @@ class ShoppingListController extends AbstractController
         return $this->render('groceries/create.html.twig', [
             'shoppingList' => $shoppingList,
             'event'        => $event,
-            'shoppingListIngredient' => $shoppingListIngredient,
             'form' => $form->createView(),
         ]);
     }

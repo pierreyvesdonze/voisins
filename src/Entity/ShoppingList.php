@@ -34,20 +34,25 @@ class ShoppingList
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingListIngredient", mappedBy="shoppingList", cascade={"remove"} ) 
-     */
-    private $shoppingListIngredients;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="shoppingLists")
      * @ORM\JoinColumn(nullable=false)
      */
     private $event;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="shoppingList", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
-        $this->shoppingListIngredients = new ArrayCollection();
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
     }
@@ -98,36 +103,6 @@ class ShoppingList
         return $this;
     }
 
-    /**
-     * @return Collection|ShoppingListIngredient[]
-     */
-    public function getShoppingListIngredients(): Collection
-    {
-        return $this->shoppingListIngredients;
-    }
-
-    public function addShoppingListIngredient(ShoppingListIngredient $shoppingListIngredient): self
-    {
-        if (!$this->shoppingListIngredients->contains($shoppingListIngredient)) {
-            $this->shoppingListIngredients[] = $shoppingListIngredient;
-            $shoppingListIngredient->setShoppingList($this);
-        }
-
-        return $this;
-    }
-
-    public function removeShoppingListIngredient(ShoppingListIngredient $shoppingListIngredient): self
-    {
-        if ($this->shoppingListIngredients->contains($shoppingListIngredient)) {
-            $this->shoppingListIngredients->removeElement($shoppingListIngredient);
-            // set the owning side to null (unless already changed)
-            if ($shoppingListIngredient->getShoppingList() === $this) {
-                $shoppingListIngredient->setShoppingList(null);
-            }
-        }
-        return $this;
-    }
-
     public function getEvent(): ?Event
     {
         return $this->event;
@@ -136,6 +111,38 @@ class ShoppingList
     public function setEvent(?Event $event): self
     {
         $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */ 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */ 
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

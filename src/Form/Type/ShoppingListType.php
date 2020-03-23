@@ -8,6 +8,7 @@ use App\Entity\ShoppingListIngredient;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,11 +17,22 @@ class ShoppingListType extends AbstractType
     public function buildForm(\Symfony\Component\Form\FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('ingredient', CollectionType::class, [
-            'label' => false,
-            'entry_type' => ShoppingListIngredient::class,
-            'entry_options' => array('label' => false),
-        ]);
+        $builder->add(
+            'title',
+            TextType::class,
+            [
+                "label" => "Titre de ta liste"
+            ]
+        );
+
+        $builder->add(
+            'description',
+            TextareaType::class,
+            [
+                "label" => "Ta liste"
+            ]
+        );
+
        
         $builder->add(
             'save',
@@ -34,7 +46,7 @@ class ShoppingListType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ShoppingListIngredient::class,
+            'data_class' => ShoppingList::class,
             'attr' => [
                 'novalidate' => 'novalidate'
             ],

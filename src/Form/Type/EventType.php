@@ -41,7 +41,7 @@ class EventType extends AbstractType
         $builder->add('date', DateTimeType::class, [
             'placeholder' => [
                 'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                'hour' => 'Hour', 'minute' => 'Minute', 'second' => 'Second',
+                'hour' => 'Hour', 'minute' => 'Minute'
             ]
         ]);
 

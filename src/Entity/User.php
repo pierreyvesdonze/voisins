@@ -45,6 +45,11 @@ class User implements UserInterface
      */
     private $role;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\ShoppingList", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $shoppingList;
+
     public function __toString()
     {
         return $this->username;
@@ -148,5 +153,22 @@ class User implements UserInterface
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getShoppingList(): ?ShoppingList
+    {
+        return $this->shoppingList;
+    }
+
+    public function setShoppingList(ShoppingList $shoppingList): self
+    {
+        $this->shoppingList = $shoppingList;
+
+        // set the owning side of the relation if necessary
+        if ($shoppingList->getUser() !== $this) {
+            $shoppingList->setUser($this);
+        }
+
+        return $this;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\EventUser;
 use App\Entity\ShoppingList;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -67,16 +68,19 @@ class EventController extends AbstractController
     public function eventCreate(Request $request)
     {
         $event = new Event;
+        $eventUser = new EventUser;
+        $eventUser->setUser($this->getUser());
+        $eventUser->setEvent($event);
+        
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $event = $form->getData();
-            $event->setUser($this->getUser());
-
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($event);
+            $manager->persist($eventUser);
             $manager->flush();
 
             $this->addFlash("success", "L'événement a bien été ajouté !");
