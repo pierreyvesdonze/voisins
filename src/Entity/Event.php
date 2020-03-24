@@ -64,11 +64,17 @@ class Event
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="event")
+     */
+    private $participates;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
         $this->shoppingLists = new ArrayCollection();
+        $this->participates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,6 +205,37 @@ class Event
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participate[]
+     */
+    public function getParticipates(): Collection
+    {
+        return $this->participates;
+    }
+
+    public function addParticipate(Participate $participate): self
+    {
+        if (!$this->participates->contains($participate)) {
+            $this->participates[] = $participate;
+            $participate->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipate(Participate $participate): self
+    {
+        if ($this->participates->contains($participate)) {
+            $this->participates->removeElement($participate);
+            // set the owning side to null (unless already changed)
+            if ($participate->getEvent() === $this) {
+                $participate->setEvent(null);
+            }
+        }
 
         return $this;
     }

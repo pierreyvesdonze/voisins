@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Entity\EventUser;
+use App\Entity\Participate;
 use App\Entity\ShoppingList;
 use App\Entity\User;
 use App\Form\Type\EventType;
@@ -51,11 +52,16 @@ class EventController extends AbstractController
         $shoppingListRepository = $this->getDoctrine()->getRepository(ShoppingList::class);
         $shoppingLists = $shoppingListRepository->findBy(["event" => $event->getId()]);
 
+        /** @var ParticipateRepository */
+        $participateRepository = $this->getDoctrine()->getRepository(Participate::class);
+        $participate = $participateRepository->findBy(["event" => $event->getId()]);
+
         $eventType = $event->getType();
 
         return $this->render('events/view.' . $eventType . '.html.twig', [
             'event'         => $event,
-            'shoppingLists' => $shoppingLists
+            'shoppingLists' => $shoppingLists,
+            'participate'   => $participate
         ]);
     }
 

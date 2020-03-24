@@ -61,10 +61,16 @@ class User implements UserInterface
      */
     private $shoppingLists;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="user")
+     */
+    private $participates;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->shoppingLists = new ArrayCollection();
+        $this->participates = new ArrayCollection();
     }
 
     public function __toString()
@@ -253,6 +259,37 @@ class User implements UserInterface
     {
         if ($this->shoppingLists->contains($shoppingList)) {
             $this->shoppingLists->removeElement($shoppingList);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participate[]
+     */
+    public function getParticipates(): Collection
+    {
+        return $this->participates;
+    }
+
+    public function addParticipate(Participate $participate): self
+    {
+        if (!$this->participates->contains($participate)) {
+            $this->participates[] = $participate;
+            $participate->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipate(Participate $participate): self
+    {
+        if ($this->participates->contains($participate)) {
+            $this->participates->removeElement($participate);
+            // set the owning side to null (unless already changed)
+            if ($participate->getUser() === $this) {
+                $participate->setUser(null);
+            }
         }
 
         return $this;

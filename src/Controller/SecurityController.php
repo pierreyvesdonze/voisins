@@ -15,14 +15,14 @@ class SecurityController extends AbstractController
         $projectDir = $this->getParameter('kernel.project_dir');
         $adminEmail = $this->getParameter('app.admin_email');
     }
-    
+
     /**
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-             return $this->redirectToRoute('event_list');
+            return $this->redirectToRoute('event_list');
         }
 
         // get the login error if there is one

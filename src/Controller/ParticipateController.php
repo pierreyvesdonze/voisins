@@ -3,17 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Event;
-use App\Entity\ShoppingList;
-use App\Form\Type\ShoppingListType;
+use App\Entity\Participate;
+use App\Form\Type\ParticipateType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/groceries")
+ * @Route("/participate")
  */
-class ShoppingListController extends AbstractController
+class ParticipateController extends AbstractController
 {
     public function index()
     {
@@ -22,32 +22,34 @@ class ShoppingListController extends AbstractController
     }
 
     /**
-     * @Route("/list/{id}", name="shopping_list")
+     * @Route("/list/{id}", name="participate_list")
      */
-    public function shoppingList(ShoppingList $shoppingList)
+    public function participate(Participate $participate)
     {
-        return $this->render('groceries/view.html.twig', [
-            'shoppingList' => $shoppingList
+        return $this->render('participate/view.html.twig', [
+            'participate' => $participate
         ]);
     }
 
     /**
-     * @Route("/request/{id}", name="groceries_request", methods={"GET","POST"})
+     * @Route("/request/{id}", name="participate_request", methods={"GET","POST"})
      */
-    public function groceriesRequest(Request $request, Event $event): Response
+    public function participateRequest(Request $request, Event $event): Response
     {
 
-        $shoppingList = new ShoppingList();
-        $shoppingList->setEvent($event);
-        $shoppingList->setUser($this->getUser());
+        $participate = new Participate();
+        $participate->setEvent($event);
+        $participate->setUser($this->getUser());
 
-        $form = $this->createForm(ShoppingListType::class, $shoppingList);
+        $form = $this->createForm(ParticipateType::class, $participate);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $response = $form->getData();
+
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($shoppingList);
+            $entityManager->persist($participate);
             $entityManager->flush();
 
             $this->addFlash('success', 'Enregistré.');
@@ -55,8 +57,8 @@ class ShoppingListController extends AbstractController
             return $this->redirectToRoute('event_list');
         }
 
-        return $this->render('groceries/create.html.twig', [
-            'shoppingList' => $shoppingList,
+        return $this->render('participate/create.html.twig', [
+            'participate' => $participate,
             'event'        => $event,
             'form'         => $form->createView(),
         ]);
