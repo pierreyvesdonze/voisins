@@ -59,7 +59,7 @@ class Event
     private $shoppingLists;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="event", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -160,18 +160,6 @@ class Event
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|ShoppingList[]
      */
@@ -199,6 +187,18 @@ class Event
                 $shoppingList->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -45,21 +45,27 @@ class User implements UserInterface
      */
     private $role;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\ShoppingList", mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $shoppingList;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Event", mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $event;
-
      /**
      * @ORM\Column(type="string")
      * @ORM\JoinColumn(nullable=true)
      */
     private $brochureFilename;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="user")
+     */
+    private $events;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingList", mappedBy="user")
+     */
+    private $shoppingLists;
+
+    public function __construct()
+    {
+        $this->events = new ArrayCollection();
+        $this->shoppingLists = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -183,23 +189,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getEvent(): ?Event
-    {
-        return $this->event;
-    }
-
-    public function setEvent(Event $event): self
-    {
-        $this->event = $event;
-
-        // set the owning side of the relation if necessary
-        if ($event->getUser() !== $this) {
-            $event->setUser($this);
-        }
-
-        return $this;
-    }
-
     public function getBrochureFilename()
     {
         return $this->brochureFilename;
@@ -208,6 +197,63 @@ class User implements UserInterface
     public function setBrochureFilename($brochureFilename)
     {
         $this->brochureFilename = $brochureFilename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->contains($event)) {
+            $this->events->removeElement($event);
+            // set the owning side to null (unless already changed)
+            if ($event->getUser() === $this) {
+                $event->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShoppingList[]
+     */
+    public function getShoppingLists(): Collection
+    {
+        return $this->shoppingLists;
+    }
+
+    public function addShoppingList(ShoppingList $shoppingList): self
+    {
+        if (!$this->shoppingLists->contains($shoppingList)) {
+            $this->shoppingLists[] = $shoppingList;
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingList(ShoppingList $shoppingList): self
+    {
+        if ($this->shoppingLists->contains($shoppingList)) {
+            $this->shoppingLists->removeElement($shoppingList);
+        }
 
         return $this;
     }

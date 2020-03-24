@@ -29,8 +29,9 @@ class EventType extends AbstractType
             ChoiceType::class,
             [
                 "choices" => [
-                    "Invitation" => "Invitation",
+                    "Invitation" => "Apéro",
                     "Courses"    => "Courses",
+                    "Bouffe"     => "Bouffe",
                     "Service"    => "Service"
                 ],
                 'expanded' => true,

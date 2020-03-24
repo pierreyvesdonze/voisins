@@ -6,7 +6,6 @@
 	<h1>Tous les événements</h1>
 
 	<div class="flex-container">
-
 		{% for event in events %}
 			<div class="card text-center">
 				<div class="card-header">
@@ -32,7 +31,6 @@
 						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
 					</div>
 				</div>
-
 			</div>
 		{% endfor %}
 	</div>

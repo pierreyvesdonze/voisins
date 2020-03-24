@@ -45,14 +45,12 @@ class ShoppingList
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="shoppingList", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="shoppinglists")
      */
     private $user;
 
     public function __construct()
     {
-        $this->ingredients = new ArrayCollection();
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
     }
@@ -135,12 +133,13 @@ class ShoppingList
         return $this;
     }
 
+    
     public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 

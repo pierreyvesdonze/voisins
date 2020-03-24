@@ -64,10 +64,7 @@ class EventController extends AbstractController
     public function eventCreate(Request $request)
     {
         $event = new Event;
-        $eventUser = new EventUser;
         $event->setUser($this->getUser());
-        $eventUser->setUser($this->getUser());
-        $eventUser->setEvent($event);
         
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -77,7 +74,6 @@ class EventController extends AbstractController
             $event = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($event);
-            $manager->persist($eventUser);
             $manager->flush();
 
             $this->addFlash("success", "L'événement a bien été ajouté !");

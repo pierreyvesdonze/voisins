@@ -11,10 +11,15 @@ COLORS & FONTS
 
 * {
   font-family: 'Montserrat', sans-serif;
+  color: var(--secondary-color);
 }
 
-h1, h5, label, span {
+h1, h5, label, span, legend {
   color: var(--secondary-color);
+}
+
+legend, .form-group label {
+  font-weight: 900;
 }
 
 
@@ -29,17 +34,15 @@ ICONS
 ***********************************
 */
 .button-icon {
-  width: 30px !important;
-  filter: grayscale(50%);
-  -webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+  width: 50px !important;
+
 }
 
 .button-icon:hover {
-  -webkit-filter: grayscale(0);
-  filter: grayscale(0);
-  -webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+  -webkit-filter: invert(.8);
+  filter: invert(.8);
+  -webkit-transition: .1s ease-in-out;
+	transition: .1s ease-in-out;
 } 
 
 /*
@@ -58,7 +61,7 @@ CONTROL
 */
 .control {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 /*

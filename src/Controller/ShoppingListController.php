@@ -49,7 +49,6 @@ class ShoppingListController extends AbstractController
         $form = $this->createForm(ShoppingListType::class, $shoppingList);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -64,7 +63,7 @@ class ShoppingListController extends AbstractController
         return $this->render('groceries/create.html.twig', [
             'shoppingList' => $shoppingList,
             'event'        => $event,
-            'form' => $form->createView(),
+            'form'         => $form->createView(),
         ]);
     }
 }

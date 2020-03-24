@@ -76,6 +76,11 @@ CARDS
 
 .card-body {
   display: flex;
+  flex-direction: column;
+}
+
+.card-body .control {
+  align-self: center;
 }
 
 .card .list-events {
@@ -112,8 +117,24 @@ EVENT VIEW
 USER
 ***********************************
 */
+.myprofile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  margin: 20px auto;
+}
+
+.avatar-profile, .myprofile .table, .myprofile .control {
+  margin-top: 40px;
+}
+
+.avatar-profile {
+  text-align: center;
+}
+
 .avatar-profile img{
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
