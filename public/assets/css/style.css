@@ -154,6 +154,27 @@ input[type="file"] {
   border: none;
 }
 
+.apero-type {
+  height: 100vh;
+  background-image: linear-gradient(113.3deg, #86d1e4 -1.8%, #3c5073 86.4%);
+}
+
+.bouffe-type {
+  height: 100vh;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7e3a35), to(#070505));
+  background-image: linear-gradient(to right, #7e3a35 0%, #070505 100%);
+}
+
+.courses-type {
+  height: 100vh;
+  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+}
+
+.service-type {
+  height: 100vh;
+  background-image: linear-gradient(109.6deg, #141e30 11.2%, #243b55 91.1%);
+}
+
 /*
 ***********************************
 NAVBAR
@@ -225,12 +246,13 @@ CARDS
 .card {
   -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
   box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-  background-color: rgba(161, 97, 0, 0.11);
+  background-color: rgba(73, 135, 206, 0.096);
   border-radius: 10px;
 }
 
 .card-header {
-  background-image: radial-gradient(circle farthest-corner at 10% 20%, #1393fb 0.1%, #053053 90%);
+  background-color: transparent;
+  background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(20, 161, 255, 0.952) 0.1%, rgba(6, 94, 153, 0.795) 90%);
   border-radius: 0 0 50px 50px !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -253,10 +275,6 @@ CARDS
           justify-content: space-between;
 }
 
-.card-header span:nth-child(2) {
-  color: var(--tertiary-color);
-}
-
 .lieu {
   margin-top: 20px;
 }
@@ -273,6 +291,7 @@ CARDS
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  border-radius: 10px;
 }
 
 .card p {

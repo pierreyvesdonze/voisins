@@ -47,11 +47,13 @@ class EventController extends AbstractController
      */
     public function eventView(Event $event)
     {
-         /** @var ShoppingListRepository */
-         $shoppingListRepository = $this->getDoctrine()->getRepository(ShoppingList::class);
-         $shoppingLists = $shoppingListRepository->findBy(["event" => $event->getId()]);
+        /** @var ShoppingListRepository */
+        $shoppingListRepository = $this->getDoctrine()->getRepository(ShoppingList::class);
+        $shoppingLists = $shoppingListRepository->findBy(["event" => $event->getId()]);
 
-        return $this->render('events/view.html.twig', [
+        $eventType = $event->getType();
+
+        return $this->render('events/view.' . $eventType . '.html.twig', [
             'event'         => $event,
             'shoppingLists' => $shoppingLists
         ]);
@@ -65,7 +67,7 @@ class EventController extends AbstractController
     {
         $event = new Event;
         $event->setUser($this->getUser());
-        
+
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
