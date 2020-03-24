@@ -10,12 +10,13 @@ COLORS & FONTS
 }
 
 * {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1, label {
+h1, h5, label, span {
   color: var(--secondary-color);
 }
+
 
 body {
   height: 100vh;

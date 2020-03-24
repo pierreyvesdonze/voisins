@@ -10,33 +10,24 @@
 		{% for event in events %}
 			<div class="card text-center">
 				<div class="card-header">
-					{% if event.type %}
-						<span class="list-events">{{ event.type }}
-						</span>
-					{% else %}
-						<span class="list-events">
-							non défini
-						</span>
-					{% endif %}
-					{{ event.user }}
-					<br>
+					<span class="list-events">{{ event.type }}
+					</span>
+					<span>{{ event.user }}</span>
 				</div>
 				<div class="card-body">
 					<h5 class="card-title">
 						{{ event.title }}
 					</h5>
-
-					Lieu :
-					<span class="list-events">{{ event.lieu }}
-					</span>
-					<br>
-					Le
-					<span class="date-events">{{ event.date|date("d/m/Y à h:i") }}
+					<span class="list-events">
+						Lieu :
+						{{ event.lieu }}
 					</span>
 					<hr>
-					<span class="user-events">
-						
+					<span class="date-events">
+						{{ event.date|format_datetime('full', 'short', locale='fr') }}
 					</span>
+					<hr>
+					<span class="user-events"></span>
 					<div class="control">
 						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
 					</div>

@@ -10,12 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
  */
-class UserController extends AbstractController 
+class UserController extends AbstractController
 {
 
     public function index()
@@ -34,6 +35,28 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $brochureFile = $form->get('brochure')->getData();
+
+            if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $originalFilename;
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('brochures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+
+                    echo ("L'image n'a pas été chargée");
+                }
+
+                $user->setBrochureFilename($newFilename);
+            }
 
             $plainPassword = $form->get('plain_password')->getData();
             $encodedPassword = $encoder->encodePassword($user, $plainPassword);
@@ -70,5 +93,52 @@ class UserController extends AbstractController
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
+    }
+
+    /**
+     * @Route("/edit", name="user_edit_profile", methods={"GET","POST"})
+     */
+    public function edit(Request $request): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $brochureFile = $form['brochure']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/uploads/images';
+            $safeFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+            $brochureFile->move(
+                $destination,
+                $newFilename
+            );
+            $user->setBrochureFilename($newFilename);
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_profile');
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+        /**
+     * @Route("/delete/{id}", name="user_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, User $user): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('event_list');
     }
 }

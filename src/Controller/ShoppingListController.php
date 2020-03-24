@@ -31,7 +31,7 @@ class ShoppingListController extends AbstractController
      */
     public function shoppingList(ShoppingList $shoppingList)
     {
-        return $this->render('groceries/list.html.twig', [
+        return $this->render('groceries/view.html.twig', [
             'shoppingList' => $shoppingList
         ]);
     }

@@ -11,10 +11,10 @@ COLORS & FONTS
 }
 
 * {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1, label {
+h1, h5, label, span {
   color: var(--secondary-color);
 }
 
@@ -158,13 +158,64 @@ CARDS
 .card-header {
   background-color: rgba(0, 0, 0, 0.226);
   border-radius: 10px 10px 0 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  font-size: 1.2em;
+}
+
+.card-header span:nth-child(2) {
+  color: var(--tertiary-color);
 }
 
 .card-title {
   font-size: 2.3em;
 }
 
+.card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .card .list-events {
   font-weight: bold;
+}
+
+.card .date-events {
+  font-size: 1.6em;
+  font-weight: 100;
+}
+
+.card-footer {
+  background-color: var(--secondary-color);
+  text-align: center;
+}
+
+.card-footer span {
+  color: var(--tertiary-color);
+}
+
+/*
+***********************************
+EVENT VIEW
+***********************************
+*/
+.card .event-view {
+  width: 70%;
+}
+
+/*
+***********************************
+USER
+***********************************
+*/
+.avatar-profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }
 /*# sourceMappingURL=style.css.map */

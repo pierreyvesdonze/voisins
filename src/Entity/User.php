@@ -55,6 +55,12 @@ class User implements UserInterface
      */
     private $event;
 
+     /**
+     * @ORM\Column(type="string")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $brochureFilename;
+
     public function __toString()
     {
         return $this->username;
@@ -190,6 +196,18 @@ class User implements UserInterface
         if ($event->getUser() !== $this) {
             $event->setUser($this);
         }
+
+        return $this;
+    }
+
+    public function getBrochureFilename()
+    {
+        return $this->brochureFilename;
+    }
+
+    public function setBrochureFilename($brochureFilename)
+    {
+        $this->brochureFilename = $brochureFilename;
 
         return $this;
     }

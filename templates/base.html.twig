@@ -12,7 +12,7 @@ HEAD
 			<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
 			<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-			<link href="https://fonts.googleapis.com/css?family=Raleway:900&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,900&display=swap" rel="stylesheet">
 		{% endblock %}
 
 		<title>
@@ -24,39 +24,44 @@ HEAD
 
 
 	<!--***************************
-												BODY
-											****************************-->
+													BODY
+												****************************-->
 
 	<body>
 		<nav class="navbar navbar-expand-lg">
-				<ul class="navbar-nav">
-					<ul class="navbar-nav nav-registration">
+			<ul class="navbar-nav">
+				<ul class="navbar-nav nav-registration">
+					<li class="nav-item">
+						<a class="navlink" href="{{ path('event_list') }}">
+							<img src="{{ asset('assets/images/list.png') }}" alt="list" class="button-icon">
+						</a>
+					</li>
+					{% if app.user %}
 						<li class="nav-item">
-							<a class="navlink" href="{{ path('event_list') }}">
-								<img src="{{ asset('assets/images/list.png') }}" alt="list" class="button-icon">
+							<a class="navlink" href="{{ path('event_create') }}">
+								<img src="{{ asset('assets/images/add.png') }}" alt="add" class="button-icon">
 							</a>
 						</li>
-						{% if app.user %}
-							<li class="nav-item">
-								<a class="navlink" href="{{ path('event_create') }}">
-									<img src="{{ asset('assets/images/add.png') }}" alt="add" class="button-icon">
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="navlink" href="{{ path('app_logout') }}">
-									<img src="{{ asset('assets/images/logout.png') }}" alt="logout" class="button-icon">
-								</a>
-							</li>
-						{% else %}
-							<li class="nav-item">
-								<a class="navlink" href="{{ path('new') }}">Inscription</a>
-							</li>
-							<li class="nav-item">
-								<a class="navlink" href="{{ path('app_login') }}">Connexion</a>
-							</li>
-						{% endif %}
-					</ul>
+						<li class="nav-item">
+							<a class="navlink" href="{{ path('user_profile') }}">
+								<img src="{{ asset('assets/images/profil.png') }}" alt="profil" class="button-icon">
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="navlink" href="{{ path('app_logout') }}">
+								<img src="{{ asset('assets/images/logout.png') }}" alt="logout" class="button-icon">
+							</a>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="navlink" href="{{ path('new') }}">Inscription</a>
+						</li>
+						<li class="nav-item">
+							<a class="navlink" href="{{ path('app_login') }}">Connexion</a>
+						</li>
+					{% endif %}
 				</ul>
+			</ul>
 
 		</nav>
 		{% block body %}{% endblock %}
@@ -69,8 +74,8 @@ HEAD
 	</body>
 
 	<!--***************************
-																FOOTER
-																****************************-->
+																	FOOTER
+																	****************************-->
 
 	<div
 		class="footer"><!--&copy; Pierre-Yves Donzé - 2020-->

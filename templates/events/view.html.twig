@@ -2,26 +2,24 @@
 
 {% block body %}
 
-	<div class="card">
+	<div class="card mb-3">
+		<img src="..." class="card-img-top" alt="...">
 		<div class="card-header">
-			{% if event.type %}
-				<span class="list-events">{{ event.type }}
+			<h5 class="card-title">{{ event.title }}
+				|
+				{{ event.lieu }}</h5>
+			<div class="date">
+				<span class="date-events">
+					{{ event.date|format_datetime('full', 'short', locale='fr') }}
 				</span>
-			{% else %}
-				<span class="list-events">
-					non défini
-				</span>
-			{% endif %}
-			<div class="user">
-				{{ event.user }}
 			</div>
 		</div>
 		<div class="card-body">
-			<h5 class="card-title">{{ event.title }}</h5>
-			<span>{{ event.lieu }}</span>
-			<hr>
+		
+			<div class="user">
+				{{ event.user }}
+			</div>
 			<p class="card-text">{{ event.text }}</p>
-			<hr>
 			<div class="control">
 				{% if is_granted('ROLE_USER') %}
 					<a href="{{ path('event_update',{'id': event.id}) }}">
@@ -34,34 +32,24 @@
 				<hr>
 				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Participer !</a>
 			</div>
-
-		</div>
-		<div class="card-footer text-muted">
-			Le
-			<span class="date-events">{{ event.date|date("d/m/Y à h:i") }}
-			</span>
-		</div>
-
-		<div class="shopping-list-container">
-			{% for shoppingList in shoppingLists %}
-				<div class="card" style="width: 14rem;">
-					<img src="..." class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">{{ shoppingList.title }}</h5>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
-					</ul>
-					<div class="card-body">
-						<a href="#" class="card-link">Card link</a>
-						<a href="#" class="card-link">Another link</a>
-					</div>
-				</div>
-			{% endfor %}
 		</div>
 	</div>
 
+	<div class="shopping-list-container">
+		{% for shoppingList in shoppingLists %}
+			<div class="card" style="width: 14rem;">
+				{{ shoppingList.user }}
+				<div class="card-body">
+					<h5 class="card-title">{{ shoppingList.title }}</h5>
+					<p class="card-text">
+						{{ shoppingList.description }}
+					</p>
+				</div>
+
+				<div class="card-body">
+					<a href="{{ path('shopping_list',{'id': shoppingList.id}) }}" class="btn btn-primary">Voir</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
