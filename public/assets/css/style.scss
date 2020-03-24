@@ -133,6 +133,12 @@ EVENT VIEW
 ***********************************
 */
 
+.user {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .card-image-top {
   width: 100%;
   height: 100%;
@@ -157,6 +163,17 @@ EVENT VIEW
 .card-title {
   text-align: center;
 }
+
+.card-text {
+  font-size: 1.3em !important;
+  font-weight: 400;
+}
+
+/*
+***********************************
+SHOPPING LIST
+***********************************
+*/
 
 .shopping-list-container {
   display: flex;

@@ -49,8 +49,13 @@ legend,
 ICONS
 ***********************************
 */
-.button-icon {
+
+.button-icon-header {
   width: 30px !important;
+}
+
+.button-icon {
+  width: 40px !important;
 }
 
 .button-icon:hover {
@@ -96,4 +101,56 @@ BUTTONS
 .btn:hover {
   background-color: white;
   color: black !important;
+}
+
+
+/*
+***********************************
+FORMS
+***********************************
+*/
+
+#shopping_list {
+  width: 60%;
+  margin: auto;
+
+}
+
+.title-create-shopping-list {
+  font-size: 2em;
+  font-weight: 400;
+  color: var(--tertiary-color);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+
+.form-group label {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.form-group input, .form-group textarea {
+  border-radius: 20px;
+  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.user-edit-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#shopping_list_description {
+  height: 400px
+}
+
+/*INPUT MOBILE CAMERA*/
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
 }

@@ -45,8 +45,12 @@ legend,
 ICONS
 ***********************************
 */
-.button-icon {
+.button-icon-header {
   width: 30px !important;
+}
+
+.button-icon {
+  width: 40px !important;
 }
 
 .button-icon:hover {
@@ -94,6 +98,60 @@ BUTTONS
 .btn:hover {
   background-color: white;
   color: black !important;
+}
+
+/*
+***********************************
+FORMS
+***********************************
+*/
+#shopping_list {
+  width: 60%;
+  margin: auto;
+}
+
+.title-create-shopping-list {
+  font-size: 2em;
+  font-weight: 400;
+  color: var(--tertiary-color);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+
+.form-group label {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.form-group input, .form-group textarea {
+  border-radius: 20px;
+  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+          box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.user-edit-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#shopping_list_description {
+  height: 400px;
+}
+
+/*INPUT MOBILE CAMERA*/
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
 }
 
 /*
@@ -257,6 +315,12 @@ CARDS
 EVENT VIEW
 ***********************************
 */
+.user {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .card-image-top {
   width: 100%;
   height: 100%;
@@ -283,6 +347,16 @@ EVENT VIEW
   text-align: center;
 }
 
+.card-text {
+  font-size: 1.3em !important;
+  font-weight: 400;
+}
+
+/*
+***********************************
+SHOPPING LIST
+***********************************
+*/
 .shopping-list-container {
   display: -webkit-box;
   display: -ms-flexbox;
