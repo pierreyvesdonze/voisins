@@ -3,14 +3,14 @@
 
 {% block body %}
 
-	<h2>Tous les événements</h2>
+	<h1>Tous les événements</h1>
 
 	<div class="flex-container">
 
 		{% for event in events %}
 			<div class="card text-center">
 				<div class="card-header">
-					{%  if event.type %}
+					{% if event.type %}
 						<span class="list-events">{{ event.type }}
 						</span>
 					{% else %}
@@ -18,6 +18,7 @@
 							non défini
 						</span>
 					{% endif %}
+					{{ event.user }}
 					<br>
 				</div>
 				<div class="card-body">
@@ -33,6 +34,9 @@
 					<span class="date-events">{{ event.date|date("d/m/Y à h:i") }}
 					</span>
 					<hr>
+					<span class="user-events">
+						
+					</span>
 					<div class="control">
 						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
 					</div>

@@ -3,12 +3,19 @@
 {% block body %}
 
 	<div class="card">
-		<h5 class="card-header">
-
-			<span class="list-events">{{ event.type }}
-			</span>
-
-		</h5>
+		<div class="card-header">
+			{% if event.type %}
+				<span class="list-events">{{ event.type }}
+				</span>
+			{% else %}
+				<span class="list-events">
+					non défini
+				</span>
+			{% endif %}
+			<div class="user">
+				{{ event.user }}
+			</div>
+		</div>
 		<div class="card-body">
 			<h5 class="card-title">{{ event.title }}</h5>
 			<span>{{ event.lieu }}</span>
@@ -34,24 +41,27 @@
 			<span class="date-events">{{ event.date|date("d/m/Y à h:i") }}
 			</span>
 		</div>
-{% for shoppingList in shoppingLists %}
-		<div class="card" style="width: 18rem;">
-			<img src="..." class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">{{ shoppingList.title }}</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-			</ul>
-			<div class="card-body">
-				<a href="#" class="card-link">Card link</a>
-				<a href="#" class="card-link">Another link</a>
-			</div>
+
+		<div class="shopping-list-container">
+			{% for shoppingList in shoppingLists %}
+				<div class="card" style="width: 14rem;">
+					<img src="..." class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">{{ shoppingList.title }}</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+					<div class="card-body">
+						<a href="#" class="card-link">Card link</a>
+						<a href="#" class="card-link">Another link</a>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 	</div>
 
 {% endblock %}

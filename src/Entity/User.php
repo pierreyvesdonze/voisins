@@ -50,6 +50,11 @@ class User implements UserInterface
      */
     private $shoppingList;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Event", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $event;
+
     public function __toString()
     {
         return $this->username;
@@ -167,6 +172,23 @@ class User implements UserInterface
         // set the owning side of the relation if necessary
         if ($shoppingList->getUser() !== $this) {
             $shoppingList->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(Event $event): self
+    {
+        $this->event = $event;
+
+        // set the owning side of the relation if necessary
+        if ($event->getUser() !== $this) {
+            $event->setUser($this);
         }
 
         return $this;

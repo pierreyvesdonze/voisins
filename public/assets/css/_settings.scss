@@ -1,20 +1,25 @@
 /*
 ***********************************
-COLORS
+COLORS & FONTS
 ***********************************
 */
 :root {
-  --primary-color: rgb(57, 66, 68);
-  --secondary-color: rgb(33, 38, 39);
-  --tertiary-color: rgb(18, 20, 20);
+  --primary-color: #fbf000;
+  --secondary-color: black;
+  --tertiary-color: white
+}
 
-  --font-color-1: rgb(172, 158, 149);
-  --font-color-2: rgb(156, 151, 134);
-  --font-color-3: #ffffff;
-  --font-color-4: rgba(13, 216, 74, 0.443);
+* {
+  font-family: 'Raleway', sans-serif;
+}
 
-  --button-color-1: #566472;
-  --button-color-danger: #f12207;
+h1, label {
+  color: var(--secondary-color);
+}
+
+body {
+  height: 100vh;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(251,221,19,1) 0.1%, rgba(255,153,1,1) 90% );
 }
 
 /*
@@ -53,4 +58,19 @@ CONTROL
 .control {
   display: flex;
   justify-content: space-evenly;
+}
+
+/*
+***********************************
+BUTTONS
+***********************************
+*/
+
+.btn {
+  background-color: black;
+}
+
+.btn:hover {
+  background-color: white;
+  color: black !important; 
 }

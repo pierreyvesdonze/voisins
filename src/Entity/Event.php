@@ -58,6 +58,12 @@ class Event
      */
     private $shoppingLists;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="event", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;

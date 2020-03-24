@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Entity\EventUser;
 use App\Entity\ShoppingList;
+use App\Entity\User;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,15 +34,10 @@ class EventController extends AbstractController
         $eventRepository = $this->getDoctrine()->getRepository(Event::class);
         $events = $eventRepository->findAll();
 
-        /** @var ShoppingListRepository */
-        $shoppingListRepository = $this->getDoctrine()->getRepository(ShoppingList::class);
-        $shoppingLists = $shoppingListRepository->findAll();
-
         return $this->render(
             'events/list.html.twig',
             [
                 'events'        => $events,
-                'shoppingLists' => $shoppingLists,
             ]
         );
     }
@@ -53,7 +49,7 @@ class EventController extends AbstractController
     {
          /** @var ShoppingListRepository */
          $shoppingListRepository = $this->getDoctrine()->getRepository(ShoppingList::class);
-         $shoppingLists = $shoppingListRepository->findAll();
+         $shoppingLists = $shoppingListRepository->findBy(["event" => $event->getId()]);
 
         return $this->render('events/view.html.twig', [
             'event'         => $event,
@@ -69,6 +65,7 @@ class EventController extends AbstractController
     {
         $event = new Event;
         $eventUser = new EventUser;
+        $event->setUser($this->getUser());
         $eventUser->setUser($this->getUser());
         $eventUser->setEvent($event);
         
