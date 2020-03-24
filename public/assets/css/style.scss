@@ -18,20 +18,20 @@ NAVBAR
 }
 
 .navbar-collapse {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: center;
+}
 
 .container-nav-left {
-    width: 80%;
+  width: 80%;
 }
 
 .container-nav-right {
-    display: flex;
+  display: flex;
 }
 
 .navlink {
-    color: var(--tertiary-color);
+  color: var(--tertiary-color);
 }
 
 /*
@@ -51,23 +51,38 @@ CARDS
 */
 
 .card {
-  -webkit-box-shadow: 8px 8px 7px -2px rgba(0,0,0,0.75);
-  -moz-box-shadow: 8px 8px 7px -2px rgba(0,0,0,0.75);
-  box-shadow: 8px 8px 7px -2px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
   background-color: rgba(161, 97, 0, 0.11);
   border-radius: 10px;
 }
 
 .card-header {
-  background-color: rgba(0, 0, 0, 0.226);
-  border-radius: 10px 10px 0 0 !important;
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgb(19, 147, 251) 0.1%,
+    rgb(5, 48, 83) 90%
+  );
+  border-radius: 0 0 50px 50px !important;
   display: flex;
   justify-content: space-evenly;
   font-size: 1.2em;
+  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.card-header-second {
+  margin: 0 40px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-header span:nth-child(2) {
   color: var(--tertiary-color);
+}
+
+.lieu {
+  margin-top: 20px;
 }
 
 .card-title {
@@ -79,7 +94,11 @@ CARDS
   flex-direction: column;
 }
 
-.card-body .control {
+.card p {
+  font-size: 1.1em;
+}
+
+.view {
   align-self: center;
 }
 
@@ -88,8 +107,15 @@ CARDS
 }
 
 .card .date-events {
-  font-size: 1.6em;
-  font-weight: 100;
+  font-size: 1.2em;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.84);
+  font-weight: 400;
+}
+
+.lieu-events {
+  font-weight: bold;
+  font-size: 1.3em;
 }
 
 .card-footer {
@@ -97,9 +123,7 @@ CARDS
   text-align: center;
 }
 
-
 .card-footer span {
-
   color: var(--tertiary-color);
 }
 
@@ -108,8 +132,35 @@ CARDS
 EVENT VIEW
 ***********************************
 */
+
+.card-image-top {
+  width: 100%;
+  height: 100%;
+}
+
 .card .event-view {
   width: 70%;
+}
+
+.avatar-mini {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.avatar-mini img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.card-title {
+  text-align: center;
+}
+
+.shopping-list-container {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /*
@@ -125,7 +176,9 @@ USER
   margin: 20px auto;
 }
 
-.avatar-profile, .myprofile .table, .myprofile .control {
+.avatar-profile,
+.myprofile .table,
+.myprofile .control {
   margin-top: 40px;
 }
 
@@ -133,7 +186,7 @@ USER
   text-align: center;
 }
 
-.avatar-profile img{
+.avatar-profile img {
   width: 200px;
   height: 200px;
   border-radius: 50%;

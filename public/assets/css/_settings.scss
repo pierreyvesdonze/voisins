@@ -6,26 +6,42 @@ COLORS & FONTS
 :root {
   --primary-color: #fbf000;
   --secondary-color: black;
-  --tertiary-color: white
+  --tertiary-color: white;
 }
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--secondary-color);
 }
-
-h1, h5, label, span, legend {
-  color: var(--secondary-color);
-}
-
-legend, .form-group label {
-  font-weight: 900;
-}
-
 
 body {
   height: 100vh;
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(251,221,19,1) 0.1%, rgba(255,153,1,1) 90% );
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(251, 221, 19, 1) 0.1%,
+    rgba(255, 153, 1, 1) 90%
+  );
+}
+
+h1,
+h5,
+label,
+span,
+legend {
+  color: var(--secondary-color);
+}
+
+legend,
+.form-group label {
+  font-weight: 900;
+}
+
+.hr {
+	height: 2px;
+	border: 0;
+  margin: 50px auto;
+  background: rgb(0,0,0);
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(69, 50, 0, 0.144) 50%, rgba(255, 179, 0, 0) 100%);
 }
 
 /*
@@ -34,16 +50,15 @@ ICONS
 ***********************************
 */
 .button-icon {
-  width: 50px !important;
-
+  width: 30px !important;
 }
 
 .button-icon:hover {
-  -webkit-filter: invert(.8);
-  filter: invert(.8);
-  -webkit-transition: .1s ease-in-out;
-	transition: .1s ease-in-out;
-} 
+  -webkit-filter: opacity(0.2);
+  filter: opacity(0.2);
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
+}
 
 /*
 ***********************************
@@ -61,7 +76,11 @@ CONTROL
 */
 .control {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.control a {
+  margin-left: 20px;
 }
 
 /*
@@ -76,5 +95,5 @@ BUTTONS
 
 .btn:hover {
   background-color: white;
-  color: black !important; 
+  color: black !important;
 }

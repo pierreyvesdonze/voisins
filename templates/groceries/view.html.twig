@@ -3,5 +3,44 @@
 
 {% block body %}
 
+<input type="file" name="image" accept="image/*" capture="environment">
+<input type="file" accept="image/*" capture="camera" />
 
+	<!--EVENT-->
+	<div class="card mb-3">
+		<img src="{{ asset('assets/images/courses.jpg') }}" alt="legumes" class="card-image-top">
+		<div class="card-header">
+			<h5 class="card-title">{{ shoppingList.title }}
+			</h5>
+		</div>
+
+
+		<div class="card-header-second">
+			<div class="lieu">
+			</div>
+
+			<!--AVATARS / SHOPPING LISTS-->
+
+			<div class="shopping-list-container">
+	
+
+					<div class="avatar-mini">
+						
+							<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
+		
+					</div>
+			</div>
+
+		</div>
+
+		<hr class="hr">
+
+		<!--CONTROL-->
+		<div class="control">
+			
+		</div>
+
+	</div>
 {% endblock %}
+
+

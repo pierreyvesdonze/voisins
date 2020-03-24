@@ -120,7 +120,7 @@ class EventController extends AbstractController
      * @Route("/{id}/delete", name="event_delete", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function eventDelete(event $event)
+    public function eventDelete(Event $event)
     {
 
         $manager = $this->getDoctrine()->getManager();

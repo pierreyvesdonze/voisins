@@ -1,55 +1,68 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-
+	<!--EVENT-->
 	<div class="card mb-3">
-		<img src="..." class="card-img-top" alt="...">
+		<img src="{{ asset('assets/images/courses.jpg') }}" alt="legumes" class="card-image-top">
 		<div class="card-header">
 			<h5 class="card-title">{{ event.title }}
-				|
-				{{ event.lieu }}</h5>
+			</h5>
 			<div class="date">
 				<span class="date-events">
 					{{ event.date|format_datetime('full', 'short', locale='fr') }}
 				</span>
 			</div>
 		</div>
+
+
+		<div class="card-header-second">
+			<div class="lieu">
+				<span class="lieu-events">
+					{{ event.lieu }}
+				</span>
+			</div>
+
+			<!--AVATARS / SHOPPING LISTS-->
+
+			<div class="shopping-list-container">
+				{% for shoppingList in shoppingLists %}
+
+					<div class="avatar-mini">
+						<a href="{{ path('shopping_list',{'id': shoppingList.id}) }}" class="button-icon">
+							<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
+						</a>
+					</div>
+
+				{% endfor %}
+			</div>
+
+		</div>
+
+		<hr class="hr">
+
 		<div class="card-body">
-		
+
 			<div class="user">
 				{{ event.user }}
 			</div>
 			<p class="card-text">{{ event.text }}</p>
-			<div class="control">
-				{% if is_granted('ROLE_USER') %}
-					<a href="{{ path('event_update',{'id': event.id}) }}">
-						<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
-					</a>
-					<a href="{{ path('event_delete',{'id': event.id}) }}">
-						<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
-					</a>
-				{% endif %}
-				<hr>
-				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Participer !</a>
-			</div>
 		</div>
-	</div>
 
-	<div class="shopping-list-container">
-		{% for shoppingList in shoppingLists %}
-			<div class="card" style="width: 14rem;">
-				{{ shoppingList.user }}
-				<div class="card-body">
-					<h5 class="card-title">{{ shoppingList.title }}</h5>
-					<p class="card-text">
-						{{ shoppingList.description }}
-					</p>
-				</div>
+		<hr
+		class="hr">
 
-				<div class="card-body">
-					<a href="{{ path('shopping_list',{'id': shoppingList.id}) }}" class="btn btn-primary">Voir</a>
-				</div>
-			</div>
-		{% endfor %}
+		<!--CONTROL-->
+		<div class="control">
+			{% if is_granted('ROLE_USER') %}
+				<a href="{{ path('event_update',{'id': event.id}) }}">
+					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
+				</a>
+				<a href="{{ path('event_delete',{'id': event.id}) }}">
+					<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
+				</a>
+			{% endif %}
+			<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Participer !</a>
+		</div>
+
 	</div>
 {% endblock %}
