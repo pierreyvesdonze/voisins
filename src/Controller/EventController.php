@@ -54,12 +54,23 @@ class EventController extends AbstractController
         $participateRepository = $this->getDoctrine()->getRepository(Participate::class);
         $participates = $participateRepository->findBy(["event" => $event->getId()]);
 
-        $eventType = $event->getType();
+        //dd($participates);
 
         return $this->render('events/view.html.twig', [
             'event'         => $event,
             'shoppingLists' => $shoppingLists,
             'participates'   => $participates
+        ]);
+    }
+
+    /**
+     * @Route("/participate-view/{id}", name="participate_view", methods={"GET","POST"})
+     */
+    public function participateView(Participate $participate)
+    {
+
+        return $this->render('participate/view.html.twig', [
+            'participate'   => $participate
         ]);
     }
 

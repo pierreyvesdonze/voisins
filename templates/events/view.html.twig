@@ -24,31 +24,32 @@
 				</div>
 				#{{ event.type }}
 
-				<!--AVATARS / EVENTS / SHOPPING LISTS-->
+
 				{% if event.type == "courses" %}
 
+					<!--AVATARS / EVENTS / SHOPPING LISTS-->
 					<div class="shopping-list-container">
-						{% for user in participates %}
+						{% for shoppingList in shoppingLists %}
 
 							<div class="avatar-mini">
-								<a href="#" class="button-icon">
-									<img src="{{ asset('uploads/images/' ~ user.user.brochureFilename) }}" alt="avatar">
+								<a href="{{ path('shopping_list', {'id': shoppingList.id}) }}" class="button-icon">
+									<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
 								</a>
 							</div>
-
 						{% endfor %}
 					</div>
 
 				{% else %}
 
+					<!--AVATARS / EVENTS / PARTICIPATES-->
 					<div class="shopping-list-container">
-						{% for user in participates %}
-
+						{% for participate in participates %}
 							<div class="avatar-mini">
-								<a href="#" class="button-icon">
-									<img src="{{ asset('uploads/images/' ~ user.user.brochureFilename) }}" alt="avatar">
+								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+									<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
 								</a>
 							</div>
+
 						{% endfor %}
 					</div>
 

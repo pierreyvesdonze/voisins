@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+	<!--SHOPPING LIST TITLE-->
+	<div class="card mb-3">
+		<img src="{{ asset('assets/images/courses.jpg') }}" alt="legumes" class="card-image-top">
+		<div class="card-header">
+			<h5 class="card-title">{{ shoppingList.title }}
+			</h5>
+		</div>
+
+
+		<div
+			class="card-header-second">
+			<!--AVATARS / SHOPPING LISTS-->
+			<div class="shopping-list-container">
+				<div class="avatar-mini">
+					<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
+				</div>
+			</div>
+		</div>
+
+		<hr class="hr">
+
+		<div class="shopping-list-description">
+			<p>
+				{{ shoppingList.description }}
+			</p>
+		</div>
+
+		<hr
+		class="hr">
+
+		<!--CONTROL-->
+		<div class="control">
+			{% if is_granted('ROLE_USER') %}
+				<a href="#">
+					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
+				</a>
+				<a href="#">
+					<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
+				</a>
+			{% endif %}
+			<label for="file-upload" class="custom-file-upload">
+				<img src="{{ asset('assets/images/invoice.png') }}" alt="update" class="button-icon">
+			</label>
+			<input type="file" name="image" accept="image/*" capture="environment" id="file-upload">
+			<!--<input type="file" accept="image/*" capture="camera"/>-->
+		</div>
+
+	</div>
+{% endblock %}
