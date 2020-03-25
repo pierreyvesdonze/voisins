@@ -7,6 +7,8 @@ COLORS & FONTS
   --primary-color: #fbf000;
   --secondary-color: black;
   --tertiary-color: white;
+
+  --header-color: radial-gradient(circle farthest-corner at 10% 20%, rgb(37, 37, 37) 0.1%, rgb(0, 0, 0) 90%);
 }
 
 * {
@@ -20,8 +22,7 @@ body {
 }
 
 h1,
-h5,
-label,
+h5 label,
 span,
 legend {
   color: var(--secondary-color);
@@ -33,11 +34,11 @@ legend,
 }
 
 .hr {
-	height: 2px;
-	border: 0;
+  height: 2px;
+  border: 0;
   margin: 50px auto;
-  background: rgb(0,0,0);
-  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(69, 50, 0, 0.144) 50%, rgba(255, 179, 0, 0) 100%);
+  background: rgb(0, 0, 0);
+  background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(69, 50, 0, 0.144) 50%, rgba(255, 179, 0, 0) 100%);
 }
 
 /*
@@ -52,13 +53,13 @@ ICONS
 
 .button-icon {
   width: 40px !important;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .button-icon:hover {
-  -webkit-filter: opacity(0.2);
-  filter: opacity(0.2);
-  -webkit-transition: 0.1s ease-in-out;
-  transition: 0.1s ease-in-out;
+  -webkit-transform: rotate(-20deg);
+  transform: rotate(-20deg);
 }
 
 /*
@@ -92,13 +93,19 @@ BUTTONS
 
 .btn {
   background-color: black;
+  border-radius: 20px !important;
+  -webkit-box-shadow: 4px -8px 5px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px -8px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.75);
+  border: none;
 }
 
 .btn:hover {
   background-color: white;
   color: black !important;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
-
 
 /*
 ***********************************
@@ -113,13 +120,13 @@ FORMS
 
 .form-group {
   display: flex;
-  margin: 50px auto;
+  margin: 10px auto;
+  flex-direction: column;
 }
 
 #shopping_list {
   width: 60%;
   margin: auto;
-
 }
 
 .title-create-shopping-list {
@@ -132,11 +139,17 @@ FORMS
 .form-group label {
   font-size: 2em;
   font-weight: 400;
+  text-align: center;
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   border-radius: 20px;
   box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+#event_type  {
+  display: flex;
 }
 
 .user-edit-form {
@@ -144,8 +157,12 @@ FORMS
   justify-content: space-between;
 }
 
+#event_text {
+  height: 250px;
+}
+
 #shopping_list_description {
-  height: 400px
+  height: 400px;
 }
 
 /*INPUT MOBILE CAMERA*/

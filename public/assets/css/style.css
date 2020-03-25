@@ -7,6 +7,7 @@ COLORS & FONTS
   --primary-color: #fbf000;
   --secondary-color: black;
   --tertiary-color: white;
+  --header-color: radial-gradient(circle farthest-corner at 10% 20%, rgb(37, 37, 37) 0.1%, rgb(0, 0, 0) 90%);
 }
 
 * {
@@ -20,8 +21,7 @@ body {
 }
 
 h1,
-h5,
-label,
+h5 label,
 span,
 legend {
   color: var(--secondary-color);
@@ -51,13 +51,13 @@ ICONS
 
 .button-icon {
   width: 40px !important;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .button-icon:hover {
-  -webkit-filter: opacity(0.2);
-  filter: opacity(0.2);
-  -webkit-transition: 0.1s ease-in-out;
-  transition: 0.1s ease-in-out;
+  -webkit-transform: rotate(-20deg);
+  transform: rotate(-20deg);
 }
 
 /*
@@ -93,11 +93,17 @@ BUTTONS
 */
 .btn {
   background-color: black;
+  border-radius: 20px !important;
+  -webkit-box-shadow: 4px -8px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.75);
+  border: none;
 }
 
 .btn:hover {
   background-color: white;
   color: black !important;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 /*
@@ -114,7 +120,11 @@ FORMS
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 50px auto;
+  margin: 10px auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 #shopping_list {
@@ -132,12 +142,20 @@ FORMS
 .form-group label {
   font-size: 2em;
   font-weight: 400;
+  text-align: center;
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   border-radius: 20px;
   -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
           box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+#event_type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .user-edit-form {
@@ -147,6 +165,10 @@ FORMS
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+#event_text {
+  height: 250px;
 }
 
 #shopping_list_description {
@@ -261,6 +283,9 @@ CARDS
 }
 
 .card {
+  -webkit-box-flex: inherit !important;
+      -ms-flex: inherit !important;
+          flex: inherit !important;
   background-color: rgba(73, 135, 206, 0.096);
   border-radius: 10px;
   -webkit-transform: scale(1);
@@ -271,7 +296,7 @@ CARDS
 
 .card-header {
   background-color: transparent;
-  background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(20, 161, 255, 0.952) 0.1%, rgba(6, 94, 153, 0.795) 90%);
+  background-image: var(--header-color);
   border-radius: 0 0 50px 50px !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -280,8 +305,12 @@ CARDS
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   font-size: 1.2em;
-  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-          box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 8px 7px -2px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.card-header .list-events {
+  color: var(--tertiary-color);
 }
 
 .card-header-second {
@@ -304,6 +333,7 @@ CARDS
 
 .card-title {
   font-size: 2.3em;
+  color: var(--tertiary-color);
 }
 
 .card-body {
@@ -366,6 +396,16 @@ CARDS
 EVENT VIEW
 ***********************************
 */
+#event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .user {
   font-size: 2em;
   font-weight: bold;
@@ -458,8 +498,21 @@ USER
 PARTICIPATE
 ***********************************
 */
+#participate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 #participate_comment {
-  width: 50%;
+  width: 400px;
   height: 400px;
   margin: auto;
 }

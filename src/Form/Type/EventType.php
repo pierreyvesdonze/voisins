@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class EventType extends AbstractType
 {
@@ -20,7 +21,13 @@ class EventType extends AbstractType
             'title',
             TextType::class,
             [
-                "label" => "Intitulé de l'événement"
+                'label' => false,
+                'attr'  => [
+                    'placeholder' => 'Intitulé'
+                ],
+                'constraints' => [
+                    new NotBlank(),
+                ]
             ]
         );
 
@@ -36,8 +43,10 @@ class EventType extends AbstractType
                     "Service"    => "service",
                     "Autre"      => "autre"
                 ],
-                'expanded' => true,
-                'required' => false,
+                'expanded' => false,
+                'constraints' => [
+                    new NotBlank(),
+                ]
             ]
         );
 
@@ -45,6 +54,9 @@ class EventType extends AbstractType
             'placeholder' => [
                 'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                 'hour' => 'Hour', 'minute' => 'Minute'
+            ],
+            'constraints' => [
+                new NotBlank(),
             ]
         ]);
 
@@ -52,7 +64,13 @@ class EventType extends AbstractType
             'lieu',
             TextType::class,
             [
-                "label" => "Lieu"
+                'label' => false,
+                'attr'  => [
+                    'placeholder' => 'Lieu'
+                ],
+                'constraints' => [
+                    new NotBlank(),
+                ]
             ]
         );
 
@@ -60,7 +78,10 @@ class EventType extends AbstractType
             'text',
             TextareaType::class,
             [
-                "label" => "Ajouter une description"
+                'label' => false,
+                'attr'  => [
+                    'placeholder' => 'Ajouter une description'
+                ]
             ]
         );
 

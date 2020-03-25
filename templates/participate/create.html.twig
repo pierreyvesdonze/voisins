@@ -1,10 +1,21 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-
 	<div class="card-header">
 		<h5 class="title-create-shopping-list">
 			Participer à l'événement
 		</h5>
 	</div>
-	{{ form(form) }}{% endblock %}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<!--CONTROL-->
+	<div class="control">
+		<a href="{{ path('event_view',{'id': participate.event.id}) }}">
+			<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
+		</a>
+	</div>
+
+			{{ form_end(form) }}
+
+
+		{% endblock %}

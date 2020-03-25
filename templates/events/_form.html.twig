@@ -1,3 +1,8 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="button">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_errors(form) }}
+{{ form_widget(form) }}
+
+
+{{ form_end(form) }}
+
