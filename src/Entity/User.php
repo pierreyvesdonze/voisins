@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -45,7 +46,7 @@ class User implements UserInterface
      */
     private $role;
 
-     /**
+    /**
      * @ORM\Column(type="string")
      * @ORM\JoinColumn(nullable=true)
      */

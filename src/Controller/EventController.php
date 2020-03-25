@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Event;
-use App\Entity\EventUser;
 use App\Entity\Participate;
 use App\Entity\ShoppingList;
-use App\Entity\User;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,14 +52,14 @@ class EventController extends AbstractController
 
         /** @var ParticipateRepository */
         $participateRepository = $this->getDoctrine()->getRepository(Participate::class);
-        $participate = $participateRepository->findBy(["event" => $event->getId()]);
+        $participates = $participateRepository->findBy(["event" => $event->getId()]);
 
         $eventType = $event->getType();
 
-        return $this->render('events/view.' . $eventType . '.html.twig', [
+        return $this->render('events/view.html.twig', [
             'event'         => $event,
             'shoppingLists' => $shoppingLists,
-            'participate'   => $participate
+            'participates'   => $participates
         ]);
     }
 

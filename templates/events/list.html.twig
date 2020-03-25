@@ -6,34 +6,43 @@
 	<h1>Tous les événements</h1>
 
 	<div class="flex-container">
-		{% for event in events %}
-			<div class="card text-center">
-				<div class="card-header">
-					<span class="list-events">{{ event.type }}
-					</span>
-					<span>{{ event.user }}</span>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">
-						{{ event.title }}
-					</h5>
-					<span class="list-events">
-						Lieu :
-						{{ event.lieu }}
-					</span>
-					<hr>
-					<span class="date-events">
-						{{ event.date|format_datetime('full', 'short', locale='fr') }}
-					</span>
-					<hr>
-					<span class="user-events"></span>
-					<div class="view">
+		<div class="card-group">
+			{% for event in events %}
+
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">
+						<span class="list-events">{{ event.type }}
+						</span>
+						<span>{{ event.user }}</span>
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">
+							{{ event.title }}
+						</h5>
+
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<span class="list-events">
+								Lieu :
+								{{ event.lieu }}
+							</span>
+						</li>
+						<div class="date-item">
+							<li class="list-group-item">
+								<span class="date-events">
+									{{ event.date|format_datetime('full', 'short', locale='fr') }}
+								</span>
+							</li>
+						</div>
+					</ul>
+					<div class="card-body view-item">
 						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
 					</div>
 				</div>
-			</div>
-		{% endfor %}
-	</div>
 
+			{% endfor %}
+		</div>
+	</div>
 
 {% endblock %}

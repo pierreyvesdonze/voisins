@@ -16,7 +16,7 @@ COLORS & FONTS
 
 body {
   height: 100vh;
-  background-image: radial-gradient(circle farthest-corner at 10% 20%, #fbdd13 0.1%, #ff9901 90%);
+  background-color: #ff9c02;
 }
 
 h1,
@@ -105,6 +105,18 @@ BUTTONS
 FORMS
 ***********************************
 */
+#user {
+  width: 60%;
+  margin: 120px auto;
+}
+
+.form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 50px auto;
+}
+
 #shopping_list {
   width: 60%;
   margin: auto;
@@ -243,11 +255,18 @@ LIST EVENTS
 CARDS
 ***********************************
 */
-.card {
+.card-group {
   -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
   box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.card {
   background-color: rgba(73, 135, 206, 0.096);
   border-radius: 10px;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
 }
 
 .card-header {
@@ -275,6 +294,10 @@ CARDS
           justify-content: space-between;
 }
 
+.list-group-item {
+  background-color: rgba(255, 228, 196, 0.192);
+}
+
 .lieu {
   margin-top: 20px;
 }
@@ -292,10 +315,15 @@ CARDS
       -ms-flex-direction: column;
           flex-direction: column;
   border-radius: 10px;
+  height: 150px;
 }
 
 .card p {
   font-size: 1.1em;
+}
+
+.view-item {
+  height: 90px;
 }
 
 .view {
@@ -313,6 +341,10 @@ CARDS
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.84);
   font-weight: 400;
+}
+
+.date-item {
+  height: 100px;
 }
 
 .lieu-events {
@@ -419,5 +451,20 @@ USER
   width: 200px;
   height: 200px;
   border-radius: 50%;
+}
+
+/*
+***********************************
+PARTICIPATE
+***********************************
+*/
+#participate_comment {
+  width: 50%;
+  height: 400px;
+  margin: auto;
+}
+
+#participate_save {
+  margin: auto;
 }
 /*# sourceMappingURL=style.css.map */

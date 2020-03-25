@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\SmsMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -39,5 +41,22 @@ class SecurityController extends AbstractController
     public function logout()
     {
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+    }
+
+    /**
+     * @Route("/notification/success", name="new_sms")
+     */
+    public function smsSuccess(TexterInterface $texter)
+    {
+        $sms = new SmsMessage(
+            // the phone number to send the SMS message to
+            '+33623924949',
+            // the message
+            'New event'
+        );
+
+        $texter->send($sms);
+
+        return $this->redirectToRoute('event_list');
     }
 }

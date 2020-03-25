@@ -16,11 +16,7 @@ COLORS & FONTS
 
 body {
   height: 100vh;
-  background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(251, 221, 19, 1) 0.1%,
-    rgba(255, 153, 1, 1) 90%
-  );
+  background-color: #ff9c02;
 }
 
 h1,
@@ -109,6 +105,16 @@ BUTTONS
 FORMS
 ***********************************
 */
+
+#user {
+  width: 60%;
+  margin: 120px auto;
+}
+
+.form-group {
+  display: flex;
+  margin: 50px auto;
+}
 
 #shopping_list {
   width: 60%;
