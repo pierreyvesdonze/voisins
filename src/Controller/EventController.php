@@ -108,9 +108,11 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}/update", name="event_update", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function eventUpdate(Request $request, event $event)
     {
+        $this->denyAccessUnlessGranted('edit', $event);
 
         $form = $this->createForm(eventType::class, $event);
         $form->handleRequest($request);

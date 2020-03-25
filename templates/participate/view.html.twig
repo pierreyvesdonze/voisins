@@ -4,11 +4,21 @@
 {% block body %}
 	<div class="card mb-3">
 
-			<div class="card-header">
-				<h5 class="card-title">{{ participate.comment }}
-				</h5>
+		<div class="card-header">
+			<h5 class="card-title">
+			</h5>
+		</div>
+        	<div class="card-body">
+				<div class="avatar-mini">
+					<span class="button-icon">
+						<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
+					</span>
+				</div>
+				<p class="card-text">{{ participate.comment }}</p>
 			</div>
-            </div>
+
+        {{ participate.user}}
+	</div>
 
 
 {% endblock %}

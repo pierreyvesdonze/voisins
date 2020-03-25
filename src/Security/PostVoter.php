@@ -3,6 +3,8 @@ namespace App\Security;
 
 use App\Entity\Star;
 use App\Entity\AppUser;
+use App\Entity\Event;
+use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
@@ -29,7 +31,7 @@ class PostVoter extends Voter
         }
 
         // only vote on Star objects inside this voter
-        if (!$subject instanceof Star) {
+        if (!$subject instanceof Event) {
             return false;
         }
 
@@ -38,39 +40,39 @@ class PostVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        $appUser = $token->getUser();
+        $user = $token->getUser();
 
-        if (!$appUser instanceof AppUser) {
+        if (!$user instanceof User) {
             // the user must be logged in; if not, deny access
             return false;
         }
 
        
-        /** @var Star  */
-        $star = $subject;
+        /** @var Event  */
+        $event = $subject;
 
         switch ($attribute) {
             case self::VIEW:
-                return $this->canView($star, $appUser);
+                return $this->canView($event, $user);
             case self::EDIT:
-                return $this->canEdit($star, $appUser);
+                return $this->canEdit($event, $user);
         }
 
         throw new \LogicException('This code should not be reached!');
     }
 
-    private function canView(Star $star, AppUser $appUser)
+    private function canView(Event $event, User $user)
     {
         // if they can edit, they can view
-        if ($this->canEdit($star, $appUser)) {
+        if ($this->canEdit($event, $user)) {
             return true;
         }
     }
 
-    private function canEdit(Star $star, AppUser $appUser)
+    private function canEdit(Event $event, User $user)
     {
         // this assumes that the data object has a getOwner() method
         // to get the entity of the user who owns this data object
-        return $appUser === $star->getAppUser();
+        return $user === $event->getUser();
     }
 }
