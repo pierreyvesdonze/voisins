@@ -1,15 +1,13 @@
 <?php
 namespace App\Security;
 
-use App\Entity\Star;
-use App\Entity\AppUser;
-use App\Entity\Event;
+use App\Entity\ShoppingList;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 
-class PostVoter extends Voter
+class ShoppingListVoter extends Voter
 {
     // these strings are just invented: you can use anything
     const VIEW = 'view';
@@ -30,8 +28,8 @@ class PostVoter extends Voter
             return false;
         }
 
-        // only vote on Star objects inside this voter
-        if (!$subject instanceof Event) {
+        // only vote on ShoppingList objects inside this voter
+        if (!$subject instanceof ShoppingList) {
             return false;
         }
 
@@ -47,32 +45,31 @@ class PostVoter extends Voter
             return false;
         }
 
-       
-        /** @var Event  */
-        $event = $subject;
+        /** @var ShoppingList  */
+        $shoppingList = $subject;
 
         switch ($attribute) {
             case self::VIEW:
-                return $this->canView($event, $user);
+                return $this->canView($shoppingList, $user);
             case self::EDIT:
-                return $this->canEdit($event, $user);
+                return $this->canEdit($shoppingList, $user);
         }
 
         throw new \LogicException('This code should not be reached!');
     }
 
-    private function canView(Event $event, User $user)
+    private function canView(ShoppingList $shoppingList, User $user)
     {
         // if they can edit, they can view
-        if ($this->canEdit($event, $user)) {
+        if ($this->canEdit($shoppingList, $user)) {
             return true;
         }
     }
 
-    private function canEdit(Event $event, User $user)
+    private function canEdit(ShoppingList $shoppingList, User $user)
     {
         // this assumes that the data object has a getOwner() method
         // to get the entity of the user who owns this data object
-        return $user === $event->getUser();
+        return $user === $shoppingList->getUser();
     }
 }

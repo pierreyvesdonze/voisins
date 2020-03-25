@@ -35,7 +35,7 @@
 
 		<!--CONTROL-->
 		<div class="control">
-			{% if is_granted('ROLE_USER') %}
+			{% if is_granted('view', shoppingList) %}
 				<a href="#">
 					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
 				</a>

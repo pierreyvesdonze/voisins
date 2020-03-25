@@ -110,7 +110,7 @@ class EventController extends AbstractController
      * @Route("/{id}/update", name="event_update", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function eventUpdate(Request $request, event $event)
+    public function eventUpdate(Request $request, Event $event)
     {
         $this->denyAccessUnlessGranted('edit', $event);
 
@@ -141,6 +141,7 @@ class EventController extends AbstractController
      */
     public function eventDelete(Event $event)
     {
+        $this->denyAccessUnlessGranted('edit', $event);
 
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($event);

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/groceries")
@@ -36,7 +37,6 @@ class ShoppingListController extends AbstractController
      */
     public function groceriesRequest(Request $request, Event $event): Response
     {
-
         $shoppingList = new ShoppingList();
         $shoppingList->setEvent($event);
         $shoppingList->setUser($this->getUser());
@@ -60,5 +60,51 @@ class ShoppingListController extends AbstractController
             'event'        => $event,
             'form'         => $form->createView(),
         ]);
+    }
+
+     /**
+     * @Route("/{id}/update", name="shopping_list_update", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function shoppingListUpdate(Request $request, ShoppingList $shoppingList)
+    {
+        $this->denyAccessUnlessGranted('edit', $shoppingList);
+
+        $form = $this->createForm(ShoppingListType::class, $shoppingList);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+
+            $this->addFlash("success", "La liste de courses a bien été modifié");
+
+            return $this->redirectToRoute('shopping_list', ['id' => $shoppingList->getId()]);
+        }
+
+        return $this->render(
+            "groceries/update.html.twig",
+            [
+                "form" => $form->createView()
+            ]
+        );
+    }
+
+    /**
+     * @Route("/{id}/delete", name="shopping_list_delete", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function shoppingListDelete(ShoppingList $shoppingList)
+    {
+        $this->denyAccessUnlessGranted('edit', $shoppingList);
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($shoppingList);
+        $manager->flush();
+
+        $this->addFlash("success", "La liste de courses a bien été supprimé");
+
+        return $this->redirectToRoute('shopping_list');
     }
 }

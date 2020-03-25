@@ -17,7 +17,22 @@
 				<p class="card-text">{{ participate.comment }}</p>
 			</div>
 
-        {{ participate.user}}
+        <!--CONTROL-->
+		<div class="control">
+		
+				<a href="#">
+					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
+				</a>
+				<a href="#">
+					<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
+				</a>
+	
+			<label for="file-upload" class="custom-file-upload">
+				<img src="{{ asset('assets/images/invoice.png') }}" alt="update" class="button-icon">
+			</label>
+			<input type="file" name="image" accept="image/*" capture="environment" id="file-upload">
+			<!--<input type="file" accept="image/*" capture="camera"/>-->
+		</div>
 	</div>
 
 
