@@ -68,7 +68,7 @@ class EventController extends AbstractController
      */
     public function participateView(Participate $participate)
     {
-
+     
         return $this->render('participate/view.html.twig', [
             'participate'   => $participate
         ]);

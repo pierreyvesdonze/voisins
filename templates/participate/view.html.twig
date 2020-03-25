@@ -4,34 +4,34 @@
 {% block body %}
 	<div class="card mb-3">
 
-		<div class="card-header">
-			<h5 class="card-title">
-			</h5>
-		</div>
-        	<div class="card-body">
-				<div class="avatar-mini">
-					<span class="button-icon">
-						<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
-					</span>
-				</div>
-				<p class="card-text">{{ participate.comment }}</p>
+		<div class="card-body">
+			<div class="avatar-mini">
+				<span class="button-icon">
+					<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
+				</span>
 			</div>
+			<p class="card-text">{{ participate.comment }}</p>
+		</div>
 
-        <!--CONTROL-->
+		<!--CONTROL-->
 		<div class="control">
-		
-				<a href="#">
+			<a href="{{ path('event_view',{'id': participate.event.id}) }}">
+				<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
+			</a>
+			{% if is_granted('view', participate) %}
+				<a href="{{ path('participate_update',{'id': participate.id}) }}">
 					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
 				</a>
 				<a href="#">
 					<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
 				</a>
-	
+			{% endif %}
 			<label for="file-upload" class="custom-file-upload">
 				<img src="{{ asset('assets/images/invoice.png') }}" alt="update" class="button-icon">
 			</label>
-			<input type="file" name="image" accept="image/*" capture="environment" id="file-upload">
-			<!--<input type="file" accept="image/*" capture="camera"/>-->
+			<input
+			type="file" name="image" accept="image/*" capture="environment" id="file-upload">
+		<!--<input type="file" accept="image/*" capture="camera"/>-->
 		</div>
 	</div>
 

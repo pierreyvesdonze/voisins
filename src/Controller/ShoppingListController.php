@@ -105,6 +105,6 @@ class ShoppingListController extends AbstractController
 
         $this->addFlash("success", "La liste de courses a bien été supprimé");
 
-        return $this->redirectToRoute('shopping_list');
+        return $this->redirectToRoute('event_list');
     }
 }
