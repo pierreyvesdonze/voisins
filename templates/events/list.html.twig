@@ -33,7 +33,7 @@
 						<div class="date-item">
 							<li class="list-group-item">
 								<span class="date-events">
-									{{ event.date|format_datetime('full', 'short', locale='fr') }}
+									{{ event.date|date("d/m/y à h:m") }}
 								</span>
 							</li>
 						</div>

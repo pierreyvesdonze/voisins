@@ -10,7 +10,7 @@
 				</h5>
 				<div class="date">
 					<span class="date-events">
-						{{ event.date|format_datetime('full', 'short', locale='fr') }}
+						{{ event.date|date("d/m/y à h:m") }}
 					</span>
 				</div>
 			</div>
