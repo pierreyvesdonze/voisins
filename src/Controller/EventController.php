@@ -121,6 +121,8 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $brochureFile = $form->get('brochure')->getData();
+
+            if($brochureFile) {
             
             $brochureFile = $form['brochure']->getData();
             $destination = $this->getParameter('kernel.project_dir').'/public/uploads/images';
@@ -132,6 +134,7 @@ class EventController extends AbstractController
             );
             
             $event->setBrochureFilename($newFilename);
+        }
 
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();

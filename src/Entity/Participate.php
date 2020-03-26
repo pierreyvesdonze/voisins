@@ -20,18 +20,18 @@ class Participate
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="participates")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="participates", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $event;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participates")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participates", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
