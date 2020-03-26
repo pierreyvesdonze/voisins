@@ -1,0 +1,124 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<div class="jumbotron">
+		<h1 class="home-title">Bienvenue  sur "Voisins"</h1>
+		<hr class="hr">
+		<span class="sub-home">L'appli qui te veut du bien !</span>
+		<hr class="hr">
+	</div>
+
+	<div class="container">
+		<p>
+			Hello ! Bienvenue sur cette petite appli conçue pour nous organiser entre voisins ! Grâce à cette appli tu pourras :
+			<ul>
+				<li>
+					- Voir les événements organisés par tes voisins
+				</li>
+				<li>
+					- T'inscrire aux événements et/ou proposer les tiens
+				</li>
+				<li>
+					- Créer des listes de courses ou t'inscrire à celles existantes
+				</li>
+				<li>
+					- Uploader tes tickets de caisse, factures, reçus...
+				</li>
+				<li>
+					- Donner de l'amour dans tes commentaires
+				</li>
+			</ul>
+		</p>
+
+		<hr class="hr">
+
+		<p>
+			Quelques bugs sont encore présents mais en ces temps apocalyptiques, il a fallu faire vite pour rendre l'appli accessible et utilisable ! Aussi l'ergonomie n'est pas dans sa phase finale, notamment en version mobile... mais ça viendra au fil du temps !
+			<br>
+			<br>
+			En principe les fonctions du site ne devraient pas être trop compliquées à utiliser, néanmoins voici un petit tuto pour te permettre d'apprendre à t'en servir.
+		</p>
+
+		<hr class="hr">
+
+		<ol>
+			<li>
+				<h2>Inscription / Connexion</h2>
+
+				<p>
+					Indispensable pour créer ou participer à des événements. Toutefois tu pourras voir les événements sans être connecté
+				</p>
+			</li>
+
+			<br>
+
+			<li>
+				<h2>Navigation / Contrôle</h2>
+				<div class="tuto-image">
+					<img src="{{ asset('assets/images/tuto-header-nav.png') }}" alt="update" class="tuto-img">
+				</div>
+				<div class="tuto-image">
+					<img src="{{ asset('assets/images/tuto-control-nav.png') }}" alt="update" class="tuto-img">
+				</div>
+			</li>
+
+			<br>
+
+			<li>
+				<h2>Participer à un événement</h2>
+				<div class="container">
+					<p>
+						Il suffit de cliquer sur "participer" et de rajouter un petit commentaire pour t'inscrire à un événement.
+					</p>
+
+				</div>
+			</li>
+
+			<br>
+
+			<li>
+				<h2>Créer un événement</h2>
+				<div class="tuto-img-container">
+					<div class="tuto-form-img">
+						<input type="checkbox" id="zoomCheck">
+						<label for="zoomCheck">
+							<img src="{{ asset('assets/images/tuto-form.png') }}" alt="update" class="tuto-img">
+						</label>
+
+					</div>
+					<div class="container tuto-form-text">
+						<ul>
+							<li>
+								- Ajoute un titre
+							</li>
+							<li>
+								- Un type
+							</li>
+							<li>
+								- Une date
+							</li>
+							<li>
+								- Un lieu (DTC autorisé)
+							</li>
+							<li>
+								- Un commentaire (ou ta liste de courses)
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<hr>
+
+				<div class="container">
+					<p>
+						Si l'événement est de type "courses" tu auras la possibilité de revenir sur le formulaire et d'uploader un ticket de caisse.
+					</p>
+				</div>
+			</li>
+		</ol>
+
+
+	</div>
+
+{% endblock %}

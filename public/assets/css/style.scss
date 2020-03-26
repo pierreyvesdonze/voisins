@@ -38,6 +38,36 @@ NAVBAR
 
 /*
 ***********************************
+HOMPAGE
+***********************************
+*/
+
+.tuto-img-container {
+  display: flex;
+}
+
+.tuto-image img, .tuto-form-img img  {
+  width: 100%;
+}
+
+.tuto-form-img img {
+  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.tuto-form-img, .tuto-form-text {
+  width: 50%;
+}
+
+.tuto-form-text p {
+  clear: right;
+  float: left;
+}
+
+
+/*
+***********************************
 LIST EVENTS
 ***********************************
 */
