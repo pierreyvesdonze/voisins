@@ -12,7 +12,9 @@
 						<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
 					</span>
 				</div>
+
 			{% else %}
+			
 				<div class="avatar-mini">
 					<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
 						{{ participate.user.username }}

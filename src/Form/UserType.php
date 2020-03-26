@@ -65,7 +65,6 @@ class UserType extends AbstractType
             'mapped'        => false,
             'required'      => false,
             'constraints'   => [
-                new Blank(),
                 new File([
                     'maxSize' => '1024k'
                 ])
