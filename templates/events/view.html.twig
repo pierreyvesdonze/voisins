@@ -91,13 +91,16 @@
 			<div class="control">
 				<a href="{{ path('event_list',{'id': event.id}) }}">
 					<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
+					back
 				</a>
 				{% if is_granted('view', event) %}
 					<a href="{{ path('event_update',{'id': event.id}) }}">
 						<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
+						update
 					</a>
 					<a href="{{ path('event_delete',{'id': event.id}) }}">
 						<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
+						delete
 					</a>
 				{% endif %}
 

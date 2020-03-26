@@ -35,6 +35,15 @@ legend {
   color: var(--secondary-color);
 }
 
+a {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--tertiary-color);
+}
+
 legend,
 .form-group label {
   font-weight: 900;
@@ -88,10 +97,6 @@ CONTROL
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-}
-
-.control a {
-  margin-left: 20px;
 }
 
 /*
