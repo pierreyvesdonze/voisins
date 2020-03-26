@@ -29,12 +29,22 @@
 					<!--AVATARS / EVENTS / SHOPPING LISTS-->
 					<div class="shopping-list-container">
 						{% for shoppingList in shoppingLists %}
+							{% if shoppingList.user.brochureFilename %}
 
-							<div class="avatar-mini">
-								<a href="{{ path('shopping_list', {'id': shoppingList.id}) }}" class="button-icon">
-									<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
-								</a>
-							</div>
+								<div class="avatar-mini">
+									<a href="{{ path('shopping_list', {'id': shoppingList.id}) }}" class="button-icon">
+										<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
+									</a>
+								</div>
+
+							{% else %}
+
+								<div class="avatar-mini">
+									<a href="{{ path("shopping_list", {'id': shoppingList.id}) }}" class="button-icon">
+										{{ shoppingList.user.username }}
+									</a>
+								</div>
+							{% endif %}
 						{% endfor %}
 					</div>
 
@@ -43,12 +53,21 @@
 					<!--AVATARS / EVENTS / PARTICIPATES-->
 					<div class="shopping-list-container">
 						{% for participate in participates %}
-							<div class="avatar-mini">
-								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
-									<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
-								</a>
-							</div>
+							{% if participate.event.brochureFilename %}
+								<div class="avatar-mini">
+									<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+										<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
+									</a>
+								</div>
 
+							{% else %}
+
+								<div class="avatar-mini">
+									<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+										{{ participate.user.username }}
+									</a>
+								</div>
+							{% endif %}
 						{% endfor %}
 					</div>
 
@@ -62,12 +81,23 @@
 			<!--AVATAR-->
 			<div class="grocery-body">
 				<div class="card-body">
-					<div class="avatar-mini">
-						<span class="button-icon">
-							<img src="{{ asset('uploads/images/' ~ event.user.brochureFilename) }}" alt="avatar">
-						</span>
-					</div>
-					<p class="card-text">{{ event.text }}</p>
+					{% if event.brochureFilename %}
+						<div class="avatar-mini">
+							<span class="button-icon">
+								<img src="{{ asset('uploads/images/' ~ event.user.brochureFilename) }}" alt="avatar">
+							</span>
+						</div>
+
+					{% else %}
+
+						<div class="avatar-mini">
+							<span class="button-icon">
+								{{ event.user.username }}
+							</span>
+						</div>
+
+						<p class="card-text">{{ event.text }}</p>
+					{% endif %}
 				</div>
 
 				<!--INVOICE-->

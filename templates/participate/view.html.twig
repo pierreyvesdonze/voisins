@@ -5,14 +5,27 @@
 	<div class="card mb-3">
 
 		<div class="card-body">
-			<div class="avatar-mini">
-				<span class="button-icon">
-					<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
-				</span>
-			</div>
+
+			{% if participate.event.brochureFilename %}
+				<div class="avatar-mini">
+					<span class="button-icon">
+						<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
+					</span>
+				</div>
+			{% else %}
+				<div class="avatar-mini">
+					<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+						{{ participate.user.username }}
+					</a>
+				</div>
+			{% endif %}
+
+
 			<p class="card-text">{{ participate.comment }}</p>
 		</div>
-			<hr class="hr">
+		<hr
+		class="hr">
+
 		<!--CONTROL-->
 		<div class="control">
 			<a href="{{ path('event_view',{'id': participate.event.id}) }}">
