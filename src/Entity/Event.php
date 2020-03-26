@@ -69,6 +69,12 @@ class Event
      */
     private $participates;
 
+     /**
+     * @ORM\Column(type="string")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $brochureFilename;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
@@ -236,6 +242,26 @@ class Event
                 $participate->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of brochureFilename
+     */ 
+    public function getBrochureFilename()
+    {
+        return $this->brochureFilename;
+    }
+
+    /**
+     * Set the value of brochureFilename
+     *
+     * @return  self
+     */ 
+    public function setBrochureFilename($brochureFilename)
+    {
+        $this->brochureFilename = $brochureFilename;
 
         return $this;
     }

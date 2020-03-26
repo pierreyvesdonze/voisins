@@ -19,6 +19,14 @@ COLORS & FONTS
 body {
   height: 100vh;
   background-color: #ff9c02;
+  background-image: url(../images/bg_body.jpg) !important;
+  background-repeat: no-repeat;
+    background-size: cover;
+  background-attachment: fixed;
+}
+
+h1 {
+  text-align: center;
 }
 
 h1,
@@ -137,7 +145,7 @@ FORMS
 }
 
 .form-group label {
-  font-size: 2em;
+  font-size: 1.2em;
   font-weight: 400;
   text-align: center;
 }

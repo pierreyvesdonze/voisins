@@ -18,6 +18,14 @@ COLORS & FONTS
 body {
   height: 100vh;
   background-color: #ff9c02;
+  background-image: url(../images/bg_body.jpg) !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1 {
+  text-align: center;
 }
 
 h1,
@@ -140,7 +148,7 @@ FORMS
 }
 
 .form-group label {
-  font-size: 2em;
+  font-size: 1.2em;
   font-weight: 400;
   text-align: center;
 }
@@ -334,12 +342,16 @@ CARDS
 .card-title {
   font-size: 2.3em;
   color: var(--tertiary-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.84);
 }
 
 .card-body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: inherit;
+      -ms-flex: inherit;
+          flex: inherit;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -396,6 +408,14 @@ CARDS
 EVENT VIEW
 ***********************************
 */
+.grocery-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
 #event {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -441,6 +461,27 @@ EVENT VIEW
 .card-text {
   font-size: 1.3em !important;
   font-weight: 400;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+.card-invoice img {
+  width: 200px;
+  -webkit-transition: -webkit-transform 0.25s ease;
+  transition: -webkit-transform 0.25s ease;
+  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}
+
+input[type=checkbox]:checked ~ label > img {
+  -webkit-transform: scale(3);
+          transform: scale(3);
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out;
 }
 
 /*

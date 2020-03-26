@@ -8,6 +8,7 @@ use App\Entity\ShoppingList;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -68,7 +69,7 @@ class EventController extends AbstractController
      */
     public function participateView(Participate $participate)
     {
-     
+
         return $this->render('participate/view.html.twig', [
             'participate'   => $participate
         ]);
@@ -118,6 +119,19 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $brochureFile = $form->get('brochure')->getData();
+            
+            $brochureFile = $form['brochure']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/uploads/images';
+            $safeFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+            $brochureFile->move(
+                $destination,
+                $newFilename
+            );
+            
+            $event->setBrochureFilename($newFilename);
 
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();

@@ -6,10 +6,12 @@ use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class EventType extends AbstractType
@@ -84,6 +86,17 @@ class EventType extends AbstractType
                 ]
             ]
         );
+
+        $builder->add('brochure', FileType::class, [
+
+            'label'         => 'Ajoute un ticket de caisse (après bien sûr)',
+            'mapped'        => false,
+            'required'      => false,
+            'constraints'   => [
+                new File([
+                ])
+            ],
+        ]);
 
         $builder->add(
             'save',
