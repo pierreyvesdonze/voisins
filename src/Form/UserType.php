@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Blank;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\File;
@@ -64,9 +65,9 @@ class UserType extends AbstractType
             'mapped'        => false,
             'required'      => false,
             'constraints'   => [
-                new File([
+                /*new File([
                     'maxSize' => '1024k'
-                ])
+                ])*/
             ],
         ]);
     }

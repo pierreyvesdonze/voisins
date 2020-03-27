@@ -5,12 +5,12 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+		<link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 		{% block stylesheets %}
 			<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
 			<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-			<link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,900&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,600,900&display=swap" rel="stylesheet">
 		{% endblock %}
 
 		<title>
@@ -27,6 +27,11 @@
 		<nav class="navbar navbar-expand-lg">
 			<ul class="navbar-nav">
 				<ul class="navbar-nav nav-registration">
+					<li class="nav-item">
+						<a class="navlink" href="{{ path('homepage') }}">
+							<img src="{{ asset('assets/images/home.png') }}" alt="add" class="button-icon-header">
+						</a>
+					</li>
 					<li class="nav-item">
 						<a class="navlink" href="{{ path('event_list') }}">
 							<img src="{{ asset('assets/images/list.png') }}" alt="list" class="button-icon-header">

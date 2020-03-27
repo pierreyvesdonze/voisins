@@ -28,6 +28,18 @@ h1 {
   text-align: center;
 }
 
+.jumbotron {
+  background-color: rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+          box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.sub-home {
+  color: var(--tertiary-color);
+  font-size: 1.8em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.84);
+}
+
 h1,
 h5 label,
 span,
@@ -42,6 +54,18 @@ a {
 
 a:hover {
   color: var(--tertiary-color);
+}
+
+p {
+  font-size: 1.3em !important;
+  font-weight: 600;
+}
+
+ul li,
+ol li p {
+  color: var(--tertiary-color);
+  font-size: 1.4em;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.84);
 }
 
 legend,
@@ -269,6 +293,35 @@ NAVBAR
 
 .navlink {
   color: var(--tertiary-color);
+}
+
+/*
+***********************************
+HOMPAGE
+***********************************
+*/
+.tuto-img-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tuto-image img, .tuto-form-img img {
+  width: 100%;
+}
+
+.tuto-form-img img {
+  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+}
+
+.tuto-form-img, .tuto-form-text {
+  width: 50%;
+}
+
+.tuto-form-text p {
+  clear: right;
+  float: left;
 }
 
 /*
@@ -565,5 +618,11 @@ PARTICIPATE
 
 #participate_save {
   margin: auto;
+}
+
+.cameleons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=style.css.map */

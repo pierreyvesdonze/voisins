@@ -65,13 +65,12 @@ class Event
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="event", cascade={"persist", "remove"})
      */
     private $participates;
 
      /**
-     * @ORM\Column(type="string")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $brochureFilename;
 

@@ -18,6 +18,6 @@ class DefaultController extends AbstractController {
      */
     public function homepage() {
  
-        return $this->redirectToRoute('event_list');
+        return $this->render('home/homepage.html.twig');
     }
 }

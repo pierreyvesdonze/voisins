@@ -47,8 +47,7 @@ class User implements UserInterface
     private $role;
 
     /**
-     * @ORM\Column(type="string")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $brochureFilename;
 
