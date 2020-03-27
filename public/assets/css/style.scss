@@ -1,5 +1,4 @@
 @import "./settings";
-@import "./bg.types";
 @import "./tooltips";
 
 /*
@@ -193,7 +192,7 @@ EVENT VIEW
 ***********************************
 */
 
-.grocery-body {
+.event-body {
   display: flex;
   justify-content: space-around;
 }
@@ -317,7 +316,21 @@ PARTICIPATE
   margin: auto;
 }
 
+/*
+***********************************
+MODAL
+***********************************
+*/
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.438);
+  backdrop-filter: blur(8px) !important;
+}
 
-.cameleons {
-  display: flex;
+.modal-header h5, .modal-body span {
+  color: var(--tertiary-color);
+  font-weight: bold;
+}
+
+.modal-body {
+  color: var(--tertiary-color);
 }

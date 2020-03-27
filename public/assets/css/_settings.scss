@@ -21,7 +21,7 @@ body {
   background-color: #ff9c02;
   background-image: url(../images/bg_body.jpg) !important;
   background-repeat: no-repeat;
-    background-size: cover;
+  background-size: cover;
   background-attachment: fixed;
 }
 
@@ -61,7 +61,7 @@ p {
   font-weight: 600;
 }
 
-ul li, 
+ul li,
 ol li p {
   color: var(--tertiary-color);
   font-size: 1.4em;
@@ -83,7 +83,7 @@ legend,
 
 /*
 ***********************************
-ICONS
+ICONS / BUTTONS
 ***********************************
 */
 
@@ -100,6 +100,11 @@ ICONS
 .button-icon:hover {
   -webkit-transform: rotate(-20deg);
   transform: rotate(-20deg);
+}
+
+.button-modal {
+  background-color: transparent;
+  border: none;
 }
 
 /*
@@ -184,7 +189,7 @@ FORMS
   box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
 }
 
-#event_type  {
+#event_type {
   display: flex;
 }
 
@@ -197,8 +202,19 @@ FORMS
   height: 250px;
 }
 
-#shopping_list_description {
+#shopping_list_description,
+#comment_comment {
   height: 400px;
+}
+
+#comment_comment {
+  width: 70%;
+  margin: auto;
+}
+
+#comment_save {
+  width: 40%;
+  margin: auto;
 }
 
 /*INPUT MOBILE CAMERA*/
@@ -212,4 +228,60 @@ input[type="file"] {
   padding: 6px 12px;
   cursor: pointer;
   border: none;
+}
+
+/*
+***********************************
+MEDIA QUERIES
+***********************************
+*/
+
+// Very small screens
+$breakpoint-xs: 300px;
+
+// Small tablets and large smartphones (landscape view)
+$breakpoint-sm: 576px;
+
+// Small tablets (portrait view)
+$breakpoint-md: 768px;
+
+// Tablets and small desktops
+$breakpoint-lg: 992px;
+
+// Large tablets and desktops
+$breakpoint-xl: 1280px;
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$breakpoint-xl}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$breakpoint-lg}) and (max-width: #{$breakpoint-xl}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$breakpoint-md}) and (max-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$breakpoint-sm}) and (max-width: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+// XSmall devices
+@mixin xs {
+  @media (min-width: #{$breakpoint-xs}) and (max-width: #{$breakpoint-sm}) {
+    @content;
+  }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Event;
 use App\Entity\Participate;
 use App\Entity\ShoppingList;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -55,12 +55,15 @@ class EventController extends AbstractController
         $participateRepository = $this->getDoctrine()->getRepository(Participate::class);
         $participates = $participateRepository->findBy(["event" => $event->getId()]);
 
-        //dd($participates);
+        /** @var CommentRepository */
+        $commentRepository = $this->getDoctrine()->getRepository(Comment::class);
+        $comments = $commentRepository->findBy(["event" => $event->getId()]);
 
         return $this->render('events/view.html.twig', [
             'event'         => $event,
             'shoppingLists' => $shoppingLists,
-            'participates'   => $participates
+            'participates'  => $participates,
+            'comments'      => $comments
         ]);
     }
 

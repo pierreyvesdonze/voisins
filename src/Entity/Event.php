@@ -74,12 +74,18 @@ class Event
      */
     private $brochureFilename;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="event")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
         $this->shoppingLists = new ArrayCollection();
         $this->participates = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -261,6 +267,37 @@ class Event
     public function setBrochureFilename($brochureFilename)
     {
         $this->brochureFilename = $brochureFilename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getEvent() === $this) {
+                $comment->setEvent(null);
+            }
+        }
 
         return $this;
     }
