@@ -8,7 +8,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ParticipateRepository")
- * @UniqueEntity("event", message="Tu participes déjà à l'événement")
  */
 class Participate
 {
