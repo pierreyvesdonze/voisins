@@ -40,11 +40,11 @@
 				back
 			</a>
 			{% if is_granted('view', shoppingList) %}
-				<a href="#">
+				<a href="{{ path('shopping_list_update',{'id': shoppingList.id}) }}">
 					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
 					update
 				</a>
-				<a href="{{ path('shopping_list_delete',{'id': shoppingList.event.id}) }}">
+				<a href="{{ path('shopping_list_delete',{'id': shoppingList.id}) }}">
 					<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
 					delete
 				</a>

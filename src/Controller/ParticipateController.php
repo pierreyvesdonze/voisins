@@ -56,7 +56,7 @@ class ParticipateController extends AbstractController
 
             $this->addFlash('success', 'Enregistré.');
 
-            return $this->redirectToRoute('event_list');
+            return $this->redirectToRoute('event_view', ['id' => $participate->getEvent()->getId()]);
         }
 
         return $this->render('participate/create.html.twig', [
@@ -109,6 +109,6 @@ class ParticipateController extends AbstractController
 
         $this->addFlash("success", "Supprimé");
 
-        return $this->redirectToRoute('participate_list');
+        return $this->redirectToRoute('event_view', ['id' => $participate->getEvent()->getId()]);
     }
 }
