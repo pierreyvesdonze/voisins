@@ -10,9 +10,8 @@ use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
-use Symfony\Component\Notifier\Recipient\Recipient;
+use Twig\Extra\Intl\IntlExtension;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
