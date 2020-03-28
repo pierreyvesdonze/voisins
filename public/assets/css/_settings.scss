@@ -166,9 +166,13 @@ FORMS
   justify-content: center;
 }
 
-.form-group input, .form-group textarea, .form-group button {
+.form-group input, .form-group textarea {
   width: 60%;
   margin: 10px auto;
+}
+
+.form-group button {
+  width: auto;
 }
 
 #shopping_list {

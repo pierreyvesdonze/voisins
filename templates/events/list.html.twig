@@ -9,7 +9,7 @@
 
 	<div class="flex-container">
 		<div class="card-group">
-			{% for event in events %}
+			{% for event in events|sort((a, b)=> a.date <=> b.date) %}
 
 				<div class="card" style="width: 18rem;">
 					<div class="card-header">

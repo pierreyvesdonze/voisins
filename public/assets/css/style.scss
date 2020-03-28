@@ -334,3 +334,7 @@ MODAL
 .modal-body {
   color: var(--tertiary-color);
 }
+
+.modal-open {
+  padding: 0 !important;
+}
