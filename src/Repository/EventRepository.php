@@ -22,19 +22,25 @@ class EventRepository extends ServiceEntityRepository
     // /**
     //  * @return Event[] Returns an array of Event objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findExceptPast()
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('e.date > CURRENT_DATE()')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    public function findPastEvents()
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.date < CURRENT_DATE()')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
 
     /*
     public function findOneBySomeField($value): ?Event

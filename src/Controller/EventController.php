@@ -35,12 +35,33 @@ class EventController extends AbstractController
     {
         /** @var eventRepository */
         $eventRepository = $this->getDoctrine()->getRepository(Event::class);
-        $events = $eventRepository->findAll();
+        //$events = $eventRepository->findAll();
+
+        $events = $eventRepository->findExceptPast();
 
         return $this->render(
             'events/list.html.twig',
             [
-                'events'        => $events,
+                'events' => $events,
+            ]
+        );
+    }
+
+    /**
+     * @Route("/archive-list", name="archive_list", methods={"GET","POST"})
+     */
+    public function archiveList()
+    {
+        /** @var eventRepository */
+        $eventRepository = $this->getDoctrine()->getRepository(Event::class);
+        //$events = $eventRepository->findAll();
+
+        $events = $eventRepository->findPastEvents();
+
+        return $this->render(
+            'events/archives.html.twig',
+            [
+                'events' => $events,
             ]
         );
     }
