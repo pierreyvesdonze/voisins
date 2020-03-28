@@ -25,6 +25,13 @@
 		<hr class="hr">
 
 		<div class="shopping-list-description">
+			<ul>
+				{% for article in shoppingList.articles %}
+					<li>
+						{{ article.name }}
+					</li>
+				{% endfor %}
+			</ul>
 			<p>
 				{{ shoppingList.description }}
 			</p>

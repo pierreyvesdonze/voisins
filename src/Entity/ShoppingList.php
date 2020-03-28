@@ -49,10 +49,17 @@ class ShoppingList
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="shoppingList", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $articles;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +149,37 @@ class ShoppingList
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setShoppingList($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            // set the owning side to null (unless already changed)
+            if ($article->getShoppingList() === $this) {
+                $article->setShoppingList(null);
+            }
+        }
 
         return $this;
     }
