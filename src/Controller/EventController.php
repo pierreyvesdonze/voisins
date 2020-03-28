@@ -11,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Notifier\NotifierInterface;
-use Twig\Extra\Intl\IntlExtension;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
