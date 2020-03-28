@@ -43,32 +43,9 @@ class ShoppingListController extends AbstractController
         $shoppingList->setEvent($event);
         $shoppingList->setUser($this->getUser());
 
-        // 10 articles limit
-        $article1 = new Article();
-        $article1->setName('Article 1 : ');
-        $article1->setShoppingList($shoppingList);
-        $shoppingList->getArticles()->add($article1);
-        /*$article2 = new Article();
-        $article2->setName('Article 2 : ');
-        $shoppingList->getArticles()->add($article2);
-        $article3 = new Article();
-        $article3->setName('Article 3 : ');
-        $shoppingList->getArticles()->add($article3);
-        $article4 = new Article();
-        $article4->setName('Article 4 : ');
-        $shoppingList->getArticles()->add($article4);
-        $article5 = new Article();
-        $article5->setName('Article 5 : ');
-        $shoppingList->getArticles()->add($article5);
-        $article6 = new Article();
-        $article6->setName('Article 6 : ');
-        $shoppingList->getArticles()->add($article6);
-        $article7 = new Article();
-        $article7->setName('Article 7 : ');
-        $shoppingList->getArticles()->add($article7);
-        $article8 = new Article();
-        $article8->setName('Article 8 : ');
-        $shoppingList->getArticles()->add($article8);*/
+        $article = new Article();
+        $article->setShoppingList($shoppingList);
+        $shoppingList->getArticles()->add($article);
 
         $form = $this->createForm(ShoppingListType::class, $shoppingList);
         $form->handleRequest($request);
@@ -77,14 +54,7 @@ class ShoppingListController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($shoppingList);
-            $entityManager->persist($article1);
-            /*$entityManager->persist($article2);
-            $entityManager->persist($article3);
-            $entityManager->persist($article4);
-            $entityManager->persist($article5);
-            $entityManager->persist($article6);
-            $entityManager->persist($article7);
-            $entityManager->persist($article8);*/
+            $entityManager->persist($article);
 
             $entityManager->flush();
 
@@ -126,7 +96,7 @@ class ShoppingListController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            foreach ($originalArticles as $articletag) {
+            foreach ($originalArticles as $article) {
                 if (false === $shoppingList->getArticles()->contains($article)) {
                
                     // if it was a many-to-one relationship, remove the relationship like this

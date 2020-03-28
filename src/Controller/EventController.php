@@ -10,6 +10,9 @@ use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -82,10 +85,12 @@ class EventController extends AbstractController
      * @Route("/create", name="event_create", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function eventCreate(Request $request)
+    public function eventCreate(Request $request, NotifierInterface $notifier)
     {
+        $user = $this->getUser();
+
         $event = new Event;
-        $event->setUser($this->getUser());
+        $event->setUser($user);
 
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -98,6 +103,18 @@ class EventController extends AbstractController
             $manager->flush();
 
             $this->addFlash("success", "L'événement a bien été ajouté !");
+
+            /*$notification = (new Notification('New Invoice', ['email']))
+                ->content('You got a new invoice for 15 EUR.');
+
+            // The receiver of the Notification
+            $recipient = new Recipient(
+                $user->getEmail(),
+            );
+
+            // Send the notification to the recipient
+            $notifier->send($notification, $recipient);*/
+
 
             return $this->redirectToRoute('event_list');
         }
@@ -125,19 +142,19 @@ class EventController extends AbstractController
 
             $brochureFile = $form->get('brochure')->getData();
 
-            if($brochureFile) {
-            
-            $brochureFile = $form['brochure']->getData();
-            $destination = $this->getParameter('kernel.project_dir').'/public/uploads/images';
-            $safeFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
-            $brochureFile->move(
-                $destination,
-                $newFilename
-            );
-            
-            $event->setBrochureFilename($newFilename);
-        }
+            if ($brochureFile) {
+
+                $brochureFile = $form['brochure']->getData();
+                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads/images';
+                $safeFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+                $brochureFile->move(
+                    $destination,
+                    $newFilename
+                );
+
+                $event->setBrochureFilename($newFilename);
+            }
 
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();

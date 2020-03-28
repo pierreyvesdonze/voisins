@@ -1,7 +1,7 @@
 var $collectionHolder;
 
 // setup an "add a article" link
-var $addArticleButton = $('<button type="button" class="add_article_link">Add a article</button>');
+var $addArticleButton = $('<button type="button" class="add_article_link">Ajouter</button>');
 var $newLinkLi = $('<li></li>').append($addArticleButton);
 
 jQuery(document).ready(function() {
@@ -55,7 +55,7 @@ function addArticleForm($collectionHolder, $newLinkLi) {
 }
 
 function addArticleFormDeleteLink($articleFormLi) {
-    var $removeFormButton = $('<button type="button">Delete this article</button>');
+    var $removeFormButton = $('<button type="button">Supprimer</button>');
     $articleFormLi.append($removeFormButton);
 
     $removeFormButton.on('click', function(e) {

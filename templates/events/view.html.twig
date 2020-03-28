@@ -136,7 +136,11 @@
 
 					<!--MODAL-->
 					<button type="button" class="button-modal" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">
-						<img src="{{ asset('assets/images/comment.png') }}" alt="update" class="button-icon">
+						{% if event.comments %}
+							<img src="{{ asset('assets/images/newcomment.png') }}" alt="update" class="button-icon">
+						{% else %}
+							<img src="{{ asset('assets/images/comment.png') }}" alt="update" class="button-icon">
+						{% endif %}
 					</button>
 
 					<a href="{{ path('comment_create',{'id': event.id}) }}">

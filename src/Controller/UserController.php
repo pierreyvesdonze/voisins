@@ -107,15 +107,27 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $brochureFile = $form['brochure']->getData();
-            $destination = $this->getParameter('kernel.project_dir').'/public/uploads/images';
-            $safeFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
-            $brochureFile->move(
-                $destination,
-                $newFilename
-            );
-            $user->setBrochureFilename($newFilename);
+            $brochureFile = $form->get('brochure')->getData();
+
+            if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $originalFilename;
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('brochures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+
+                    echo ("L'image n'a pas été chargée");
+                }
+
+                $user->setBrochureFilename($newFilename);
+            }
 
             $this->getDoctrine()->getManager()->flush();
 
