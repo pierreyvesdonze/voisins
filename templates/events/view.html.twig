@@ -78,7 +78,7 @@
 			<hr
 			class="hr">
 
-			<!--AVATAR-->
+			<!--AVATAR PRESENTATION-->
 			<div class="event-body">
 				<div class="card-body">
 					{% if event.user.brochureFilename %}
@@ -140,8 +140,8 @@
 					</button>
 
 					<a href="{{ path('comment_create',{'id': event.id}) }}">
-					<img src="{{ asset('assets/images/pen.png') }}" alt="pen" class="button-icon">
-				</a>
+						<img src="{{ asset('assets/images/pen.png') }}" alt="pen" class="button-icon">
+					</a>
 
 
 					{{ include('comments/_view.html.twig') }}

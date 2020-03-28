@@ -75,7 +75,7 @@ class Event
     private $brochureFilename;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="event", cascade={"persist", "remove"})
      */
     private $comments;
 
