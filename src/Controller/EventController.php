@@ -8,9 +8,13 @@ use App\Entity\Participate;
 use App\Entity\ShoppingList;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -104,7 +108,7 @@ class EventController extends AbstractController
      * @Route("/create", name="event_create", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function eventCreate(Request $request, NotifierInterface $notifier)
+    public function eventCreate(Request $request, MailerInterface $mailer)
     {
         $user = $this->getUser();
 
@@ -123,17 +127,15 @@ class EventController extends AbstractController
 
             $this->addFlash("success", "L'événement a bien été ajouté !");
 
-            /*$notification = (new Notification('New Invoice', ['email']))
-                ->content('You got a new invoice for 15 EUR.');
-
-            // The receiver of the Notification
-            $recipient = new Recipient(
-                $user->getEmail(),
-            );
-
-            // Send the notification to the recipient
-            $notifier->send($notification, $recipient);*/
-
+            $message = (new TemplatedEmail())
+                ->from('pyd3.14@gmail.com')
+                ->to($user->getEmail())
+                //->cc('cc@example.com')
+                ->subject('reset password')
+                ->text('Pour définir un nouvau mot de passe cliquez sur le lien ci dessous')
+                ->htmlTemplate('emails/notification.html.twig');
+                
+            $mailer->send($message);
 
             return $this->redirectToRoute('event_list');
         }
