@@ -127,7 +127,7 @@ class EventController extends AbstractController
 
             $this->addFlash("success", "L'événement a bien été ajouté !");
 
-            $message = (new TemplatedEmail())
+            /*$message = (new TemplatedEmail())
                 ->from('pyd3.14@gmail.com')
                 ->to($user->getEmail())
                 //->cc('cc@example.com')
@@ -135,7 +135,7 @@ class EventController extends AbstractController
                 ->text('Pour définir un nouvau mot de passe cliquez sur le lien ci dessous')
                 ->htmlTemplate('emails/notification.html.twig');
                 
-            $mailer->send($message);
+            $mailer->send($message);*/
 
             return $this->redirectToRoute('event_list');
         }
