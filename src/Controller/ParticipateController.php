@@ -38,7 +38,6 @@ class ParticipateController extends AbstractController
      */
     public function participateRequest(Request $request, Event $event): Response
     {
-
         $participate = new Participate();
         $participate->setEvent($event);
         $participate->setUser($this->getUser());
