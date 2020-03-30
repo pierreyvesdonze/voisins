@@ -1,39 +1,38 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>T E S T</title>
+		<title>Nouvel événement</title>
 	</head>
 	{% apply inline_css %}
 	<style>
 
 		body {
-
-			background-image: url("./public/assets/images/bg_body.png");
+			background-image: url("./assets/images/bg_body");
 			color: #000;
 		}
 		h1 {
 			color: #fff;
 			font-size: 25px text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
 		}
-	}
-	p {
-		font-size: 15px;
-		color: black;
-	}
-	</html>
-</style>
+		p {
+			font-size: 15px;
+			color: black;
+		}
+	</style>
 
-<body>
-	<div>
-		<h1>Coucou {{ email.toName }}.</h1>
+	<body>
+		<div>
+			<h1>Coucou !</h1>
 
-		<p>
-			Ton voisin
-			{{ user.username }}
-			a créé un nouvel événement !
-			<a href="{{ absolute_url(path('event_view',{'id': event.id})) }}">Clique ici</a>
-			pour le visualiser !
-		</p>
-	</div>
-</body>
-{% endapply %}</html>
+			<p>
+				Ton voisin
+				{{ user.username }}
+				a créé un nouvel événement !
+				<a href="{{ absolute_url(path('event_view',{'id': event.id})) }}">Clique ici</a>
+				pour le visualiser !
+			</p>
+		</div>
+	</body>
+	{% endapply %}
+
+</html>
