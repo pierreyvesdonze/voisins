@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Entity\Event;
 use App\Entity\Participate;
 use App\Entity\ShoppingList;
+use App\Entity\User;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -131,10 +132,13 @@ class EventController extends AbstractController
                 ->from('pyd3.14@gmail.com')
                 ->to($user->getEmail())
                 //->cc('cc@example.com')
-                ->subject('reset password')
-                ->text('Pour définir un nouvau mot de passe cliquez sur le lien ci dessous')
-                ->htmlTemplate('emails/notification.html.twig');
-                
+                ->subject('Nouvel événement de ton voisin')
+                ->htmlTemplate('emails/notification.html.twig')
+                ->context([
+                    'user'  => $user,
+                    'event' => $event
+                ]);
+
             $mailer->send($message);
 
             return $this->redirectToRoute('event_list');
