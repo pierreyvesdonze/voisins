@@ -25,14 +25,13 @@
 
 <body>
 	<div>
-		<h1>Coucou
-			{{ email.toName }}.</h1>
+		<h1>Coucou {{ email.toName }}.</h1>
 
 		<p>
 			Ton voisin
 			{{ user.username }}
 			a créé un nouvel événement !
-			<a href="{{ path('event_view',{'id': event.id}) }}">Clique ici</a>
+			<a href="{{ absoute_url(path('event_view',{'id': event.id})) }}">Clique ici</a>
 			pour le visualiser !
 		</p>
 	</div>
