@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\SmsMessage;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -44,19 +48,31 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/notification/success", name="new_sms")
+     * @Route("/reset-pwd", name="reset_pwd")
      */
-    public function smsSuccess(TexterInterface $texter)
+    public function resetPwd(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        $sms = new SmsMessage(
-            // the phone number to send the SMS message to
-            '+33623924949',
-            // the message
-            'New event'
-        );
+        if ($request->isMethod('POST')) {
+            $data = $request->getContent();
+            $data = json_decode($data);
+            $token = $data->token;
+            $password = $data->password;
 
-        $texter->send($sms);
+            $entityManager = $this->getDoctrine()->getManager();
+            $user =$this->getUser();
 
-        return $this->redirectToRoute('event_list');
+            $user->setPassword($passwordEncoder->encodePassword($user, $password));
+            $entityManager->flush();
+
+            return $this->json([
+                'result' => 'mot de passe modifié',
+            ]);
+        } else {
+
+            return $this->json([
+                'text' => 'modification impossible',
+                'result' => false,
+            ], 400);
+        }
     }
 }
