@@ -436,7 +436,8 @@ CARDS
   transform: scale(1);
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
-  height: 80vh;
+  height: 80%;
+  overflow-y: scroll;
 }
 
 .cards {
