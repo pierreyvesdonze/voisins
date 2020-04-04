@@ -19,7 +19,7 @@
 							<div class="comment">
 								<span>{{ comment.user }}</span>
 								<br>
-								{{ comment.comment }}
+								<p>{{ comment.comment }}</p>
 							</div>
 
 							<div class="comment-control">
@@ -31,10 +31,9 @@
 										<img src="{{ asset('assets/images/delete.png') }}" alt="update" class="button-icon">
 									</a>
 								{% endif %}
-							</div>		
+							</div>
 						</div>
-							<br>
-							<hr>
+						<hr>
 					{% endfor %}
 				</div>
 				<div class="modal-footer">

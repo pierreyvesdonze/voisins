@@ -635,21 +635,13 @@ EVENT VIEW
   display: none;
 }
 
-.card-invoice img {
-  width: 50px;
-  -webkit-transition: -webkit-transform 0.25s ease;
-  transition: -webkit-transform 0.25s ease;
-  transition: transform 0.25s ease;
-  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
-  cursor: -webkit-zoom-in;
-  cursor: zoom-in;
+.container-invoice img {
+  width: 100%;
+  height: 100%;
 }
 
-input[type="checkbox"]:checked ~ label > img {
-  -webkit-transform: scale(8);
-          transform: scale(8);
-  cursor: -webkit-zoom-out;
-  cursor: zoom-out;
+.card-invoice img {
+  width: 30px;
 }
 
 /*
@@ -753,6 +745,15 @@ MODAL
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  color: var(--tertiary-color);
+}
+
+.comment span {
+  font-size: 2em;
+}
+
+.comment-container p {
+  color: var(--tertiary-color);
 }
 
 .comment-control {

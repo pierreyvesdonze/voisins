@@ -80,9 +80,8 @@
 			<div class="card-body">
 				{% if event.user.brochureFilename %}
 					<div class="avatar">
-						<span class="button-icon">
+
 							<img src="{{ asset('uploads/images/' ~ event.user.brochureFilename) }}" alt="avatar">
-						</span>
 					</div>
 					<p class="card-text">{{ event.text }}</p>
 
@@ -97,18 +96,6 @@
 					<p class="card-text">{{ event.text }}</p>
 				{% endif %}
 			</div>
-
-			<!--INVOICE-->
-			{% if event.brochureFilename %}
-
-				<div class="card-invoice">
-					<input type="checkbox" id="zoomCheck">
-					<label for="zoomCheck">
-						<img src="{{ asset('uploads/images/' ~ event.brochureFilename) }}" alt="avatar">
-					</label>
-				</div>
-
-			{% endif %}
 		</div>
 		<hr class="hr">
 	</div>
@@ -142,7 +129,19 @@
 			{{ include('comments/_view.html.twig') }}
 
 			{% if event.type == "courses" or event.type == "boulange" %}
-				<!--<input type="file" accept="image/*" capture="camera"/>-->
+
+
+			<!--INVOICE-->
+			{% if event.brochureFilename %}
+
+				<div class="card-invoice">
+					<a href="{{ path('invoice_view',{'id': event.id}) }}">
+						<img src="{{ asset('uploads/images/' ~ event.brochureFilename) }}" alt="invoice">
+					</a>
+				</div>
+
+			{% endif %}
+
 				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
 
 			{% else %}

@@ -220,4 +220,17 @@ class EventController extends AbstractController
 
         return $this->redirectToRoute('event_list');
     }
+
+       /**
+     * @Route("/{id}/invoice", name="invoice_view", methods={"GET"})
+     */
+    public function invoiceView(Event $event) {
+        
+        return $this->render(
+            "events/invoice.html.twig",
+            [
+                "event" => $event,
+            ]
+        );
+    }
 }
