@@ -127,14 +127,12 @@
 			{% endif %}
 
 			<!--MODAL-->
-			<button type="button" class="button-modal" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">
-				{% for comment in event.comments %}
-					{% if comment.user %}
+			<button type="button" class="button-modal" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">	
+					{% if comments %}
 						<img src="{{ asset('assets/images/newcomment.png') }}" alt="update" class="button-icon">
 					{% else %}
 						<img src="{{ asset('assets/images/comment.png') }}" alt="update" class="button-icon">
 					{% endif %}
-				{% endfor %}
 			</button>
 
 			<a href="{{ path('comment_create',{'id': event.id}) }}">
