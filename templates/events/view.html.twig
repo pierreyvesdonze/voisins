@@ -86,55 +86,6 @@
 			</div>
 		</div>
 	</div>
-	<!--CONTROL-->
-	<div class="control">
-		<a href="{{ path('event_list',{'id': event.id}) }}">
-			<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
-		</a>
-
-		{% if app.user %}
-			{% if is_granted('view', event) %}
-				<a href="{{ path('event_update',{'id': event.id}) }}">
-					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
-				</a>
-			{% endif %}
-
-			<!--MODAL-->
-			<button type="button" class="button-modal" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">
-				{% if comments %}
-					<img src="{{ asset('assets/images/newcomment.png') }}" alt="update" class="button-icon">
-				{% else %}
-					<img src="{{ asset('assets/images/comment.png') }}" alt="update" class="button-icon">
-				{% endif %}
-			</button>
-
-			<a href="{{ path('comment_create',{'id': event.id}) }}">
-				<img src="{{ asset('assets/images/pen.png') }}" alt="pen" class="button-icon">
-			</a>
 
 
-			{{ include('comments/_view.html.twig') }}
-
-			{% if event.type == "courses" or event.type == "boulange" %}
-
-
-				<!--INVOICE-->
-				{% if event.brochureFilename %}
-
-					<div class="card-invoice">
-						<a href="{{ path('invoice_view',{'id': event.id}) }}">
-							<img src="{{ asset('uploads/images/' ~ event.brochureFilename) }}" alt="invoice">
-						</a>
-					</div>
-
-				{% endif %}
-
-				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
-
-			{% else %}
-				<a href="{{ path('participate_request',{'id': event.id}) }}" class="btn btn-primary">+</a>
-
-			{% endif %}
-		{% endif %}
-	</div>
 {% endblock %}
