@@ -2,164 +2,159 @@
 
 {% block body %}
 	<!--EVENT-->
-	<div class="">
-		<div class="card mb-3">
-			<img src="{{ asset('assets/images/' ~ event.type ~ '.jpg') }}" alt="legumes" class="card-image-top">
-			<div class="card-header">
-				<h5 class="card-title">{{ event.title }}
-				</h5>
-				<div class="date">
-					<span class="date-events">
-						{{ event.date|date("d/m/y à H:i") }}
-					</span>
-				</div>
+	<div class="card ">
+		<img src="{{ asset('assets/images/' ~ event.type ~ '.jpg') }}" alt="legumes" class="card-image-top">
+		<div class="card-header">
+			<h5 class="card-title">{{ event.title }}
+			</h5>
+			<div class="date">
+				<span class="date-events">
+					{{ event.date|date("d/m/y à H:i") }}
+				</span>
+			</div>
+		</div>
+
+
+		<div class="card-header-second">
+			<div class="lieu">
+				<span class="lieu-events">
+					{{ event.lieu }}
+				</span>
 			</div>
 
+			{% if event.type == "courses" %}
 
-			<div class="card-header-second">
-				<div class="lieu">
-					<span class="lieu-events">
-						{{ event.lieu }}
-					</span>
+				<!--AVATARS / SHOPPING LISTS-->
+				<div class="shopping-list-container">
+					{% for shoppingList in shoppingLists %}
+						{% if shoppingList.user.brochureFilename %}
+
+							<div class="avatar-mini">
+								<a href="{{ path('shopping_list', {'id': shoppingList.id}) }}" class="button-icon">
+									<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
+								</a>
+							</div>
+
+						{% else %}
+
+							<div class="avatar-mini">
+								<a href="{{ path("shopping_list", {'id': shoppingList.id}) }}" class="button-icon">
+									{{ shoppingList.user.username }}
+								</a>
+							</div>
+						{% endif %}
+					{% endfor %}
 				</div>
 
-				{% if event.type == "courses" %}
+			{% else %}
 
-					<!--AVATARS / SHOPPING LISTS-->
-					<div class="shopping-list-container">
-						{% for shoppingList in shoppingLists %}
-							{% if shoppingList.user.brochureFilename %}
+				<!--AVATARS / EVENTS-->
+				<div class="shopping-list-container">
+					{% for participate in participates %}
+						{% if participate.user.brochureFilename %}
+							<div class="avatar-mini">
+								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+									<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
+								</a>
+							</div>
 
-								<div class="avatar-mini">
-									<a href="{{ path('shopping_list', {'id': shoppingList.id}) }}" class="button-icon">
-										<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
-									</a>
-								</div>
+						{% else %}
 
-							{% else %}
+							<div class="avatar-mini">
+								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+									{{ participate.user.username }}
+								</a>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
 
-								<div class="avatar-mini">
-									<a href="{{ path("shopping_list", {'id': shoppingList.id}) }}" class="button-icon">
-										{{ shoppingList.user.username }}
-									</a>
-								</div>
-							{% endif %}
-						{% endfor %}
+			{% endif %}
+
+		</div>
+
+		<hr
+		class="hr">
+
+		<!--AVATAR PRESENTATION-->
+		<div class="event-body">
+			<div class="card-body">
+				{% if event.user.brochureFilename %}
+					<div class="avatar-mini">
+						<span class="button-icon">
+							<img src="{{ asset('uploads/images/' ~ event.user.brochureFilename) }}" alt="avatar">
+						</span>
 					</div>
+					<p class="card-text">{{ event.text }}</p>
 
 				{% else %}
 
-					<!--AVATARS / EVENTS-->
-					<div class="shopping-list-container">
-						{% for participate in participates %}
-							{% if participate.user.brochureFilename %}
-								<div class="avatar-mini">
-									<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
-										<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
-									</a>
-								</div>
-
-							{% else %}
-
-								<div class="avatar-mini">
-									<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
-										{{ participate.user.username }}
-									</a>
-								</div>
-							{% endif %}
-						{% endfor %}
+					<div class="avatar-mini">
+						<span class="button-icon">
+							{{ event.user.username }}
+						</span>
 					</div>
 
+					<p class="card-text">{{ event.text }}</p>
 				{% endif %}
-
 			</div>
 
-			<hr
-			class="hr">
+			<!--INVOICE-->
+			{% if event.brochureFilename %}
 
-			<!--AVATAR PRESENTATION-->
-			<div class="event-body">
-				<div class="card-body">
-					{% if event.user.brochureFilename %}
-						<div class="avatar-mini">
-							<span class="button-icon">
-								<img src="{{ asset('uploads/images/' ~ event.user.brochureFilename) }}" alt="avatar">
-							</span>
-						</div>
-						<p class="card-text">{{ event.text }}</p>
-
-					{% else %}
-
-						<div class="avatar-mini">
-							<span class="button-icon">
-								{{ event.user.username }}
-							</span>
-						</div>
-
-						<p class="card-text">{{ event.text }}</p>
-					{% endif %}
+				<div class="card-invoice">
+					<input type="checkbox" id="zoomCheck">
+					<label for="zoomCheck">
+						<img src="{{ asset('uploads/images/' ~ event.brochureFilename) }}" alt="avatar">
+					</label>
 				</div>
 
-				<!--INVOICE-->
-				{% if event.brochureFilename %}
-
-					<div class="card-invoice">
-						<input type="checkbox" id="zoomCheck">
-						<label for="zoomCheck">
-							<img src="{{ asset('uploads/images/' ~ event.brochureFilename) }}" alt="avatar">
-						</label>
-					</div>
-
-				{% endif %}
-			</div>
-
-			<hr
-			class="hr">
-
-			<!--CONTROL-->
-			<div class="control">
-				<a href="{{ path('event_list',{'id': event.id}) }}">
-					<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
-				</a>
-
-				{% if app.user %}
-					{% if is_granted('view', event) %}
-						<a href="{{ path('event_update',{'id': event.id}) }}">
-							<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
-						</a>
-					{% endif %}
-
-					<!--MODAL-->
-					<button type="button" class="button-modal" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">
-						{% for comment in event.comments %}
-							{% if comment.user %}
-								<img src="{{ asset('assets/images/newcomment.png') }}" alt="update" class="button-icon">
-							{% else %}
-								<img src="{{ asset('assets/images/comment.png') }}" alt="update" class="button-icon">
-							{% endif %}
-						{% endfor %}
-					</button>
-
-					<a href="{{ path('comment_create',{'id': event.id}) }}">
-						<img src="{{ asset('assets/images/pen.png') }}" alt="pen" class="button-icon">
-					</a>
-
-
-					{{ include('comments/_view.html.twig') }}
-
-					{% if event.type == "courses" %}
-						<label for="file-upload" class="custom-file-upload">
-							<img src="{{ asset('assets/images/invoice.png') }}" alt="update" class="button-icon">
-						</label>
-						<input
-						type="file" name="image" accept="image/*" capture="environment" id="file-upload">
-						<!--<input type="file" accept="image/*" capture="camera"/>-->
-						<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
-					{% else %}
-						<a href="{{ path('participate_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
-					{% endif %}
-				{% endif %}
-			</div>
+			{% endif %}
 		</div>
+		<hr class="hr">
+	</div>
+	<!--CONTROL-->
+	<div class="control">
+		<a href="{{ path('event_list',{'id': event.id}) }}">
+			<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
+		</a>
+
+		{% if app.user %}
+			{% if is_granted('view', event) %}
+				<a href="{{ path('event_update',{'id': event.id}) }}">
+					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
+				</a>
+			{% endif %}
+
+			<!--MODAL-->
+			<button type="button" class="button-modal" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">
+				{% for comment in event.comments %}
+					{% if comment.user %}
+						<img src="{{ asset('assets/images/newcomment.png') }}" alt="update" class="button-icon">
+					{% else %}
+						<img src="{{ asset('assets/images/comment.png') }}" alt="update" class="button-icon">
+					{% endif %}
+				{% endfor %}
+			</button>
+
+			<a href="{{ path('comment_create',{'id': event.id}) }}">
+				<img src="{{ asset('assets/images/pen.png') }}" alt="pen" class="button-icon">
+			</a>
+
+
+			{{ include('comments/_view.html.twig') }}
+
+			{% if event.type == "courses" %}
+				<label for="file-upload" class="custom-file-upload">
+					<img src="{{ asset('assets/images/invoice.png') }}" alt="update" class="button-icon">
+				</label>
+				<input
+				type="file" name="image" accept="image/*" capture="environment" id="file-upload">
+				<!--<input type="file" accept="image/*" capture="camera"/>-->
+				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
+			{% else %}
+				<a href="{{ path('participate_request',{'id': event.id}) }}" class="btn btn-primary">+</a>
+			{% endif %}
+		{% endif %}
 	</div>
 {% endblock %}

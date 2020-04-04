@@ -1,15 +1,15 @@
 var $collectionHolder;
 
 // setup an "add a article" link
-var $addArticleButton = $('<button type="button" class="add_article_link">Ajouter</button>');
+var $addArticleButton = $('<button type="button" class="add-article-link"></button>');
 var $newLinkLi = $('<li></li>').append($addArticleButton);
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     // Get the ul that holds the collection of articles
     $collectionHolder = $('ul.articles');
 
     // add a delete link to all of the existing article form li elements
-    $collectionHolder.find('li').each(function() {
+    $collectionHolder.find('li').each(function () {
         addArticleFormDeleteLink($(this));
     });
 
@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-    $addArticleButton.on('click', function(e) {
+    $addArticleButton.on('click', function (e) {
         // add a new article form (see next code block)
         addArticleForm($collectionHolder, $newLinkLi);
     });
@@ -50,15 +50,15 @@ function addArticleForm($collectionHolder, $newLinkLi) {
     var $newFormLi = $('<li></li>').append(newForm);
     $newLinkLi.before($newFormLi);
 
-     // add a delete link to the new form
-     addArticleFormDeleteLink($newFormLi);
+    // add a delete link to the new form
+    addArticleFormDeleteLink($newFormLi);
 }
 
 function addArticleFormDeleteLink($articleFormLi) {
-    var $removeFormButton = $('<button type="button">Supprimer</button>');
+    var $removeFormButton = $('<button type="button" class="remove-article-link"></button>');
     $articleFormLi.append($removeFormButton);
 
-    $removeFormButton.on('click', function(e) {
+    $removeFormButton.on('click', function (e) {
         // remove the li for the article form
         $articleFormLi.remove();
     });

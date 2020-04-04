@@ -25,11 +25,6 @@ class Participate
     private $event;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $comment;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participates", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */

@@ -12,15 +12,6 @@ class ParticipateType extends AbstractType
 {
     public function buildForm(\Symfony\Component\Form\FormBuilderInterface $builder, array $options)
     {
-
-        $builder->add(
-            'comment',
-            TextareaType::class,
-            [
-                "label" => "Un commentaire ?"
-            ]
-        );
-
        
         $builder->add(
             'save',

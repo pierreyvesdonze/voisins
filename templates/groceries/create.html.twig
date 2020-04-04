@@ -11,15 +11,17 @@
 
 	<hr class="hr">
 
-    <h3>Produits souhaités</h3>
-    <ul class="articles" data-prototype="{{ form_widget(form.articles.vars.prototype)|e('html_attr') }}">
-        {# iterate over each existing tag and render its only field: name #}
-        {% for article in form.articles %}
-            <li>{{ form_row(article.name) }}</li>
-        {% endfor %}
-    </ul>
+	<ul
+		class="articles" data-prototype="{{ form_widget(form.articles.vars.prototype)|e('html_attr') }}">
+		{# iterate over each existing tag and render its only field: name #}
+		{% for article in form.articles %}
+			<li>{{ form_row(article.name) }}</li>
+		{% endfor %}
+	</ul>
 	{{ form_row(form.description) }}
-{{ form_end(form) }}
-	
-	
-	{% endblock %}
+	{{ form_end(form) }}
+	<a href="{{ path('event_view',{'id': event.id}) }}">
+		<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
+	</a>
+
+{% endblock %}
