@@ -76,7 +76,7 @@ legend,
 .hr {
   height: 2px;
   border: 0;
-  margin: 50px auto;
+  margin: 30px auto;
   background: rgb(0, 0, 0);
   background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(69, 50, 0, 0.144) 50%, rgba(255, 179, 0, 0) 100%);
 }
@@ -86,7 +86,6 @@ legend,
 ICONS / BUTTONS
 ***********************************
 */
-
 
 .archives {
   justify-content: center;
@@ -130,6 +129,7 @@ CONTROL
 .control {
   display: flex;
   justify-content: space-around;
+  align-items: baseline !important;
 }
 
 /*

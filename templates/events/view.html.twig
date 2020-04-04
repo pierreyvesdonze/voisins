@@ -127,7 +127,6 @@
 					{% if is_granted('view', event) %}
 						<a href="{{ path('event_update',{'id': event.id}) }}">
 							<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
-							update
 						</a>
 						<a href="{{ path('event_delete',{'id': event.id}) }}">
 							<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
@@ -158,9 +157,9 @@
 						<input
 						type="file" name="image" accept="image/*" capture="environment" id="file-upload">
 						<!--<input type="file" accept="image/*" capture="camera"/>-->
-						<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Participer !</a>
+						<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
 					{% else %}
-						<a href="{{ path('participate_request',{'id': event.id}) }}" class="btn btn-primary">Participer !</a>
+						<a href="{{ path('participate_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
 					{% endif %}
 				{% endif %}
 			</div>
