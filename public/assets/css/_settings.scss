@@ -187,7 +187,7 @@ FORMS
 }
 
 .title-create-shopping-list {
-  font-size: 2em;
+  font-size: 1.5rem;
   font-weight: 400;
   color: var(--tertiary-color);
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
@@ -231,6 +231,10 @@ FORMS
 #comment_save {
   width: 40%;
   margin: auto;
+}
+
+.articles {
+  padding-left: 0;
 }
 
 /*INPUT MOBILE CAMERA*/
