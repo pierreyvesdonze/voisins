@@ -17,14 +17,6 @@ class ShoppingListType extends AbstractType
     public function buildForm(\Symfony\Component\Form\FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add(
-            'title',
-            TextType::class,
-            [
-                "label" => "Titre de ta liste"
-            ]
-        );
-
         $builder->add('articles', CollectionType::class, [
             'entry_type'    => ArticleType::class,
             'entry_options' => ['label' => false],

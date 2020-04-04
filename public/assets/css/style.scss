@@ -45,7 +45,8 @@ HOMPAGE
   display: flex;
 }
 
-.tuto-image img, .tuto-form-img img  {
+.tuto-image img,
+.tuto-form-img img {
   width: 100%;
 }
 
@@ -55,7 +56,8 @@ HOMPAGE
   box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
 }
 
-.tuto-form-img, .tuto-form-text {
+.tuto-form-img,
+.tuto-form-text {
   width: 50%;
 }
 
@@ -63,7 +65,6 @@ HOMPAGE
   clear: right;
   float: left;
 }
-
 
 /*
 ***********************************
@@ -92,14 +93,9 @@ CARDS
   background-color: rgba(73, 135, 206, 0.096);
   border-radius: 10px;
   -webkit-transform: scale(1);
-	transform: scale(1);
-	-webkit-transition: .2s ease-in-out;
-  transition: .2s ease-in-out;
-}
-
-.card:hover {
-  //-webkit-transform: scale(1.1);
-	//transform: scale(1.1);
+  transform: scale(1);
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .card-header {
@@ -115,7 +111,6 @@ CARDS
 .card-header .list-events {
   color: var(--tertiary-color);
 }
-
 
 .card-header-second {
   margin: 0 40px;
@@ -147,12 +142,16 @@ CARDS
   padding-top: 0px !important;
 }
 
+.card-list {
+  height: auto;
+}
+
 .card p {
   font-size: 1.1em;
 }
 
 .view-item {
-  height: 90px;
+  height: 50px;
 }
 
 .view {
@@ -170,7 +169,7 @@ CARDS
   font-weight: 400;
 }
 
-.date-item{
+.date-item {
   height: 100px;
 }
 
@@ -213,6 +212,10 @@ EVENT VIEW
 .card-image-top {
   width: 100%;
   height: 100%;
+
+  @include xs {
+    display: none;
+  }
 }
 
 .card .event-view {
@@ -250,7 +253,7 @@ EVENT VIEW
   cursor: zoom-in;
 }
 
-input[type=checkbox]:checked ~ label > img {
+input[type="checkbox"]:checked ~ label > img {
   transform: scale(8);
   cursor: zoom-out;
 }
@@ -305,7 +308,6 @@ PARTICIPATE
   display: flex;
   justify-content: center;
   flex-direction: column;
- 
 }
 
 #participate_comment {
@@ -324,11 +326,12 @@ MODAL
 ***********************************
 */
 .modal-content {
-  background-color: rgba(0, 0, 0, 0.438);
+  background-color: #00000070;
   backdrop-filter: blur(8px) !important;
 }
 
-.modal-header h5, .modal-body span {
+.modal-header h5,
+.modal-body span {
   color: var(--tertiary-color);
   font-weight: bold;
 }

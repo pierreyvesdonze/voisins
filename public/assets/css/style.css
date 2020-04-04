@@ -233,12 +233,12 @@ FORMS
 }
 
 #event_text {
-  height: 250px;
+  height: 20vh;
 }
 
 #shopping_list_description,
 #comment_comment {
-  height: 400px;
+  height: 20vh;
 }
 
 #comment_comment {
@@ -329,7 +329,8 @@ HOMPAGE
   display: flex;
 }
 
-.tuto-image img, .tuto-form-img img {
+.tuto-image img,
+.tuto-form-img img {
   width: 100%;
 }
 
@@ -338,7 +339,8 @@ HOMPAGE
   box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
 }
 
-.tuto-form-img, .tuto-form-text {
+.tuto-form-img,
+.tuto-form-text {
   width: 50%;
 }
 
@@ -379,8 +381,8 @@ CARDS
   border-radius: 10px;
   -webkit-transform: scale(1);
   transform: scale(1);
-  -webkit-transition: .2s ease-in-out;
-  transition: .2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .card-header {
@@ -441,12 +443,16 @@ CARDS
   padding-top: 0px !important;
 }
 
+.card-list {
+  height: auto;
+}
+
 .card p {
   font-size: 1.1em;
 }
 
 .view-item {
-  height: 90px;
+  height: 50px;
 }
 
 .view {
@@ -518,6 +524,12 @@ EVENT VIEW
   height: 100%;
 }
 
+@media (min-width: 300px) and (max-width: 576px) {
+  .card-image-top {
+    display: none;
+  }
+}
+
 .card .event-view {
   width: 70%;
 }
@@ -558,7 +570,7 @@ EVENT VIEW
   cursor: zoom-in;
 }
 
-input[type=checkbox]:checked ~ label > img {
+input[type="checkbox"]:checked ~ label > img {
   -webkit-transform: scale(8);
           transform: scale(8);
   cursor: -webkit-zoom-out;
@@ -649,12 +661,13 @@ MODAL
 ***********************************
 */
 .modal-content {
-  background-color: rgba(0, 0, 0, 0.438);
+  background-color: #00000070;
   -webkit-backdrop-filter: blur(8px) !important;
           backdrop-filter: blur(8px) !important;
 }
 
-.modal-header h5, .modal-body span {
+.modal-header h5,
+.modal-body span {
   color: var(--tertiary-color);
   font-weight: bold;
 }

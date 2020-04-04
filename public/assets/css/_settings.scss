@@ -45,6 +45,7 @@ h5 label,
 span,
 legend {
   color: var(--secondary-color);
+  //font-size: 2rem;
 }
 
 a {
@@ -214,12 +215,12 @@ FORMS
 }
 
 #event_text {
-  height: 250px;
+  height: 20vh;
 }
 
 #shopping_list_description,
 #comment_comment {
-  height: 400px;
+  height: 20vh;
 }
 
 #comment_comment {

@@ -19,11 +19,6 @@ class ShoppingList
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $title;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
