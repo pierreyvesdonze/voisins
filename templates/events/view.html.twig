@@ -21,7 +21,7 @@
 				</span>
 			</div>
 
-			{% if event.type == "courses" %}
+			{% if event.type == "courses" or event.type == "boulange" %}
 
 				<!--AVATARS / SHOPPING LISTS-->
 				<div class="list-container">
@@ -141,7 +141,7 @@
 
 			{{ include('comments/_view.html.twig') }}
 
-			{% if event.type == "courses" %}
+			{% if event.type == "courses" or event.type == "boulange" %}
 				<label for="file-upload" class="custom-file-upload">
 					<img src="{{ asset('assets/images/invoice.png') }}" alt="update" class="button-icon">
 				</label>

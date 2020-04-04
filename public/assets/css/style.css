@@ -20,7 +20,8 @@ COLORS & FONTS
 GENERAL
 ***********************************
 */
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -144,7 +145,8 @@ ICONS / BUTTONS
   background: url("../images/remove.png");
 }
 
-.add-article-link, .remove-article-link {
+.add-article-link,
+.remove-article-link {
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
@@ -209,6 +211,11 @@ BUTTONS
 FORMS
 ***********************************
 */
+.container {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
 #user {
   width: 60%;
   margin: 120px auto;
@@ -228,7 +235,8 @@ FORMS
           justify-content: center;
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   margin: 10px auto;
 }
 
