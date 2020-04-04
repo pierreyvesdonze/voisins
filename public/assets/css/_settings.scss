@@ -170,9 +170,9 @@ CONTROL
 */
 .control {
   display: flex;
+  position: relative;
   justify-content: space-around;
   align-items: baseline !important;
-  position: fixed;
   bottom: 0;
   width: 100%;
 }

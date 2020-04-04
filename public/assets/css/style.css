@@ -176,12 +176,12 @@ CONTROL
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: baseline !important;
       -ms-flex-align: baseline !important;
           align-items: baseline !important;
-  position: fixed;
   bottom: 0;
   width: 100%;
 }
