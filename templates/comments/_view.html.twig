@@ -15,24 +15,27 @@
 				<div class="modal-body">
 
 					{% for comment in comments %}
-						<span>
-							{{ comment.user }}</span>
-						<br>
-						{{ comment.comment }}
+						<div class="comment-container">
+							<div class="comment">
+								<span>{{ comment.user }}</span>
+								<br>
+								{{ comment.comment }}
+							</div>
 
-		
-							{% if is_granted('view', comment) %}
-								<a href="{{ path('comment_update',{'id': comment.id}) }}">
-									<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
-									update
-								</a>
-							{% endif %}
-			
-						<br>
-						<hr>
+							<div class="comment-control">
+								{% if is_granted('ROLE_USER') %}
+									<a href="{{ path('comment_update',{'id': comment.id}) }}">
+										<img src="{{ asset('assets/images/update-white.png') }}" alt="update-white" class="button-icon">
+									</a>
+									<a href="{{ path('comment_delete',{'id': comment.id}) }}">
+										<img src="{{ asset('assets/images/delete.png') }}" alt="update" class="button-icon">
+									</a>
+								{% endif %}
+							</div>		
+						</div>
+							<br>
+							<hr>
 					{% endfor %}
-
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

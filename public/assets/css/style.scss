@@ -352,6 +352,16 @@ MODAL
   backdrop-filter: blur(8px) !important;
 }
 
+.comment-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.comment-control {
+  display: flex;
+}
+
 .modal-header h5,
 .modal-body span {
   color: var(--tertiary-color);
@@ -359,6 +369,8 @@ MODAL
 }
 
 .modal-body {
+  display: flex;
+  flex-direction: column;
   color: var(--tertiary-color);
 }
 

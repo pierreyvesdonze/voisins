@@ -35,6 +35,7 @@ class CommentController extends AbstractController
         return $this->render(
             'events/list.html.twig',
             [
+                'comments' => $comments,
                 'event' => $event,
             ]
         );
@@ -76,7 +77,7 @@ class CommentController extends AbstractController
      */
     public function commentUpdate(Request $request, Comment $comment)
     {
-        $this->denyAccessUnlessGranted('edit', $comment);
+        $this->denyAccessUnlessGranted('ROLE_USER');
 
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -94,8 +95,23 @@ class CommentController extends AbstractController
         return $this->render(
             "comments/update.html.twig",
             [
+                "comment" => $comment,
                 "form" => $form->createView()
             ]
         );
+    }
+    /**
+     * @Route("/{id}/delete", name="comment_delete", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function shoppingListDelete(Comment $comment)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($comment);
+        $manager->flush();
+
+        return $this->redirectToRoute('event_view', ['id' => $comment->getEvent()->getId()]);
     }
 }
