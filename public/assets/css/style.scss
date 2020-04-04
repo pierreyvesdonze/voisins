@@ -198,9 +198,6 @@ EVENT VIEW
 */
 
 .event-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   overflow-y: scroll;
   height: 70%;
   margin: 0 4%;
