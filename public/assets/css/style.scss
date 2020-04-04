@@ -145,13 +145,6 @@ CARDS
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.84);
 }
 
-.card-body {
-  display: flex;
-  flex: inherit;
-  flex-direction: column;
-  border-radius: 10px;
-  padding-top: 0px !important;
-}
 
 .card-list {
   height: auto;
@@ -209,6 +202,12 @@ EVENT VIEW
   flex-direction: column;
   justify-content: space-around;
   overflow-y: scroll;
+  height: 70%;
+  margin: 0 4%;
+  padding: 20px 10px;
+  -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
+box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
 }
 
 #event {
@@ -232,6 +231,14 @@ EVENT VIEW
   @include xs {
     display: none;
   }
+}
+
+.card-body {
+  display: flex;
+  flex: inherit;
+  flex-direction: column;
+  border-radius: 10px;
+  padding-top: 0px !important;
 }
 
 .card .event-view {
