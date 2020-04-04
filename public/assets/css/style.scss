@@ -216,9 +216,13 @@ EVENT VIEW
 }
 
 .user {
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 1.6em;
+  font-weight: 400;
   margin-bottom: 10px;
+}
+
+.user em {
+  font-style: italic;
 }
 
 .card-image-top {

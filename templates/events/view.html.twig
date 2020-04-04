@@ -78,26 +78,13 @@
 		<!--AVATAR PRESENTATION-->
 		<div class="event-body">
 			<div class="card-body">
-				{% if event.user.brochureFilename %}
-					<div class="avatar">
-
-							<img src="{{ asset('uploads/images/' ~ event.user.brochureFilename) }}" alt="avatar">
-					</div>
-					<p class="card-text">{{ event.text }}</p>
-
-				{% else %}
-
-					<div class="avatar">
-						<span class="button-icon">
-							{{ event.user.username }}
-						</span>
-					</div>
-
-					<p class="card-text">{{ event.text }}</p>
-				{% endif %}
+				<p class="card-text">{{ event.text }}</p>
+				<br>
+				<span class="user">
+					- <em>{{ event.user.username }}</em>
+				</span>
 			</div>
 		</div>
-		<hr class="hr">
 	</div>
 	<!--CONTROL-->
 	<div class="control">
@@ -131,16 +118,16 @@
 			{% if event.type == "courses" or event.type == "boulange" %}
 
 
-			<!--INVOICE-->
-			{% if event.brochureFilename %}
+				<!--INVOICE-->
+				{% if event.brochureFilename %}
 
-				<div class="card-invoice">
-					<a href="{{ path('invoice_view',{'id': event.id}) }}">
-						<img src="{{ asset('uploads/images/' ~ event.brochureFilename) }}" alt="invoice">
-					</a>
-				</div>
+					<div class="card-invoice">
+						<a href="{{ path('invoice_view',{'id': event.id}) }}">
+							<img src="{{ asset('uploads/images/' ~ event.brochureFilename) }}" alt="invoice">
+						</a>
+					</div>
 
-			{% endif %}
+				{% endif %}
 
 				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
 
