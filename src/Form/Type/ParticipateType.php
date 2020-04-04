@@ -17,7 +17,7 @@ class ParticipateType extends AbstractType
             'save',
             SubmitType::class,
             [
-                "label" => "Enregistrer"
+                "label" => "Oui"
             ]
         );
     }

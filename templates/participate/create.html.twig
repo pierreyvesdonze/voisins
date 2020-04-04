@@ -3,17 +3,28 @@
 {% block body %}
 	<div class="card-header">
 		<h5 class="title-create-shopping-list">
-			Participer à l'événement
+			Participer à l'événement ?
 		</h5>
 	</div>
+
+	<hr class="hr">
+
 	{{ form_start(form) }}
+
+	<div class="row row-participate">
+		<div class="col">
+			{{ form_row(form.save) }}
+		</div>
+		<div class="col">
+
+			<a href="{{ path('event_view',{'id': participate.event.id}) }}" class="btn">
+				Non
+			</a>
+		</div>
+	</div>
 	{{ form_widget(form) }}
 
 	{{ form_end(form) }}
 	<!--CONTROL-->
-	<div class="control">
-		<a href="{{ path('event_view',{'id': participate.event.id}) }}">
-			<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
-		</a>
-	</div>
+
 {% endblock %}

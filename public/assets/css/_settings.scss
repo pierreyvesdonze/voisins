@@ -16,6 +16,12 @@ COLORS & FONTS
   color: var(--secondary-color);
 }
 
+/*
+***********************************
+GENERAL
+***********************************
+*/
+
 html, body {
   height: 100%;
 }
@@ -82,6 +88,17 @@ legend,
   margin: 30px auto;
   background: rgb(0, 0, 0);
   background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(69, 50, 0, 0.144) 50%, rgba(255, 179, 0, 0) 100%);
+}
+
+/*
+***********************************
+COLS & ROWS
+***********************************
+*/
+
+.row-participate {
+  display: flex;
+  align-items: center !important;
 }
 
 /*

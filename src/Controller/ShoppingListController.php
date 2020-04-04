@@ -60,7 +60,7 @@ class ShoppingListController extends AbstractController
 
             $this->addFlash('success', 'Enregistré.');
 
-            return $this->redirectToRoute('event_list');
+            return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }
 
         return $this->render('groceries/create.html.twig', [

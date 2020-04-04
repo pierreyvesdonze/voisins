@@ -14,7 +14,6 @@
 			</div>
 		</div>
 
-
 		<div class="card-header-second">
 			<div class="lieu">
 				<span class="lieu-events">
@@ -25,7 +24,7 @@
 			{% if event.type == "courses" %}
 
 				<!--AVATARS / SHOPPING LISTS-->
-				<div class="shopping-list-container">
+				<div class="list-container">
 					{% for shoppingList in shoppingLists %}
 						{% if shoppingList.user.brochureFilename %}
 
@@ -49,7 +48,7 @@
 			{% else %}
 
 				<!--AVATARS / EVENTS-->
-				<div class="shopping-list-container">
+				<div class="list-container">
 					{% for participate in participates %}
 						{% if participate.user.brochureFilename %}
 							<div class="avatar-mini">
@@ -80,7 +79,7 @@
 		<div class="event-body">
 			<div class="card-body">
 				{% if event.user.brochureFilename %}
-					<div class="avatar-mini">
+					<div class="avatar">
 						<span class="button-icon">
 							<img src="{{ asset('uploads/images/' ~ event.user.brochureFilename) }}" alt="avatar">
 						</span>
@@ -89,7 +88,7 @@
 
 				{% else %}
 
-					<div class="avatar-mini">
+					<div class="avatar">
 						<span class="button-icon">
 							{{ event.user.username }}
 						</span>
