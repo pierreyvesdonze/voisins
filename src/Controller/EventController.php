@@ -38,8 +38,6 @@ class EventController extends AbstractController
     {
         /** @var eventRepository */
         $eventRepository = $this->getDoctrine()->getRepository(Event::class);
-        //$events = $eventRepository->findAll();
-
         $events = $eventRepository->findExceptPast();
 
         return $this->render(
@@ -57,8 +55,6 @@ class EventController extends AbstractController
     {
         /** @var eventRepository */
         $eventRepository = $this->getDoctrine()->getRepository(Event::class);
-        //$events = $eventRepository->findAll();
-
         $events = $eventRepository->findPastEvents();
 
         return $this->render(
