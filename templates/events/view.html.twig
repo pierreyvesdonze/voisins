@@ -29,7 +29,7 @@
 						{% if shoppingList.user.brochureFilename %}
 
 							<div class="avatar-mini">
-								<a href="{{ path('shopping_list', {'id': shoppingList.id}) }}" class="button-icon">
+								<a href="{{ path('shopping_list', {'id': shoppingList.id}) }}" class="avatar-icon">
 									<img src="{{ asset('uploads/images/' ~ shoppingList.user.brochureFilename) }}" alt="avatar">
 								</a>
 							</div>
@@ -37,7 +37,7 @@
 						{% else %}
 
 							<div class="avatar-mini">
-								<a href="{{ path("shopping_list", {'id': shoppingList.id}) }}" class="button-icon">
+								<a href="{{ path("shopping_list", {'id': shoppingList.id}) }}" class="avatar-icon">
 									{{ shoppingList.user.username }}
 								</a>
 							</div>
@@ -52,7 +52,7 @@
 					{% for participate in participates %}
 						{% if participate.user.brochureFilename %}
 							<div class="avatar-mini">
-								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="avatar-icon">
 									<img src="{{ asset('uploads/images/' ~ participate.user.brochureFilename) }}" alt="avatar">
 								</a>
 							</div>
@@ -60,7 +60,7 @@
 						{% else %}
 
 							<div class="avatar-mini">
-								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="button-icon">
+								<a href="{{ path("participate_view", {'id': participate.id}) }}" class="avatar-icon">
 									{{ participate.user.username }}
 								</a>
 							</div>

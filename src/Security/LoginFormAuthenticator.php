@@ -2,7 +2,6 @@
 
 namespace App\Security;
 
-use App\Entity\AppUser;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -43,7 +42,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $this->passwordEncoder = $passwordEncoder;
     }
     
-
     protected function getLoginUrl()
     {
         return $this->urlGenerator->generate('app_login');
