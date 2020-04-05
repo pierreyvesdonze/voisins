@@ -368,8 +368,15 @@ MODAL
   color: var(--tertiary-color);
 }
 
-.comment span {
+.comment h3 {
   font-size: 2em;
+  font-weight: bold;
+  color: var(--tertiary-color);
+}
+
+.date-comment {
+  font-size: 1em;
+  font-weight: 100;
 }
 
 .comment-container p {

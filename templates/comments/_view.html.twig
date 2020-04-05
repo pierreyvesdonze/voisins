@@ -17,7 +17,8 @@
 					{% for comment in comments %}
 						<div class="comment-container">
 							<div class="comment">
-								<span>{{ comment.user }}</span>
+								<h3>{{ comment.user }}</h3>
+								<span class="date-comment">{{ comment.updatedAt|date("d/m/y à H:i") }}</span>
 								<br>
 								<p>{{ comment.comment }}</p>
 								<br>
