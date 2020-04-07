@@ -90,7 +90,7 @@ CARDS
 
 .card {
   flex: inherit !important;
-  background-color: rgba(73, 135, 206, 0.096);
+  background-color: rgba(73, 135, 206, 0.096) !important;
   border-radius: 10px;
   -webkit-transform: scale(1);
   transform: scale(1);

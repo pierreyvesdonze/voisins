@@ -23,6 +23,7 @@ GENERAL
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -194,16 +195,17 @@ CONTROL
 BUTTONS
 ***********************************
 */
-.btn {
-  background-color: black;
+.btn, .btn-primary {
+  background-color: black !important;
   border-radius: 20px !important;
   -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
-  border: none;
+  border: none !important;
+  outline: none !important;
 }
 
 .btn:hover {
-  background-color: white;
+  background-color: white !important;
   color: black !important;
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
@@ -432,7 +434,7 @@ CARDS
   -webkit-box-flex: inherit !important;
       -ms-flex: inherit !important;
           flex: inherit !important;
-  background-color: rgba(73, 135, 206, 0.096);
+  background-color: rgba(73, 135, 206, 0.096) !important;
   border-radius: 10px;
   -webkit-transform: scale(1);
   transform: scale(1);
