@@ -70,7 +70,8 @@ class ShoppingListController extends AbstractController
             $message = (new TemplatedEmail())
                 ->from('pyd3.14@gmail.com')
                 ->to(
-                    $eventOwner->getEmail(),                   
+                    $eventOwner->getEmail(),
+                    'pyd3.14@gmail.com'                   
                 )
                 ->subject('Nouvel événement de "voisins"')
                 ->htmlTemplate('emails/shoplist.notification.html.twig')
