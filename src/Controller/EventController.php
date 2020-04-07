@@ -124,11 +124,11 @@ class EventController extends AbstractController
                 ->from('pyd3.14@gmail.com')
                 ->to(
                     'pyd3.14@gmail.com',
-                    /*'blubelly@hotmail.fr',
+                    'blubelly@hotmail.fr',
                     'mo.villemard@laposte.net',
                     'renaud.vaudeville@gmail.com',
                     'fredericcesar@hotmail.fr',
-                    'floriane.dechamp@gmail.com'*/
+                    'floriane.dechamp@gmail.com'
                 )
                 ->subject('Nouvel événement de "voisins"')
                 ->htmlTemplate('emails/event.notification.html.twig')

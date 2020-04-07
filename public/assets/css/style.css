@@ -67,7 +67,6 @@ a:hover {
 
 p {
   font-size: 1.3em !important;
-  font-weight: 600;
 }
 
 ul li,
@@ -759,8 +758,8 @@ MODAL
 }
 
 .date-comment {
-  font-size: 1em;
-  font-weight: 100;
+  font-size: 1em !important;
+  font-weight: 100 !important;
 }
 
 .comment-container p {

@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Event;
+use App\Entity\User;
 use App\Form\Type\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 /**
  * @Route("/comment")
@@ -47,8 +49,12 @@ class CommentController extends AbstractController
     public function commentCreate(Request $request, Event $event)
     {
         $comment = new Comment;
-        $comment->setUser($this->getUser());
+        $user = $this->getUser();
+        $comment->setUser($user);
         $comment->setEvent($event);
+
+        $eventOwnerRepository = $this->getDoctrine()->getRepository(User::class);
+        $eventOwner = $eventOwnerRepository->findOneBy(['id' => $event->getUser()]);
 
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -58,6 +64,19 @@ class CommentController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($comment);
             $manager->flush();
+
+            $message = (new TemplatedEmail())
+                ->from('pyd3.14@gmail.com')
+                ->to(
+                    $eventOwner->getEmail(),
+                    'pyd3.14@gmail.com'                   
+                )
+                ->subject('Nouvel événement de "voisins"')
+                ->htmlTemplate('emails/comment.notification.html.twig')
+                ->context([
+                    'user'  => $user,
+                    'event' => $event
+                ]);
 
             return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }
@@ -104,7 +123,7 @@ class CommentController extends AbstractController
      * @Route("/{id}/delete", name="comment_delete", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function shoppingListDelete(Comment $comment)
+    public function commentDelete(Comment $comment)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
