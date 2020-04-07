@@ -70,6 +70,7 @@ class CommentController extends AbstractController
                 ->from('pyd3.14@gmail.com')
                 ->to(
                     $eventOwner->getEmail(),
+                    $user->getEmail(),
                     'pyd3.14@gmail.com'
                 )
                 ->subject('Nouvel événement de "voisins"')
