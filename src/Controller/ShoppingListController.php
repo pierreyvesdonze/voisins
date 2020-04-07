@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Event;
 use App\Entity\ShoppingList;
+use App\Entity\User;
 use App\Form\Type\ShoppingListType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,6 +47,9 @@ class ShoppingListController extends AbstractController
         $user = $this->getUser();
         $shoppingList->setUser($user);
 
+        $eventOwnerRepository = $this->getDoctrine()->getRepository(User::class);
+        $eventOwner = $eventOwnerRepository->findOneBy(['id' => $event->getUser()]);
+
         $article = new Article();
         $article->setShoppingList($shoppingList);
         $shoppingList->getArticles()->add($article);
@@ -66,8 +70,7 @@ class ShoppingListController extends AbstractController
             $message = (new TemplatedEmail())
                 ->from('pyd3.14@gmail.com')
                 ->to(
-                    'pyd3.14@gmail.com',
-                   
+                    $eventOwner->getEmail(),                   
                 )
                 ->subject('Nouvel événement de "voisins"')
                 ->htmlTemplate('emails/shoplist.notification.html.twig')
