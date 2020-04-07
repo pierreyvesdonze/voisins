@@ -26,7 +26,7 @@
 
 			<p>
 				{{ user.username }} est intéressé par ton événement et a créé sa liste de courses.
-				<a href="{{ absolute_url(path('shopping_list',{'id': event.id})) }}">Clique ici</a> pour la visualiser !
+				<a href="{{ absolute_url(path('shopping_list',{'id': shoppingList.id})) }}">Clique ici</a> pour la visualiser !
 			</p>
 		</div>
 	</body>
