@@ -62,7 +62,7 @@ a {
 }
 
 a:hover {
-  color: var(--tertiary-color);
+  color: var(--tertiary-color) !important;
 }
 
 p {
