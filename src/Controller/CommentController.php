@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
 
 /**
  * @Route("/comment")
@@ -46,7 +47,7 @@ class CommentController extends AbstractController
     /**
      * @Route("/create/{id}", name="comment_create", methods={"GET","POST"})
      */
-    public function commentCreate(Request $request, Event $event)
+    public function commentCreate(Request $request, Event $event, MailerInterface $mailer)
     {
         $comment = new Comment;
         $user = $this->getUser();
@@ -69,7 +70,7 @@ class CommentController extends AbstractController
                 ->from('pyd3.14@gmail.com')
                 ->to(
                     $eventOwner->getEmail(),
-                    'pyd3.14@gmail.com'                   
+                    'pyd3.14@gmail.com'
                 )
                 ->subject('Nouvel événement de "voisins"')
                 ->htmlTemplate('emails/comment.notification.html.twig')
@@ -77,6 +78,8 @@ class CommentController extends AbstractController
                     'user'  => $user,
                     'event' => $event
                 ]);
+
+            $mailer->send($message);
 
             return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }
