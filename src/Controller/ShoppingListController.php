@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
 
 /**
  * @Route("/groceries")
@@ -37,11 +39,12 @@ class ShoppingListController extends AbstractController
     /**
      * @Route("/request/{id}", name="groceries_request", methods={"GET","POST"})
      */
-    public function groceriesRequest(Request $request, Event $event): Response
+    public function groceriesRequest(Request $request, Event $event, MailerInterface $mailer): Response
     {
         $shoppingList = new ShoppingList();
         $shoppingList->setEvent($event);
-        $shoppingList->setUser($this->getUser());
+        $user = $this->getUser();
+        $shoppingList->setUser($user);
 
         $article = new Article();
         $article->setShoppingList($shoppingList);
@@ -59,6 +62,21 @@ class ShoppingListController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Enregistré.');
+
+            $message = (new TemplatedEmail())
+                ->from('pyd3.14@gmail.com')
+                ->to(
+                    'pyd3.14@gmail.com',
+                   
+                )
+                ->subject('Nouvel événement de "voisins"')
+                ->htmlTemplate('emails/shoplist.notification.html.twig')
+                ->context([
+                    'user'  => $user,
+                    'event' => $event
+                ]);
+
+            $mailer->send($message);
 
             return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }

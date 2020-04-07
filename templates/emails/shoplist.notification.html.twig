@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Nouvel événement</title>
+	</head>
+	{% apply inline_css %}
+	<style>
+
+		body {
+			background-image: url("./assets/images/bg_body");
+			color: #000;
+		}
+		h1 {
+			color: #fff;
+			font-size: 25px text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+		}
+		p {
+			font-size: 15px;
+			color: black;
+		}
+	</style>
+
+	<body>
+		<div>
+			<h1>Bonjour {{ event.user.username }}!</h1>
+
+			<p>
+				{{ user.username }} est intéressé par ton événement et a créé sa liste de courses.
+				<a href="{{ absolute_url(path('shopping_list',{'id': event.id})) }}">Clique ici</a> pour la visualiser !
+			</p>
+		</div>
+	</body>
+	{% endapply %}
+
+</html>

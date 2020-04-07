@@ -6,16 +6,12 @@ use App\Entity\Comment;
 use App\Entity\Event;
 use App\Entity\Participate;
 use App\Entity\ShoppingList;
-use App\Entity\User;
 use App\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Notifier\Notification\Notification;
-use Symfony\Component\Notifier\NotifierInterface;
-use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -135,7 +131,7 @@ class EventController extends AbstractController
                     'floriane.dechamp@gmail.com'
                 )
                 ->subject('Nouvel événement de "voisins"')
-                ->htmlTemplate('emails/notification.html.twig')
+                ->htmlTemplate('emails/event.notification.html.twig')
                 ->context([
                     'user'  => $user,
                     'event' => $event
