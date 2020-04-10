@@ -25,7 +25,7 @@
 			<h1>Bonjour {{ event.user.username }}!</h1>
 
 			<p>
-				{{ user.username }} est intéressé par ton événement et a créé sa liste de courses.
+				{{ user.username }} est intéressé(e) par ton événement et a créé sa liste de courses.
 				<a href="{{ absolute_url(path('shopping_list',{'id': shoppingList.id})) }}">Clique ici</a> pour la visualiser !
 			</p>
 		</div>

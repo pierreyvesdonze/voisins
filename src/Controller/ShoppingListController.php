@@ -76,12 +76,14 @@ class ShoppingListController extends AbstractController
                 ->subject('Nouvel événement de "voisins"')
                 ->htmlTemplate('emails/shoplist.notification.html.twig')
                 ->context([
-                    'user'  => $user,
-                    'event' => $event
+                    'shoppingList' => $shoppingList,
+                    'user'         => $user,
+                    'event'        => $event
                 ]);
 
             $mailer->send($message);
 
+            $this->addFlash("success", "Ta liste de course a bien été ajoutée");
             return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }
 
@@ -134,6 +136,7 @@ class ShoppingListController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
+            $this->addFlash("success", "Ta liste de course a bien été mise à jour");
             return $this->redirectToRoute('shopping_list', ['id' => $shoppingList->getId()]);
         }
 
@@ -157,7 +160,7 @@ class ShoppingListController extends AbstractController
         $manager->remove($shoppingList);
         $manager->flush();
 
-        $this->addFlash("success", "La liste de courses a bien été supprimé");
+        $this->addFlash("success", "La liste de courses a bien été supprimée");
 
         return $this->redirectToRoute('event_view', ['id' => $shoppingList->getEvent()->getId()]);
     }
