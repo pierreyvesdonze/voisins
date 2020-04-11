@@ -23,10 +23,17 @@
 					{{ form_row(form.lieu) }}
 				</div>
 			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(form.date) }}
+			<div class="row row-datetime">
+				<div class="input-group date col" id="datetimepicker1" data-target-input="nearest">
+					<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+					<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+						<div class="input-group-text datetimepicker-button">
+							<i class="fa fa-clock"></i>
+						</div>
+					</div>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col">
 					{{ form_row(form.type) }}
 				</div>
@@ -54,4 +61,13 @@
 		</div>
 	</div>
 
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	<script>
+		$('#datetimepicker1').datepicker({
+			format: 'dd.MM.yyyy',
+			});
+	</script>
 {% endblock %}

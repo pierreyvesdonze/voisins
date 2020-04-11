@@ -52,15 +52,14 @@ class EventType extends AbstractType
             ]
         );
 
-        $builder->add('date', DateTimeType::class, [
-            'placeholder' => [
-                'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                'hour' => 'Hour', 'minute' => 'Minute'
+        $builder->add('date', DateTimeType::class, array(
+            'required' => true,
+            'widget' => 'single_text',
+            'attr' => [
+                'html5' => true,
+                'placeholder' => 'Date'
             ],
-            'constraints' => [
-                new NotBlank(),
-            ]
-        ]);
+        ));
 
         $builder->add(
             'lieu',
@@ -93,8 +92,7 @@ class EventType extends AbstractType
             'mapped'        => false,
             'required'      => false,
             'constraints'   => [
-                new File([
-                ])
+                new File([])
             ],
         ]);
 

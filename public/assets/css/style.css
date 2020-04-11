@@ -4,7 +4,7 @@ COLORS & FONTS
 ***********************************
 */
 :root {
-  --primary-color: #fbf000;
+  --primary-color: #feaa26;
   --secondary-color: black;
   --tertiary-color: white;
   --header-color: radial-gradient(circle farthest-corner at 10% 20%, rgb(37, 37, 37) 0.1%, rgb(0, 0, 0) 90%);
@@ -26,7 +26,7 @@ html {
 
 body {
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   padding: 0;
   background-color: #ff9c02;
   background-image: url(../images/bg_body.jpg) !important;
@@ -119,7 +119,6 @@ FLASH MESSAGES
       align-self: center;
   background-color: var(--secondary-color);
   text-align: center;
-  width: 20%;
   opacity: 0.8;
 }
 
@@ -138,6 +137,12 @@ FLASH MESSAGES
 COLS & ROWS
 ***********************************
 */
+.row {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .row-participate {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -267,7 +272,6 @@ BUTTONS
 */
 .btn,
 .btn-primary {
-  background-color: black !important;
   border-radius: 20px !important;
   -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
@@ -620,10 +624,18 @@ CARDS
 EVENT VIEW
 ***********************************
 */
-.event-body, .event-body-edit {
-  overflow-y: scroll;
-  height: 70%;
+.event-body {
   width: 80%;
+  height: 70%;
+}
+
+.event-body-edit {
+  height: 80%;
+}
+
+.event-body,
+.event-body-edit {
+  overflow-y: scroll;
   margin: auto;
   padding: 20px 20px;
   -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
@@ -687,7 +699,8 @@ EVENT VIEW
   box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
 }
 
-.avatar-mini, .avatar {
+.avatar-mini,
+.avatar {
   margin-top: 20px;
   margin-left: 20px;
 }
@@ -865,5 +878,49 @@ MODAL
 
 .modal-open {
   padding: 0 !important;
+}
+
+/*
+***********************************
+DATETIMEPICKER
+***********************************
+*/
+#datetimepicker1 {
+  width: 40%;
+  color: var(--tertiary-color);
+}
+
+.datetimepicker-button {
+  height: auto;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  background-color: var(--primary-color);
+  border-color: #2b313538;
+  width: 100%;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu:after,
+.bootstrap-datetimepicker-widget.dropdown-menu:before {
+  display: none !important;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu .arrow {
+  display: none !important;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu .arrow:after,
+.bootstrap-datetimepicker-widget.dropdown-menu .arrow:before {
+  display: none !important;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu a span:hover,
+.bootstrap-datetimepicker-widget.dropdown-menu a span:focus {
+  background-color: transparent !important;
+  color: black !important;
+}
+
+.bootstrap-datetimepicker-widget table td.day {
+  font-size: 80%;
 }
 /*# sourceMappingURL=style.css.map */

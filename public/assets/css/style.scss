@@ -145,7 +145,6 @@ CARDS
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.84);
 }
 
-
 .card-list {
   height: auto;
 }
@@ -197,15 +196,20 @@ EVENT VIEW
 ***********************************
 */
 
-.event-body, .event-body-edit {
-  overflow-y: scroll;
-  height: 70%;
+.event-body {
   width: 80%;
+  height: 70%;
+}
+.event-body-edit {height: 80%;}
+
+.event-body,
+.event-body-edit {
+  overflow-y: scroll;
   margin: auto;
   padding: 20px 20px;
-  -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
--moz-box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
-box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
+  -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
 }
 
 #event {
@@ -247,12 +251,13 @@ box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  -webkit-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
 }
 
-.avatar-mini, .avatar {
+.avatar-mini,
+.avatar {
   margin-top: 20px;
   margin-left: 20px;
 }
@@ -389,7 +394,6 @@ MODAL
   margin-bottom: 2rem;
 }
 
-
 .modal-header h5,
 .modal-body span {
   color: var(--tertiary-color);
@@ -404,4 +408,44 @@ MODAL
 
 .modal-open {
   padding: 0 !important;
+}
+
+/*
+***********************************
+DATETIMEPICKER
+***********************************
+*/
+
+#datetimepicker1 {
+  width: 40%;
+  color: var(--tertiary-color);
+}
+
+.datetimepicker-button {
+  height: auto;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  background-color: var(--primary-color);
+  border-color: #2b313538;
+  width: 100%;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu:after,
+.bootstrap-datetimepicker-widget.dropdown-menu:before {
+  display: none !important;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .arrow {
+  display: none !important;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu .arrow:after,
+.bootstrap-datetimepicker-widget.dropdown-menu .arrow:before {
+  display: none !important;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu a span:hover,
+.bootstrap-datetimepicker-widget.dropdown-menu a span:focus {
+  background-color: transparent !important;
+  color: black !important;
+}
+.bootstrap-datetimepicker-widget table td.day {
+  font-size: 80%;
 }

@@ -4,7 +4,7 @@ COLORS & FONTS
 ***********************************
 */
 :root {
-  --primary-color: #fbf000;
+  --primary-color: #feaa26;
   --secondary-color: black;
   --tertiary-color: white;
 
@@ -28,7 +28,7 @@ html {
 
 body {
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   padding: 0;
   background-color: #ff9c02;
   background-image: url(../images/bg_body.jpg) !important;
@@ -114,7 +114,6 @@ FLASH MESSAGES
   align-self: center;
   background-color: var(--secondary-color);
   text-align: center;
-  width: 20%;
   opacity: 0.8;
 }
 
@@ -133,6 +132,10 @@ FLASH MESSAGES
 COLS & ROWS
 ***********************************
 */
+
+.row {
+  align-items: center;
+}
 
 .row-participate {
   display: flex;
@@ -254,7 +257,6 @@ BUTTONS
 
 .btn,
 .btn-primary {
-  background-color: black !important;
   border-radius: 20px !important;
   -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
