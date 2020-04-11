@@ -54,14 +54,16 @@ class EventType extends AbstractType
 
         $builder->add('date', DateTimeType::class, [
             'required' => false,
+            'empty_data' => null,
             'widget' => 'single_text',
             'attr' => [
                 'html5' => false,
                 'placeholder' => 'Date',
                 'class' => 'form-control datetimepicker-input',
                 'data-target' => '#datetimepicker1',
-                'autocomplete' => 'off'
+                'autocomplete' => 'off',
             ],
+        
         ]);
 
         $builder->add(
