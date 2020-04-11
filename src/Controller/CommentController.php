@@ -82,6 +82,7 @@ class CommentController extends AbstractController
 
             $mailer->send($message);
 
+            $this->addFlash("success", "Merci pour ton commentaire !");
             return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }
 

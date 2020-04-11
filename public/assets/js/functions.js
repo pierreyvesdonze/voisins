@@ -63,4 +63,3 @@ function addArticleFormDeleteLink($articleFormLi) {
         $articleFormLi.remove();
     });
 }
-

@@ -96,9 +96,34 @@ FLASH MESSAGES
 ***********************************
 */
 
+.flash-container {
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
 .alert {
+  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  align-self: center;
   background-color: var(--secondary-color);
   text-align: center;
+  width: 20%;
+  opacity: 0.8;
+}
+
+.close {
+  color: rgb(255, 0, 0) !important;
+  text-shadow: 0 1px 0 #000 !important;
+  opacity: 1;
+}
+
+.close:hover {
+  color: green !important;
 }
 
 /*
@@ -130,9 +155,9 @@ ICONS / BUTTONS
 .button-icon {
   width: 40px;
   border-radius: 20%;
-  -webkit-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
 }
 
 .button-icon:hover {
@@ -166,7 +191,6 @@ ICONS / BUTTONS
   filter: drop-shadow(5px 5px 5px black);
 }
 
-
 /*
 ***********************************
 LISTS
@@ -198,12 +222,13 @@ BUTTONS
 ***********************************
 */
 
-.btn, .btn-primary {
+.btn,
+.btn-primary {
   background-color: black !important;
   border-radius: 20px !important;
-  -webkit-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.75);
   border: none !important;
   outline: none !important;
 }

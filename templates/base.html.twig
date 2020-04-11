@@ -73,24 +73,22 @@
 
 		</nav>
 		<div class="flash-container">
-
 			{% for label, messages in app.flashes %}
 				{% for message in messages %}
+					<button class="close" data-dismiss="alert">&times;</button>
 					<div class="alert alert-{{ label }}">
 						{{ message }}
 					</div>
 				{% endfor %}
 			{% endfor %}
-
-			{% block body %}{% endblock %}
-
 		</div>
-
+		{% block body %}{% endblock %}
 		<!--***************************FOOTER****************************-->
 
 		{% block footer %}{% endblock %}
 
 		<script src="{{ asset('assets/js/functions.js') }}"></script>
+		<script src="{{ asset('assets/js/app.js') }}"></script>
 
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
