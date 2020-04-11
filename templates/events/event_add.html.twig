@@ -1,11 +1,58 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
+{% block title %}Créer un événement
+{% endblock %}
 
 {% block body %}
 
-    <h2>Ajouter un événement</h2>
-    
-    {{ form(formView) }}
+	<div class="event-body-edit">
 
-{% endblock %}
+		<div class="left">
+			<h2>Créer un événement</h2>
+			{{ form_start(form) }}
 
+			<div class="errors">
+				{{ form_errors(form) }}
+			</div>
+
+			<div class="row">
+				<div class="col">
+					{{ form_row(form.title) }}
+				</div>
+				<div class="col">
+					{{ form_row(form.lieu) }}
+				</div>
+			</div>
+			<div class="row row-datetime">
+
+				{{ form_widget(form.date, {'html5':false } ) }}
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				{{ form_row(form.type) }}
+			</div>
+		</div>
+		{{ form_widget(form.text) }}
+		{{ form_widget(form.brochure) }}
+
+		<div class="control">
+			<div class="col">
+				<a href="{{ path('event_list') }}">
+					<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
+				</a>
+			</div>
+			<div class="col">
+				{{ form_widget(form.save) }}
+			</div>
+		</div>
+		{{ form_end(form) }}
+
+	</div>
+</div>{% endblock %}{% block javascripts %}
+{{parent()}}
+<script>
+	$('#datetimepicker1').datepicker({format: 'dd.MM.yyyy'});
+</script>{% endblock %}

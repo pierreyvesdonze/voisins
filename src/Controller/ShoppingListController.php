@@ -129,7 +129,7 @@ class ShoppingListController extends AbstractController
                     $manager->persist($article);
     
                     // if you wanted to delete the Tag entirely, you can also do that
-                    // $entityManager->remove($tag);
+                    $manager->remove($article);
                 }
             }
     
