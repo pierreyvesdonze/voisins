@@ -197,11 +197,12 @@ EVENT VIEW
 ***********************************
 */
 
-.event-body {
+.event-body, .event-body-edit {
   overflow-y: scroll;
   height: 70%;
-  margin: 0 4%;
-  padding: 20px 10px;
+  width: 80%;
+  margin: auto;
+  padding: 20px 20px;
   -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
 -moz-box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
 box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.75);
