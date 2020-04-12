@@ -13,13 +13,17 @@ class ParticipateType extends AbstractType
     public function buildForm(\Symfony\Component\Form\FormBuilderInterface $builder, array $options)
     {
        
-        $builder->add(
+       /* $builder->add(
             'save',
             SubmitType::class,
             [
-                "label" => "Oui"
-            ]
-        );
+                "label" => "Oui",
+                'attr' => [
+                    'class' => 'button tick',
+                ],
+            ],
+            
+        );*/
     }
 
     public function configureOptions(OptionsResolver $resolver)

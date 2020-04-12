@@ -105,7 +105,10 @@ class EventType extends AbstractType
             'save',
             SubmitType::class,
             [
-                "label" => "Ajouter",
+                "label" => "Ok",
+                'attr' => [
+                    'class' => 'button',
+                ],
             ]
         );
     }

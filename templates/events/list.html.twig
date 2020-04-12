@@ -6,7 +6,7 @@
 	<h1>Tous les événements</h1>
 
 	<div class="archives">
-		<a href="{{ path('archive_list') }}">
+		<a href="{{ path('archive_list') }}" class="link-text">
 			Voir les archives
 		</a>
 	</div>
@@ -16,39 +16,35 @@
 	<div class="flex-container">
 		<div class="card-group">
 			{% for event in events|sort((a, b)=> a.date <=> b.date) %}
-
-				<div class="cards" style="width: 18rem;">
-					<div class="card-header">
-						<span class="list-events">{{ event.type }}
-						</span>
-						<span>{{ event.user }}</span>
-					</div>
-					<div class="card-list">
-						<h5 class="card-title">
-							{{ event.title }}
-						</h5>
-
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<span class="list-events">
-								Lieu :
-								{{ event.lieu }}
+				<a href="{{ path('event_view',{'id': event.id}) }}">
+					<div class="cards" style="width: 18rem;">
+						<div class="card-header">
+							<span class="list-events">{{ event.type }}
 							</span>
-						</li>
-						<div class="date-item">
-							<li class="list-group-item">
-								<span class="date-events">
-									{{ event.date|date("d/m/y à H:i") }}
-								</span>
-							</li>
+							<span>{{ event.user }}</span>
 						</div>
-					</ul>
-					<div class="card-body view-item">
-						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
-					</div>
-				</div>
+						<div class="card-list">
+							<h5 class="card-title">
+								{{ event.title }}
+							</h5>
 
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<em class="lieu-events">
+									{{ event.lieu }}
+								</em>
+							</li>
+							<div class="date-item">
+								<li class="list-group-item">
+									<span class="date-events">
+										{{ event.date|date("d/m/y à H:i") }}
+									</span>
+								</li>
+							</div>
+						</ul>
+					</div>
+				</a>
 			{% endfor %}
 		</div>
 	</div>

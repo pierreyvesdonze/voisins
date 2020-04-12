@@ -6,7 +6,7 @@
 	<h1>Événements passés</h1>
 
 	<div class="archives">
-		<a href="{{ path('event_list') }}">
+		<a href="{{ path('event_list') }}" class="link-text">
 			Retour aux listes
 		</a>
 	</div>
@@ -17,38 +17,37 @@
 		<div class="card-group">
 			{% for event in events|sort((a, b)=> b.date <=> a.date) %}
 
-				<div class="cards" style="width: 18rem;">
-					<div class="card-header">
-						<span class="list-events">{{ event.type }}
-						</span>
-						<span>{{ event.user }}</span>
-					</div>
-					<div class="card-body">
-						<h5 class="card-title">
-							{{ event.title }}
-						</h5>
+				<a href="{{ path('event_view',{'id': event.id}) }}">
 
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<span class="list-events">
-								Lieu :
-								{{ event.lieu }}
+					<div class="cards" style="width: 18rem;">
+						<div class="card-header">
+							<span class="list-events">{{ event.type }}
 							</span>
-						</li>
-						<div class="date-item">
+							<span>{{ event.user }}</span>
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">
+								{{ event.title }}
+							</h5>
+
+						</div>
+						<ul class="list-group list-group-flush">
 							<li class="list-group-item">
-								<span class="date-events">
-									{{ event.date|date("d/m/y à H:i") }}
+								<span class="lieu-events">
+									{{ event.lieu }}
 								</span>
 							</li>
-						</div>
-					</ul>
-					<div class="card-body view-item">
-						<a href="{{ path('event_view',{'id': event.id}) }}" class="btn btn-primary">Voir</a>
-					</div>
-				</div>
+							<div class="date-item">
+								<li class="list-group-item">
+									<span class="date-events">
+										{{ event.date|date("d/m/y à H:i") }}
+									</span>
+								</li>
+							</div>
+						</ul>
 
+					</div>
+				</a>
 			{% endfor %}
 		</div>
 	</div>

@@ -11,20 +11,19 @@
 
 	{{ form_start(form) }}
 
-	<div class="row row-participate">
+	<div class="row-participate">
 		<div class="col">
-			{{ form_row(form.save) }}
+			<button class="button">
+				<span class="yes">{{ button_label|default('Oui') }}</span>
+			</button>
 		</div>
+		{{ form_end(form) }}
 		<div class="col">
-
-			<a href="{{ path('event_view',{'id': participate.event.id}) }}" class="btn">
-				Non
+			<a href='{{ path('event_view',{'id': participate.event.id}) }}'" class="button">
+				<span class="no">Bof</span>
 			</a>
 		</div>
-	</div>
-	{{ form_widget(form) }}
 
-	{{ form_end(form) }}
-	<!--CONTROL-->
+	</div>
 
 {% endblock %}

@@ -11,12 +11,24 @@ var app = {
             app.modal.remove();
             app.close.remove();
         }, 3000);
+
+        app.submitButton = $(':submit');
+        /*app.submitButton.removeClass('btn');
+        app.submitButton.removeClass('btn-primary');*/
+        app.submitButton.on('click', app.handleSubmitForm);
     },
 
     closeAlertModal: function () {
-        
+
         app.modal.remove();
         app.close.remove();
+    },
+
+    handleSubmitForm: function (form) {
+
+        console.log('disable submit button');
+
+        return true;
     }
 }
 

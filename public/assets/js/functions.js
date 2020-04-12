@@ -1,3 +1,8 @@
+$( ".button-group > div" ).click(function() {
+    $('.button-group > div.active').not(this).removeClass('active');
+    $( this ).toggleClass( "active" );
+  });
+
 var $collectionHolder;
 
 // setup an "add a article" link

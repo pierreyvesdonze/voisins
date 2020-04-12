@@ -2,7 +2,7 @@
 
 {% block body %}
 	<!--EVENT-->
-	<div class="card ">
+	<div class="card">
 		<img src="{{ asset('assets/images/' ~ event.type ~ '.jpg') }}" alt="evenement" class="card-image-top">
 		<div class="card-header">
 			<h5 class="card-title">{{ event.title }}
@@ -15,11 +15,6 @@
 		</div>
 
 		<div class="card-header-second">
-			<div class="lieu">
-				<span class="lieu-events">
-					{{ event.lieu }}
-				</span>
-			</div>
 
 			{% if event.type == "courses" or event.type == "boulange" %}
 
@@ -76,41 +71,54 @@
 		class="hr">
 
 		<!--AVATAR PRESENTATION-->
-		<div class="event-body">		
-				<p class="card-text">{{ event.text }}</p>
-				<br><hr>
-				<span class="user">
-					- <em>{{ event.user.username }}</em>
+		<div class="event-body">
+			<div class="lieu">
+				<span class="lieu-events">
+					{{ event.lieu }}
 				</span>
+			</div>
+
+
+			<hr class="hr">
+
+			<p class="card-text">{{ event.text }}</p>
+			<br><hr>
+			<span class="user">
+				-
+				<em>{{ event.user.username }}</em>
+			</span>
 		</div>
 	</div>
-	
+
 	<!--CONTROL-->
 	<div class="control">
-		<a href="{{ path('event_list',{'id': event.id}) }}">
-			<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
+		<a href="{{ path('event_list',{'id': event.id}) }}" class="button">
+			<span class="backto"></span>
 		</a>
-
 		{% if app.user %}
 			{% if is_granted('view', event) %}
-				<a href="{{ path('event_update',{'id': event.id}) }}">
-					<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
+				<a href="{{ path('event_update',{'id': event.id}) }}" class="button">
+					<span class="update"></span>
 				</a>
 			{% endif %}
 
 			<!--MODAL-->
-			<button type="button" class="button-modal" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">
+			<button type="button" class="button" data-toggle="modal" data-target="#modal-comment" data-backdrop="false">
 				{% if comments %}
-					<img src="{{ asset('assets/images/newcomment.png') }}" alt="update" class="button-icon">
+					<span class="newcomment">
+						<img src="{{ asset('assets/images/newcomment.png') }}" alt="update">
+					</span>
 				{% else %}
-					<img src="{{ asset('assets/images/comment.png') }}" alt="update" class="button-icon">
+					<span class="comment">
+						<img src="{{ asset('assets/images/comment.png') }}" alt="update">
+					</span>
+
 				{% endif %}
 			</button>
 
-			<a href="{{ path('comment_create',{'id': event.id}) }}">
-				<img src="{{ asset('assets/images/pen.png') }}" alt="pen" class="button-icon">
+			<a href="{{ path('comment_create',{'id': event.id}) }}" class="button">
+				<span class="pencil"></span>
 			</a>
-
 
 			{{ include('comments/_view.html.twig') }}
 
@@ -131,8 +139,9 @@
 				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
 
 			{% else %}
-				<a href="{{ path('participate_request',{'id': event.id}) }}" class="btn btn-primary">Participer</a>
-
+				<a href="{{ path('participate_request',{'id': event.id}) }}" class="button">
+					<span class="go"></span>
+				</a>
 			{% endif %}
 		{% endif %}
 	</div>

@@ -4,8 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Éditer le profil</h1>
-	<div class="control">
-		{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+	<div class="cards">
+		<hr class="hr">
+		<h1>Éditer</h1>
+		<div class="my-form-control">
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			<div class="container-button">
+				<button class="button-save">{{ button_label|default('Enregistrer') }}</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
 	</div>
 {% endblock %}

@@ -1,39 +1,6 @@
+@import "./navbar";
+@import "./animations";
 @import "./settings";
-@import "./tooltips";
-
-/*
-***********************************
-NAVBAR
-***********************************
-*/
-.navbar {
-  background-color: var(--secondary-color);
-}
-
-.navbar-nav {
-  width: 100%;
-  display: flex;
-  flex-direction: row !important;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.navbar-collapse {
-  display: flex;
-  justify-content: center;
-}
-
-.container-nav-left {
-  width: 80%;
-}
-
-.container-nav-right {
-  display: flex;
-}
-
-.navlink {
-  color: var(--tertiary-color);
-}
 
 /*
 ***********************************
@@ -85,7 +52,7 @@ CARDS
 .card-group {
   -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 7px 6px rgba(0, 0, 0, 0.75);
 }
 
 .card {
@@ -96,7 +63,7 @@ CARDS
   transform: scale(1);
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
-  height: 80%;
+  height: 75%;
   //overflow-y: scroll;
 }
 
@@ -121,7 +88,9 @@ CARDS
 
 .card-header .list-events,
 .card-header span,
-.card-header h5 {
+.card-header h5
+.lieu-events,
+.date-events {
   color: var(--tertiary-color);
 }
 
@@ -132,7 +101,7 @@ CARDS
 }
 
 .list-group-item {
-  background-color: rgba(255, 228, 196, 0.192);
+  background-color: rgba(0, 0, 0, 0.192);
 }
 
 .lieu {
@@ -140,21 +109,20 @@ CARDS
 }
 
 .card-title {
-  //font-size: 2.3em;
+  font-size: 1.6em;
+  font-weight: 400;
   color: var(--tertiary-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.84);
 }
 
 .card-list {
   height: auto;
+  padding-top: 2em !important;
+  padding-bottom: 2em !important;
 }
 
 .card p {
   font-size: 1.1em;
-}
-
-.view-item {
-  height: 50px;
 }
 
 .view {
@@ -172,13 +140,10 @@ CARDS
   font-weight: 400;
 }
 
-.date-item {
-  height: 100px;
-}
-
 .lieu-events {
-  font-weight: bold;
+  font-weight: 100;
   font-size: 1.3em;
+  color: var(--secondary-color);
 }
 
 .card-footer {
@@ -188,6 +153,12 @@ CARDS
 
 .card-footer span {
   color: var(--tertiary-color);
+}
+
+.card-control {
+  height: auto;
+  display: flex;
+  justify-content: center;
 }
 
 /*
@@ -240,7 +211,6 @@ EVENT VIEW
   flex: inherit;
   flex-direction: column;
   border-radius: 10px;
-  padding-top: 0px !important;
 }
 
 .card .event-view {
@@ -353,10 +323,6 @@ PARTICIPATE
   margin: auto;
 }
 
-#participate_save {
-  margin: auto;
-}
-
 /*
 ***********************************
 MODAL
@@ -372,6 +338,12 @@ MODAL
   width: 100%;
   justify-content: space-between;
   color: var(--tertiary-color);
+}
+
+.comment-container-create {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .comment h3 {
