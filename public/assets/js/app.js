@@ -16,8 +16,6 @@ var app = {
         /*app.submitButton.removeClass('btn');
         app.submitButton.removeClass('btn-primary');*/
         app.submitButton.on('click', app.handleSubmitForm);
-
-        $('.deletebutton').on('click', app.handleDeleteAction);
     },
 
     closeAlertModal: function () {
@@ -31,11 +29,6 @@ var app = {
         console.log('disable submit button');
         return true;
     },
-
-    handleDeleteAction: function(e) {
-
-        e.preventDefault();
-    }
 }
 
 // App Loading

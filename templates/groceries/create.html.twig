@@ -8,7 +8,7 @@
 				Créer une liste
 			</h5>
 		</div>
-	
+
 		<hr class="hr">
 
 		<div class="event-body">
@@ -30,13 +30,13 @@
 	</div>
 	<div class="control">
 		<div class="col">
-			{{ form_widget(form.save) }}
-			{{ form_end(form) }}
-		</div>
-		<div class="col">
 			<a href="{{ path('event_view',{'id': event.id}) }}" class="button">
 				<span class="backto"></span>
 			</a>
+		</div>
+		<div class="col">
+			{{ form_widget(form.save) }}
+			{{ form_end(form) }}
 		</div>
 	</div>
 {% endblock %}

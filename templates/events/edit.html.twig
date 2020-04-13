@@ -61,7 +61,7 @@
 			{{ form_widget(form.save) }}
 		</div>
 		<div class="col">
-			<a href="{{ path('event_delete',{'id': event.id}) }}" class="button">
+			<a href="{{ path('event_delete',{'id': event.id}) }}" class="button" onclick="return confirm('Supprimer ?')">
 				<span class="deletebutton"></span>
 			</a>
 		</div>

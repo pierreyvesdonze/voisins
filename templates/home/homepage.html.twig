@@ -2,125 +2,169 @@
 
 {% block body %}
 
-	<div class="jumbotron">
-		<h1 class="home-title">Bienvenue  sur "Voisins"</h1>
-		<hr class="hr">
-		<span class="sub-home">L'appli qui te veut du bien !</span>
-		<hr class="hr">
-	</div>
+	<h1>Salut !</h1>
 
-	<div class="home-container">
-		<p>
-			Hello ! Bienvenue sur cette petite appli conçue pour nous organiser entre voisins ! Grâce à cette appli tu pourras :
-			<ul>
+	<hr class="hr">
+
+	<div class="card">
+		<div class="homepage-body">
+			<p class="card-text">
+				Hello ! Bienvenue sur notre appli rien qu'à nous ! Étant donné le côté évolutif de la bête, la page d'accueil servira de tuto/FAQ/appelle ça comme tu veux !
+			</p>
+
+			<hr class="hr">
+
+			<ol>
 				<li>
-					- Voir les événements organisés par tes voisins
-				</li>
-				<li>
-					- T'inscrire aux événements et/ou proposer les tiens
-				</li>
-				<li>
-					- Créer des listes de courses ou t'inscrire à celles existantes
-				</li>
-				<li>
-					- Uploader tes tickets de caisse, factures, reçus...
-				</li>
-				<li>
-					- Donner de l'amour dans tes commentaires
-				</li>
-			</ul>
-		</p>
-
-		<hr class="hr">
-
-		<p>
-			Quelques bugs sont encore présents mais en ces temps apocalyptiques, il a fallu faire vite pour rendre l'appli accessible et utilisable ! Aussi l'ergonomie n'est pas dans sa phase finale, notamment en version mobile... mais ça viendra au fil du temps !
-			<br>
-			<br>
-			En principe les fonctions du site ne devraient pas être trop compliquées à utiliser, néanmoins voici un petit tuto pour te permettre d'apprendre à t'en servir.
-		</p>
-
-		<hr class="hr">
-
-		<ol>
-			<li>
-				<h2>Inscription / Connexion</h2>
-
-				<p>
-					Indispensable pour créer ou participer à des événements. Toutefois tu pourras voir les événements sans être connecté
-				</p>
-			</li>
-
-			<br>
-
-			<li>
-				<h2>Navigation / Contrôle</h2>
-				<div class="tuto-image">
-					<img src="{{ asset('assets/images/tuto-header-nav.png') }}" alt="update" class="tuto-img">
-				</div>
-				<div class="tuto-image">
-					<img src="{{ asset('assets/images/tuto-control-nav.png') }}" alt="update" class="tuto-img">
-				</div>
-			</li>
-
-			<br>
-
-			<li>
-				<h2>Participer à un événement</h2>
-				<div class="home-container">
-					<p>
-						Il suffit de cliquer sur "participer" et de rajouter un petit commentaire pour t'inscrire à un événement.
-					</p>
-
-				</div>
-			</li>
-
-			<br>
-
-			<li>
-				<h2>Créer un événement</h2>
-				<div class="tuto-img-container">
-					<div class="tuto-form-img">
-						<input type="checkbox" id="zoomCheck">
-						<label for="zoomCheck">
-							<img src="{{ asset('assets/images/tuto-form.png') }}" alt="update" class="tuto-img">
-						</label>
-
+					<h2>Inscription / Connexion</h2>
+					<div class="button-group">
+						<div class="black-navbar iconLogout">
+							<a href="{{ path('app_login') }}">
+								{{ source('logout.svg') }}
+							</a>
+						</div>
 					</div>
-					<div class="home-container tuto-form-text">
-						<ul>
-							<li>
-								- Ajoute un titre
-							</li>
-							<li>
-								- Un type
-							</li>
-							<li>
-								- Une date
-							</li>
-							<li>
-								- Un lieu (DTC autorisé)
-							</li>
-							<li>
-								- Un commentaire (ou ta liste de courses)
-							</li>
-						</ul>
+					<br>
+					<p>
+						Étape indispensable pour créer, participer à des événements ou voir les commentaires rattachés. Toutefois tu pourras voir les événements sans être connecté.
+					</p>
+				</li>
+
+				<br>
+
+				<li>
+					<h2>Événements</h2>
+					<div class="button-group">
+						<div class="black-navbar iconLogout">
+							<a href="{{ path('event_list') }}">
+								{{ source('lists.svg') }}
+							</a>
+						</div>
 					</div>
-				</div>
-
-				<hr>
-
-				<div class="home-container">
+					<br>
 					<p>
-						Si l'événement est de type "courses" tu auras la possibilité de revenir sur le formulaire et d'uploader un ticket de caisse.
+						C'est ici que sont regroupés les événements. Il suffit de cliquer sur un événement pour le visualiser. Chaque événément possède un titre, un type, un lieu, une date et un descriptif.
 					</p>
 					<p>
-						<strong>Fonction expérimentale</strong> : Tu as aussi la possibilité en mode mobile de photographier directement ton ticket de caisse via ce bouton : <img src="{{ asset('assets/images/invoice.png') }}" alt="invoice" class="button-icon">. <br>
-						Toutefois pour le moment, il te faudra repasser par l'édition de ta liste de courses : <img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon"> uploader ton ticket de caisse.
-
+						Une fois un événement sélectionné, un menu est mis à disposition en bas de l'écran pour naviguer, éditer uné événement, le commenter et lire les commentaires déjà présents, ainsi qu'un bouton d'action dépendant du type d'évenement te permettant soit de participer, soit de créer une requête.
 					</p>
-				</div>
-			</li>
-		</ol>
+					<h3>Le menu</h3>
+					<table class="table-homepage">
+						<tbody>
+							<tr>
+								<td>
+									<a href="#" class="button">
+										<span class="backto"></span>
+									</a>
+								</td>
+								<td>Permet de revenir à la page précédente</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#" class="button">
+										<span class="update"></span>
+									</a>
+								</td>
+								<td>Permet de mettre à jour un événement</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="button">
+										<span class="newcomment">
+											<img src="{{ asset('assets/images/newcomment.png') }}" alt="update">
+										</span>
+									</button>
+								</td>
+								<td>Permet de lire les commentaires</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#" class="button">
+										<span class="pencil"></span>
+									</a>
+								</td>
+								<td>Permet d'écrire un commentaire</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#" class="button">
+										<span class="go"></span>
+									</a>
+								</td>
+								<td>Permet de participer à un événement</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#" class="button">
+										<span class="add"></span>
+									</a>
+								</td>
+								<td>Permet de créer une liste de courses</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="card-invoice">
+										<img src="{{ asset('uploads/images/ReceiptSwiss.jpg') }}" alt="invoice">
+									</div>
+								</td>
+								<td>Permet de visualiser une facture</td>
+							</tr>
+						</tbody>
+					</table>
+				</li>
+
+				<br>
+
+				<li>
+					<h2>Ajouter</h2>
+					<div class="button-group">
+						<div class="black-navbar inconAdd">
+							<a href="{{ path('event_create') }}">
+								{{ source('add.svg') }}
+							</a>
+						</div>
+					</div>
+					<br>
+					<p>
+						C'est ici que l'on crée un événement. Le bouton mène à un formulaire avec des champs à remplir. Une fois le formulaire validé, ton événement apparaîtra dans la liste principale et tous tes voisins seront informés !
+					</p>
+				</li>
+
+				<br>
+
+				<li>
+					<h2>Profil</h2>
+					<div class="button-group">
+						<div class="black-navbar iconUser">
+							<a href="{{ path('user_profile') }}">
+								{{ source('user.svg') }}
+							</a>
+						</div>
+					</div>
+					<br>
+					<p>
+						Ceci est ton espace personnel. Il te permet de modifier tes informations et ajouter un avatar. Tu as aussi la possibilité de supprimer ton compte à tout moment, si tu en as marre du bonheur.
+					</p>
+				</li>
+
+				<br>
+
+				<li>
+					<h2>Déconnexion</h2>
+					<div class="button-group">
+						<div class="navbar-black iconLogout">
+							<a href="{{ path('app_logout') }}">
+								{{ source('logout.svg') }}
+							</a>
+						</div>
+					</div>
+					<br>
+					<p>
+						Pour te déconnecter tout simplement.
+					</p>
+				</li>
+			</ol>
+		</div>
 	</div>
+	{{ source('svgfilters.svg') }}
 {% endblock %}

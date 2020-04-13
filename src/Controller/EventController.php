@@ -138,8 +138,8 @@ class EventController extends AbstractController
                 ]);
 
             $mailer->send($message);
-
-            return $this->redirectToRoute('event_list');
+            
+            return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }
 
         return $this->render(

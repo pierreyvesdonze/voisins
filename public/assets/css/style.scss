@@ -8,29 +8,29 @@ HOMPAGE
 ***********************************
 */
 
+.homepage-body {
+  width: 80%;
+  height: 90%;
+  border-radius: 20px;
+  overflow-y: scroll;
+  margin: auto;
+  padding: 20px 20px;
+  -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+}
+
 .tuto-img-container {
   display: flex;
-}
-
-.tuto-image img,
-.tuto-form-img img {
-  width: 100%;
-}
-
-.tuto-form-img img {
-  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-  box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-}
-
-.tuto-form-img,
-.tuto-form-text {
-  width: 50%;
 }
 
 .tuto-form-text p {
   clear: right;
   float: left;
+}
+
+.table-homepage tbody tr {
+  height: 100px;
 }
 
 /*
@@ -175,6 +175,8 @@ EVENT VIEW
 ***********************************
 */
 
+
+
 .event-body {
   width: 80%;
   height: 70%;
@@ -263,6 +265,7 @@ EVENT VIEW
 .card-text {
   font-size: 1.3em !important;
   font-weight: 400;
+  color: var(--secondary-color);
 }
 
 #zoomCheck {

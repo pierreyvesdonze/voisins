@@ -49,7 +49,7 @@
 			<a href="{{ path('shopping_list_update',{'id': shoppingList.id}) }}" class="button">
 				<span class=""></span>update
 			</a>
-			<a href="{{ path('shopping_list_delete',{'id': shoppingList.id}) }}" class="button">
+			<a href="{{ path('shopping_list_delete',{'id': shoppingList.id}) }}" class="button" onclick="return confirm('Supprimer la liste ?')">
 				<span class="deletebutton"></span>
 			</a>
 		{% endif %}
