@@ -29,7 +29,7 @@ class ShoppingListType extends AbstractType
             'description',
             TextareaType::class,
             [
-                "label" => "Commentaires"
+                "label" => "Commentaires",
             ]
         );
        
@@ -37,7 +37,10 @@ class ShoppingListType extends AbstractType
             'save',
             SubmitType::class,
             [
-                "label" => "Enregistrer"
+                "label" => "Enregistrer",
+                "attr" => [
+                    'class' => 'button',
+                ]
             ]
         );
     }

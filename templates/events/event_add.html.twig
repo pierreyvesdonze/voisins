@@ -4,40 +4,46 @@
 {% endblock %}
 
 {% block body %}
+	<div class="card">
+		<div class="event-body">
 
-	<div class="event-body-edit">
+			<div class="left">
+				<h2>Créer un événement</h2>
+				{{ form_start(form) }}
 
-		<div class="left">
-			<h2>Créer un événement</h2>
-			{{ form_start(form) }}
+				<div class="errors">
+					{{ form_errors(form) }}
+				</div>
 
-			<div class="errors">
-				{{ form_errors(form) }}
+				<div class="row">
+					<div class="col">
+						{{ form_row(form.title) }}
+					</div>
+					<div class="col">
+						{{ form_row(form.lieu) }}
+					</div>
+				</div>
+				<div class="row row-datetime">
+
+					{{ form_widget(form.date, {'html5':false } ) }}
+
+				</div>
 			</div>
 
 			<div class="row">
 				<div class="col">
-					{{ form_row(form.title) }}
-				</div>
-				<div class="col">
-					{{ form_row(form.lieu) }}
+					{{ form_row(form.type) }}
 				</div>
 			</div>
-			<div class="row row-datetime">
-
-				{{ form_widget(form.date, {'html5':false } ) }}
-
+			<div class="row">
+				{{ form_widget(form.text) }}
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="col">
-				{{ form_row(form.type) }}
+			<div class="row">
+				{{ form_widget(form.brochure) }}
 			</div>
-		</div>
-		{{ form_widget(form.text) }}
-		{{ form_widget(form.brochure) }}
 
+
+		</div>
 		<div class="control">
 			<div class="col">
 				<a href="{{ path('event_list') }}" class="button">
@@ -46,13 +52,15 @@
 			</div>
 			<div class="col">
 				{{ form_widget(form.save) }}
+				{{ form_end(form) }}
 			</div>
 		</div>
-		{{ form_end(form) }}
-
 	</div>
-</div>{% endblock %}{% block javascripts %}
-{{parent()}}
-<script>
-	$('#datetimepicker1').datepicker({format: 'dd.MM.yyyy'});
-</script>{% endblock %}
+
+{% endblock %}
+{% block javascripts %}
+	{{parent()}}
+	<script>
+		$('#datetimepicker1').datepicker({format: 'dd.MM.yyyy'});
+	</script>
+{% endblock %}

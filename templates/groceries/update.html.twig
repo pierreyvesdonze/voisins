@@ -1,12 +1,42 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+	<div class="card">
 
-    <h2>
-        Modifier la liste de courses 
-    </h2>
+		<div class="card-header">
+			<h5 class="title-create-shopping-list">
+				Mettre à jour
+			</h5>
+		</div>
+	
+		<hr class="hr">
 
-    {{ form(form) }}
-    
+		<div class="event-body">
+			{{ form_start(form) }}
+
+			<ul
+				class="articles" data-prototype="{{ form_widget(form.articles.vars.prototype)|e('html_attr') }}">
+				{# iterate over each existing tag and render its only field: name #}
+				{% for article in form.articles %}
+					<li>{{ form_row(article.name) }}</li>
+				{% endfor %}
+			</ul>
+
+			<div class="row-participate">
+				{{ form_row(form.description) }}
+			</div>
+
+		</div>
+	</div>
+	<div class="control">
+		<div class="col">
+			{{ form_widget(form.save) }}
+			{{ form_end(form) }}
+		</div>
+		<div class="col">
+			<a href="{{ path('event_view',{'id': shoppingList.event.id}) }}" class="button">
+				<span class="backto"></span>
+			</a>
+		</div>
+	</div>
 {% endblock %}
-

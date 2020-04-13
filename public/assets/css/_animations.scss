@@ -116,6 +116,13 @@
 .backto:after {
     content: ' \21B6';
 }
+.add:hover {
+    color: rgb(53, 177, 84);
+    text-shadow: -1px -1px 1px #000;
+}
+.add:after {
+    content: ' \002B';
+}
 .update:hover {
     color: rgb(53, 177, 84);
     text-shadow: -1px -1px 1px #000;
@@ -124,9 +131,16 @@
     content: ' \267B';
 }
 .closebutton:hover {
-    color: rgb(223, 32, 32);
+    color: rgb(223, 32, 32) !important;
     text-shadow: -1px -1px 1px #000;
 }
 .closebutton:after {
     content: "✖";
+}
+.deletebutton:hover {
+    color: rgb(223, 32, 32) !important;
+    text-shadow: -1px -1px 1px #000;
+}
+.deletebutton:after {
+    content: "\2718";
 }

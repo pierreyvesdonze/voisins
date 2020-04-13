@@ -1,8 +1,40 @@
-$( ".button-group > div" ).click(function() {
-    $('.button-group > div.active').not(this).removeClass('active');
-    $( this ).toggleClass( "active" );
-  });
+/*
+****************************
+HEADER ICONS
+****************************
+*/ 
+var url = location.href;
+var urlSplit = url.split('/');
+var slug = urlSplit[urlSplit.length - 1];
 
+jQuery(document).ready(function () {
+    if (url.match(/event/)) {
+        $headerIcon = $('.button-group > .iconList');
+        $headerIcon.toggleClass('active');
+    }  if (
+        (url.match(/event/) &&
+        'create' === slug ||
+        url.match(/request/))) {
+        $headerIcon = $('.button-group > .iconAdd');
+        $headerIcon.toggleClass('active');
+    } else if (url.match(/myprofile/) || url.match('/user/')) {
+        $headerIcon = $('.button-group > .iconUser');
+        $headerIcon.toggleClass('active');
+    } else if (slug == 'login') {
+        $headerIcon = $('.button-group > .iconLogout');
+        $headerIcon.toggleClass('active');
+    } else if ('' === slug){
+        $headerIcon = $('.button-group > .iconHome');
+        $headerIcon.toggleClass('active');
+    }
+});
+
+
+/*
+****************************
+GROCERIES ADD & REMOVE
+****************************
+*/ 
 var $collectionHolder;
 
 // setup an "add a article" link

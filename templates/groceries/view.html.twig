@@ -4,13 +4,14 @@
 {% block body %}
 
 	<!--SHOPPING LIST TITLE-->
-	<div class="card mb-3">
+	<div class="card">
 		<img src="{{ asset('assets/images/shoplist.jpg') }}" alt="legumes" class="card-image-top">
 		<div class="card-header">
 			<h5>Ma liste</h5>
 		</div>
-	
-		<div class="card-header-second">
+
+		<div
+			class="card-header-second">
 			<!--AVATARS / SHOPPING LISTS-->
 			<div class="list-container">
 				<div class="avatar">
@@ -21,7 +22,7 @@
 
 		<hr class="hr">
 
-		<div class="shopping-list-description">
+		<div class="event-body">
 			<ul>
 				{% for article in shoppingList.articles %}
 					<li>
@@ -29,7 +30,10 @@
 					</li>
 				{% endfor %}
 			</ul>
-			<p>
+
+			<hr class="hr">
+
+			<p class="shopping-list-description">
 				{{ shoppingList.description }}
 			</p>
 		</div>
@@ -38,18 +42,15 @@
 	</div>
 	<!--CONTROL-->
 	<div class="control">
-		<a href="{{ path('event_view',{'id': shoppingList.event.id}) }}">
-			<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
-			back
+		<a href="{{ path('event_view',{'id': shoppingList.event.id}) }}" class="button">
+			<span class="backto"></span>
 		</a>
 		{% if is_granted('view', shoppingList) %}
-			<a href="{{ path('shopping_list_update',{'id': shoppingList.id}) }}">
-				<img src="{{ asset('assets/images/update.png') }}" alt="update" class="button-icon">
-				update
+			<a href="{{ path('shopping_list_update',{'id': shoppingList.id}) }}" class="button">
+				<span class=""></span>update
 			</a>
-			<a href="{{ path('shopping_list_delete',{'id': shoppingList.id}) }}">
-				<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
-				delete
+			<a href="{{ path('shopping_list_delete',{'id': shoppingList.id}) }}" class="button">
+				<span class="deletebutton"></span>
 			</a>
 		{% endif %}
 	</div>

@@ -10,7 +10,7 @@
 
 			<link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
 
-			<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,400;0,900;1,100&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,900;1,100&display=swap" rel="stylesheet">
 
 			<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
 
@@ -39,13 +39,13 @@
 	<body class="pane">
 		<nav class="navbar navbar-expand-lg">
 			<div class="button-group">
-				<div class="black-navbar">
+				<div class="black-navbar iconHome">
 					<a href="{{ path('homepage') }}">
 						{{ source('home.svg') }}
 					</a>
 				</div>
 
-				<div class="black-navbar">
+				<div class="black-navbar iconList">
 					<a href="{{ path('event_list') }}">
 						{{ source('lists.svg') }}
 					</a>
@@ -53,19 +53,19 @@
 
 				{% if app.user %}
 
-					<div class="black-navbar">
+					<div class="black-navbar iconAdd">
 						<a href="{{ path('event_create') }}">
 							{{ source('add.svg') }}
 						</a>
 					</div>
 
-					<div class="black-navbar">
+					<div class="black-navbar iconUser">
 						<a href="{{ path('user_profile') }}">
 							{{ source('user.svg') }}
 						</a>
 					</div>
 
-					<div class="navbar-black">
+					<div class="navbar-black iconLogout">
 						<a href="{{ path('app_logout') }}">
 							{{ source('logout.svg') }}
 						</a>
@@ -73,13 +73,13 @@
 
 				{% else %}
 
-					<div class="black-navbar">
+					<div class="black-navbar inconUser">
 						<a href="{{ path('new') }}">
 							{{ source('user.svg') }}
 						</a>
 					</div>
 
-					<div class="black-navbar">
+					<div class="black-navbar iconLogout">
 						<a href="{{ path('app_login') }}">
 							{{ source('logout.svg') }}
 						</a>

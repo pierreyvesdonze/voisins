@@ -57,14 +57,13 @@ CARDS
 
 .card {
   flex: inherit !important;
-  background-color: rgba(73, 135, 206, 0.096) !important;
+  background-color: #06192f18 !important;
   border-radius: 10px;
   -webkit-transform: scale(1);
   transform: scale(1);
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
-  height: 75%;
-  //overflow-y: scroll;
+  height: 65%;
 }
 
 .cards {
@@ -140,6 +139,15 @@ CARDS
   font-weight: 400;
 }
 
+#event_date {
+  margin: auto;
+}
+
+.custom-file {
+  width: 70%;
+  margin: auto;
+}
+
 .lieu-events {
   font-weight: 100;
   font-size: 1.3em;
@@ -170,7 +178,10 @@ EVENT VIEW
 .event-body {
   width: 80%;
   height: 70%;
+  border-radius: 20px;
+  transition: .3s ease-in-out ;
 }
+
 .event-body-edit {height: 80%;}
 
 .event-body,
@@ -181,6 +192,12 @@ EVENT VIEW
   -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
   box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+}
+
+.event-body:focus-within {
+  -webkit-box-shadow: inset 0px 0px 10px 5px var(--secondary-color);
+  -moz-box-shadow: inset 0px 0px 10px 5px var(--secondary-color);
+  box-shadow: inset 0px 0px 10px 5px var(--tertiary-color);
 }
 
 #event {
@@ -196,6 +213,7 @@ EVENT VIEW
 
 .user em {
   font-style: italic;
+  color: var(--secondary-color);
 }
 
 .card-image-top {
@@ -272,8 +290,9 @@ SHOPPING LIST
   flex-wrap: wrap;
 }
 
-#shopping_list_description {
-  height: 30vh;
+.shopping-list-description{
+  color: var(--secondary-color) !important;
+  font-style: italic !important;
 }
 
 /*

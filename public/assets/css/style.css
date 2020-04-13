@@ -5,7 +5,6 @@ NAVBAR
 ***********************************
 */
 .navbar {
-  height: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,7 +20,6 @@ NAVBAR
   display: flex;
   background-color: #000;
   border-radius: 7px;
-  padding: 4px;
 }
 
 .button-group > div {
@@ -88,8 +86,8 @@ NAVBAR
 }
 
 .button-group > div svg {
-  height: 2em;
-  width: 2em;
+  height: 1.2em;
+  width: 1.2em;
   position: relative;
   display: block;
   fill: #181818;
@@ -265,6 +263,15 @@ NAVBAR
   content: ' \21B6';
 }
 
+.add:hover {
+  color: #35b154;
+  text-shadow: -1px -1px 1px #000;
+}
+
+.add:after {
+  content: ' \002B';
+}
+
 .update:hover {
   color: #35b154;
   text-shadow: -1px -1px 1px #000;
@@ -275,12 +282,21 @@ NAVBAR
 }
 
 .closebutton:hover {
-  color: #df2020;
+  color: #df2020 !important;
   text-shadow: -1px -1px 1px #000;
 }
 
 .closebutton:after {
   content: "✖";
+}
+
+.deletebutton:hover {
+  color: #df2020 !important;
+  text-shadow: -1px -1px 1px #000;
+}
+
+.deletebutton:after {
+  content: "\2718";
 }
 
 /*
@@ -289,12 +305,12 @@ COLORS & FONTS
 ***********************************
 */
 :root {
-  --primary-color: #feaa26;
+  --primary-color: #000000;
   --secondary-color: rgb(176, 193, 240);
   --tertiary-color: white;
   --link-button-color: black;
-  --link-color: #00aeff;
-  --header-color: radial-gradient(circle farthest-corner at 10% 20%, rgb(37, 37, 37) 0.1%, rgb(0, 0, 0) 90%);
+  --link-color: #b3e1ff;
+  --header-color: radial-gradient(circle farthest-corner at 10% 20%, rgba(37, 37, 37, 0.76) 0.1%, rgba(0, 0, 0, 0.719) 90%);
 }
 
 * {
@@ -345,7 +361,7 @@ h1,
 h2,
 h3,
 H4 {
-  font-weight: 100;
+  font-weight: 200;
   background-color: #333;
   /*background-clip*/
   -webkit-background-clip: text;
@@ -450,9 +466,10 @@ FLASH MESSAGES
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   text-align: center;
   opacity: 0.8;
+  font-size: 1.3em;
 }
 
 .close {
@@ -647,6 +664,10 @@ FORMS
   margin: 20px auto;
 }
 
+.form-control {
+  width: auto !important;
+}
+
 .form-group {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -659,11 +680,15 @@ FORMS
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 70%;
 }
 
 .form-group input,
 .form-group textarea {
   margin: 10px auto;
+  border-radius: 20px;
+  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
+          box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
 }
 
 #shopping_list {
@@ -684,13 +709,6 @@ FORMS
   text-align: center;
 }
 
-.form-group input,
-.form-group textarea {
-  border-radius: 20px;
-  -webkit-box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-          box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
-}
-
 #event_type {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -708,6 +726,7 @@ FORMS
 
 #event_text {
   height: 20vh;
+  margin: auto;
 }
 
 #comment_comment {
@@ -811,13 +830,13 @@ CARDS
   -webkit-box-flex: inherit !important;
       -ms-flex: inherit !important;
           flex: inherit !important;
-  background-color: rgba(73, 135, 206, 0.096) !important;
+  background-color: #06192f18 !important;
   border-radius: 10px;
   -webkit-transform: scale(1);
   transform: scale(1);
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
-  height: 75%;
+  height: 65%;
 }
 
 .cards {
@@ -903,6 +922,15 @@ CARDS
   font-weight: 400;
 }
 
+#event_date {
+  margin: auto;
+}
+
+.custom-file {
+  width: 70%;
+  margin: auto;
+}
+
 .lieu-events {
   font-weight: 100;
   font-size: 1.3em;
@@ -936,6 +964,9 @@ EVENT VIEW
 .event-body {
   width: 80%;
   height: 70%;
+  border-radius: 20px;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
 }
 
 .event-body-edit {
@@ -949,6 +980,11 @@ EVENT VIEW
   padding: 20px 20px;
   -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
   box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+}
+
+.event-body:focus-within {
+  -webkit-box-shadow: inset 0px 0px 10px 5px var(--secondary-color);
+  box-shadow: inset 0px 0px 10px 5px var(--tertiary-color);
 }
 
 #event {
@@ -969,6 +1005,7 @@ EVENT VIEW
 
 .user em {
   font-style: italic;
+  color: var(--secondary-color);
 }
 
 .card-image-top {
@@ -1057,8 +1094,9 @@ SHOPPING LIST
       flex-wrap: wrap;
 }
 
-#shopping_list_description {
-  height: 30vh;
+.shopping-list-description {
+  color: var(--secondary-color) !important;
+  font-style: italic !important;
 }
 
 /*

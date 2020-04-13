@@ -5,72 +5,73 @@
 
 {% block body %}
 
-	<div class="event-body-edit">
+	<div class="card">
+		<div class="event-body-edit">
 
-		<div class="left">
-			<h2>Éditer</h2>
-			{{ form_start(form) }}
+			<div class="left">
+				<h2>Éditer</h2>
+				{{ form_start(form) }}
 
-			<div class="errors">
-				{{ form_errors(form) }}
-			</div>
+				<div class="errors">
+					{{ form_errors(form) }}
+				</div>
 
-			<div class="row">
-				<div class="col">
-					{{ form_row(form.title) }}
-				</div>
-				<div class="col">
-					{{ form_row(form.lieu) }}
-				</div>
-			</div>
-			<div class="row row-datetime">
-			<div class="col">
-					{{ form_row(form.date) }}
-				</div>
-				{#<div class="input-group date col" id="datetimepicker1" data-target-input="nearest">
-					<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
-					<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-						<div class="input-group-text datetimepicker-button">
-							<i class="fa fa-clock"></i>
-						</div>
+				<div class="row">
+					<div class="col">
+						{{ form_row(form.title) }}
 					</div>
-				</div>#}
-			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(form.type) }}
+					<div class="col">
+						{{ form_row(form.lieu) }}
+					</div>
+				</div>
+				<div class="row row-datetime">
+					<div class="col">
+						{{ form_row(form.date) }}
+					</div>
+					{#<div class="input-group date col" id="datetimepicker1" data-target-input="nearest">
+															<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+															<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+																<div class="input-group-text datetimepicker-button">
+																	<i class="fa fa-clock"></i>
+																</div>
+															</div>
+														</div>#}
+				</div>
+				<div class="row">
+					<div class="col">
+						{{ form_row(form.type) }}
+					</div>
+				</div>
+				<div class="row">
+					{{ form_widget(form.text) }}
+				</div>
+				<div class="row invoice-field">
+					{{ form_widget(form.brochure) }}
 				</div>
 			</div>
-			{{ form_widget(form.text) }}
-			{{ form_widget(form.brochure) }}
-
-			<div class="control">
-				<div class="col">
-					<a href="{{ path('event_view',{'id': event.id}) }}">
-						<img src="{{ asset('assets/images/back-to.png') }}" alt="back" class="button-icon">
-					</a>
-				</div>
-				<div class="col">
-					{{ form_widget(form.save) }}
-				</div>
-				<div class="col">
-					<a href="{{ path('event_delete',{'id': event.id}) }}">
-						<img src="{{ asset('assets/images/delete.png') }}" alt="delete_icon" class="button-icon">
-					</a>
-				</div>
-			</div>
-			{{ form_end(form) }}
-
 		</div>
 	</div>
-
+	<div class="control">
+		<div class="col">
+			<a href="{{ path('event_view',{'id': event.id}) }}" class="button">
+				<span class="backto"></span>
+			</a>
+		</div>
+		<div class="col">
+			{{ form_widget(form.save) }}
+		</div>
+		<div class="col">
+			<a href="{{ path('event_delete',{'id': event.id}) }}" class="button">
+				<span class="deletebutton"></span>
+			</a>
+		</div>
+	</div>
+	{{ form_end(form) }}
 {% endblock %}
 
 {% block javascripts %}
 	{{parent()}}
 	<script>
-		$('#datetimepicker1').datepicker({
-			format: 'dd.MM.yyyy',
-			});
+		$('#datetimepicker1').datepicker({format: 'dd.MM.yyyy'});
 	</script>
 {% endblock %}

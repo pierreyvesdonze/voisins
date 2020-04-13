@@ -93,9 +93,12 @@ class EventType extends AbstractType
 
         $builder->add('brochure', FileType::class, [
 
-            'label'         => 'Ajoute un ticket de caisse (après bien sûr)',
+            'label'         =>false,
             'mapped'        => false,
             'required'      => false,
+            'attr'  => [
+                'placeholder' => 'Ticket de caisse',
+            ],
             'constraints'   => [
                 new File([])
             ],

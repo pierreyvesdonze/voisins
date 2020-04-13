@@ -55,7 +55,7 @@ class Event
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingList", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingList", mappedBy="event", cascade={"persist", "remove"}))
      */
     private $shoppingLists;
 

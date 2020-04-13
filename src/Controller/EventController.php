@@ -184,7 +184,7 @@ class EventController extends AbstractController
 
             $this->addFlash("success", "L'événement a bien été modifié");
 
-            return $this->redirectToRoute('event_list', ['id' => $event->getId()]);
+            return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
         }
 
         return $this->render(

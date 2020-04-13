@@ -3,7 +3,7 @@
 {% block body %}
 	<!--EVENT-->
 	<div class="card">
-		<img src="{{ asset('assets/images/' ~ event.type ~ '.jpg') }}" alt="evenement" class="card-image-top">
+		{#<img src="{{ asset('assets/images/' ~ event.type ~ '.jpg') }}" alt="evenement" class="card-image-top">#}
 		<div class="card-header">
 			<h5 class="card-title">{{ event.title }}
 			</h5>
@@ -112,7 +112,6 @@
 					<span class="comment">
 						<img src="{{ asset('assets/images/comment.png') }}" alt="update">
 					</span>
-
 				{% endif %}
 			</button>
 
@@ -136,7 +135,9 @@
 
 				{% endif %}
 
-				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="btn btn-primary">Créer</a>
+				<a href="{{ path('groceries_request',{'id': event.id}) }}" class="button">
+				<span class="add"></span>
+				</a>
 
 			{% else %}
 				<a href="{{ path('participate_request',{'id': event.id}) }}" class="button">

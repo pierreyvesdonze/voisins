@@ -128,7 +128,7 @@ class ShoppingListController extends AbstractController
     
                     $manager->persist($article);
     
-                    // if you wanted to delete the Tag entirely, you can also do that
+                    // if you wanted to delete the Article entirely, you can also do that
                     $manager->remove($article);
                 }
             }
@@ -143,6 +143,7 @@ class ShoppingListController extends AbstractController
         return $this->render(
             "groceries/update.html.twig",
             [
+                "shoppingList" => $shoppingList,
                 "form" => $form->createView()
             ]
         );
