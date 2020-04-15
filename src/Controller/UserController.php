@@ -26,7 +26,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="new", methods={"GET","POST"})
+     * @Route("/register/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request, UserPasswordEncoderInterface $encoder, RoleRepository $roleRepository): Response
     {

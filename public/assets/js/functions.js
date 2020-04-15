@@ -20,8 +20,11 @@ jQuery(document).ready(function () {
     } else if (url.match(/myprofile/) || url.match('/user/')) {
         $headerIcon = $('.button-group > .iconUser');
         $headerIcon.toggleClass('active');
-    } else if (slug == 'login') {
+    } else if ('login' === slug) {
         $headerIcon = $('.button-group > .iconLogout');
+        $headerIcon.toggleClass('active');
+    } else if (url.match(/register/)) {
+        $headerIcon = $('.button-group > .iconNewUser');
         $headerIcon.toggleClass('active');
     } else if ('' === slug) {
         $headerIcon = $('.button-group > .iconHome');

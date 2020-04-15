@@ -41,13 +41,13 @@
 			<div class="button-group">
 				<div class="black-navbar iconHome">
 					<a href="{{ path('homepage') }}">
-						{{ source('home.svg') }}
+						{{ source('svg/home.svg') }}
 					</a>
 				</div>
 
 				<div class="black-navbar iconList">
 					<a href="{{ path('event_list') }}">
-						{{ source('lists.svg') }}
+						{{ source('svg/lists.svg') }}
 					</a>
 				</div>
 
@@ -55,42 +55,42 @@
 
 					<div class="black-navbar iconAdd">
 						<a href="{{ path('event_create') }}">
-							{{ source('add.svg') }}
+							{{ source('svg/add.svg') }}
 						</a>
 					</div>
 
 					<div class="black-navbar iconUser">
 						<a href="{{ path('user_profile') }}">
-							{{ source('user.svg') }}
+							{{ source('svg/user.svg') }}
 						</a>
 					</div>
 
-					<div class="navbar-black iconLogout">
+					<div class="black-navbar iconLogout">
 						<a href="{{ path('app_logout') }}">
-							{{ source('logout.svg') }}
+							{{ source('svg/logout.svg') }}
 						</a>
 					</div>
 
 				{% else %}
 
-					<div class="black-navbar inconUser">
+					<div class="black-navbar iconNewUser">
 						<a href="{{ path('new') }}">
-							{{ source('user.svg') }}
+							{{ source('svg/newuser.svg') }}
 						</a>
 					</div>
 
 					<div class="black-navbar iconLogout">
 						<a href="{{ path('app_login') }}">
-							{{ source('logout.svg') }}
+							{{ source('svg/logout.svg') }}
 						</a>
 					</div>
 
 				{% endif %}
 
 			</div>
-			{{ source('svgfilters.svg') }}
-
+			{{ source('svg/svgfilters.svg') }}
 		</nav>
+		
 		<div class="flash-container">
 			{% for label, messages in app.flashes %}
 				{% for message in messages %}

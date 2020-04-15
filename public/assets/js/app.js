@@ -19,13 +19,11 @@ var app = {
     },
 
     closeAlertModal: function () {
-
         app.modal.remove();
         app.close.remove();
     },
 
     handleSubmitForm: function (form) {
-
         console.log('disable submit button');
         return true;
     },

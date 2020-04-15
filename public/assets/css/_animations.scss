@@ -95,36 +95,36 @@
     content: "✔";
 }
 .yes:hover {
-    color: #00aeff;
+    color: #00aeff !important;
     text-shadow: -1px -1px 1px #000;
 }
 .no:hover {
-    color: #C30000;
+    color: #C30000 !important;
     text-shadow: -1px -1px 1px #000;
 }
 .pencil:hover {
-    color: #3B5998;
+    color: #3B5998 !important;
     text-shadow: -1px -1px 1px #000;
 }
 .pencil:after {
     content: " \270E";
 }
 .backto:hover {
-    color: #D84335;
+    color: #D84335 !important;
     text-shadow: -1px -1px 1px #000;
 }
 .backto:after {
     content: ' \21B6';
 }
 .add:hover {
-    color: rgb(53, 177, 84);
+    color: rgb(53, 177, 84) !important;
     text-shadow: -1px -1px 1px #000;
 }
 .add:after {
     content: ' \002B';
 }
 .update:hover {
-    color: rgb(53, 177, 84);
+    color: rgb(53, 177, 84) !important;
     text-shadow: -1px -1px 1px #000;
 }
 .update:after {
