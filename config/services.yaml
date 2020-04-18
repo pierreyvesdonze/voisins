@@ -25,5 +25,10 @@ services:
         tags: ['controller.service_arguments']
 
     Twig\Extensions\IntlExtension: ~ 
+    
+    App\Service\FileUploader:
+            arguments:
+                $targetDirectory: '%brochures_directory%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
