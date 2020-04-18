@@ -75,7 +75,7 @@ h2,
 h3,
 H4 {
   font-weight: 200;
-  background-color: #333;
+  background-color: var(--tertiary-color);
   /*background-clip*/
   -webkit-background-clip: text;
   -moz-background-clip: text;

@@ -213,8 +213,8 @@ EVENT VIEW
 }
 
 .event-body:focus-within {
-  -webkit-box-shadow: inset 0px 0px 10px 5px var(--secondary-color);
-  -moz-box-shadow: inset 0px 0px 10px 5px var(--secondary-color);
+  -webkit-box-shadow: inset 0px 0px 10px 5px var(--tertiary-color);
+  -moz-box-shadow: inset 0px 0px 10px 5px var(--tertiary-color);
   box-shadow: inset 0px 0px 10px 5px var(--tertiary-color);
 }
 

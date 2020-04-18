@@ -27,8 +27,8 @@ NAVBAR
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#242424), to(#303030));
-  background-image: linear-gradient(to top, #242424 0%, #303030 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#292929), to(#8a8a8a));
+  background-image: linear-gradient(to top, #292929 0%, #8a8a8a 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -379,7 +379,7 @@ h2,
 h3,
 H4 {
   font-weight: 200;
-  background-color: #333;
+  background-color: var(--tertiary-color);
   /*background-clip*/
   -webkit-background-clip: text;
   background-clip: text;
@@ -1029,7 +1029,7 @@ EVENT VIEW
 }
 
 .event-body:focus-within {
-  -webkit-box-shadow: inset 0px 0px 10px 5px var(--secondary-color);
+  -webkit-box-shadow: inset 0px 0px 10px 5px var(--tertiary-color);
   box-shadow: inset 0px 0px 10px 5px var(--tertiary-color);
 }
 
