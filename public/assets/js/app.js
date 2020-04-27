@@ -24,7 +24,11 @@ var app = {
     },
 
     handleSubmitForm: function (form) {
+
         console.log('disable submit button');
+        setTimeout(function () {
+            app.submitButton.attr('disabled', true);
+        }, 300);
         return true;
     },
 }
