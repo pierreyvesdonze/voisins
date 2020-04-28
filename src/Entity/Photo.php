@@ -22,11 +22,6 @@ class Photo
     private $title;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $date;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Gallery", inversedBy="photos")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -45,18 +40,6 @@ class Photo
     public function setTitle(?string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(?\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }

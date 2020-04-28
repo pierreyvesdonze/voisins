@@ -1,0 +1,29 @@
+
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+
+{#<input id="fileupload" type="file" name="files[]" data-url="{{ oneup_uploader_endpoint('uploader_mapping') }}" class="dropzone" multiple />#}
+
+<form action="{{ oneup_uploader_endpoint('uploader_mapping') }}" class="dropzone" method="POST">
+  <div class="fallback">
+    <input name="file" type="file" multiple />
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#fileupload').fileupload({});
+});
+</script>
+
+{% endblock %}

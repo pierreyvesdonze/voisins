@@ -30,20 +30,6 @@ class GalleryType extends AbstractType
             ]
         );
 
-        $builder->add('date', DateTimeType::class, [
-            'required' => false,
-            'empty_data' => null,
-            'widget' => 'single_text',
-            'attr' => [
-                'html5' => false,
-                'placeholder' => 'Date (optionnel)',
-                'class' => 'form-control datetimepicker-input',
-                'data-target' => '#datetimepicker2',
-                'autocomplete' => 'off',
-            ],
-        
-        ]);
-
         $builder->add('brochure', FileType::class, [
 
             'label'         =>false,

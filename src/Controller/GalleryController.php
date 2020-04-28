@@ -48,7 +48,7 @@ class GalleryController extends AbstractController
      */
     public function galleryCreate(Request $request, MailerInterface $mailer, FileUploader $fileUploader)
     {
-        $user = $this->getUser();
+        /*$user = $this->getUser();
 
         $gallery = new Gallery;
 
@@ -57,7 +57,7 @@ class GalleryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /** @var UploadedFile $brochureFile */
+        
             $brochureFile = $form['brochure']->getData();
 
             if ($brochureFile) {
@@ -92,12 +92,12 @@ class GalleryController extends AbstractController
             $mailer->send($message);
 
             return $this->redirectToRoute('galeries');
-        }
+        }*/
 
         return $this->render(
             "galeries/gallery_add.html.twig",
             [
-                "form" => $form->createView()
+                //"form" => $form->createView()
             ]
         );
     }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff067bca581870dd2c9e9f9bf2d51273",
+    "content-hash": "5fb42e6baaf784d0c71b2b728d153b84",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1556,6 +1556,93 @@
                 "service proxies"
             ],
             "time": "2019-08-10T08:37:15+00:00"
+        },
+        {
+            "name": "oneup/uploader-bundle",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/1up-lab/OneupUploaderBundle.git",
+                "reference": "4c954cd2baf5531b91317bbe72f00f904d47e51d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/1up-lab/OneupUploaderBundle/zipball/4c954cd2baf5531b91317bbe72f00f904d47e51d",
+                "reference": "4c954cd2baf5531b91317bbe72f00f904d47e51d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5",
+                "symfony/asset": "^4.4|^5.0",
+                "symfony/event-dispatcher-contracts": "^1.0|^2.0",
+                "symfony/finder": "^4.4|^5.0",
+                "symfony/framework-bundle": "^4.4|^5.0",
+                "symfony/templating": "^4.4|^5.0",
+                "symfony/translation": "^4.4|^5.0",
+                "symfony/translation-contracts": "^1.0|^2.0",
+                "symfony/yaml": "^4.4|^5.0",
+                "twig/twig": "^2.4|^3.0"
+            },
+            "require-dev": {
+                "amazonwebservices/aws-sdk-for-php": "1.5.*",
+                "doctrine/common": "^2.12",
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "knplabs/gaufrette": "^0.9",
+                "oneup/flysystem-bundle": "^1.2|^2.0|^3.0",
+                "phpstan/phpstan": "^0.12.10",
+                "phpunit/phpunit": "^8.5",
+                "sensio/framework-extra-bundle": "^5.0",
+                "symfony/browser-kit": "^4.4|^5.0",
+                "symfony/phpunit-bridge": "^5.0",
+                "symfony/security-bundle": "^4.4|^5.0",
+                "symfony/var-dumper": "^4.4|^5.0",
+                "twistor/flysystem-stream-wrapper": "^1.0"
+            },
+            "suggest": {
+                "knplabs/knp-gaufrette-bundle": "0.1.*",
+                "oneup/flysystem-bundle": "^3.0",
+                "twistor/flysystem-stream-wrapper": "^1.0 (Required when using Flysystem)"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Oneup\\UploaderBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Schmid",
+                    "email": "js@1up.io",
+                    "homepage": "https://1up.io",
+                    "role": "Developer"
+                },
+                {
+                    "name": "David Greminger",
+                    "email": "dg@1up.io",
+                    "homepage": "https://1up.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handles multi file uploads in Symfony2. Features included: Chunked upload, Orphans management, Gaufrette support.",
+            "homepage": "https://1up.io",
+            "keywords": [
+                "FancyUpload",
+                "FineUploader",
+                "MooUpload",
+                "Uploadify",
+                "YUI3 Uploader",
+                "blueimp",
+                "dropzone",
+                "fileupload",
+                "jQuery File Uploader",
+                "plupload",
+                "upload"
+            ],
+            "time": "2020-03-27T15:56:10+00:00"
         },
         {
             "name": "psr/cache",
@@ -4973,6 +5060,139 @@
                 "utf8"
             ],
             "time": "2020-03-16T13:02:39+00:00"
+        },
+        {
+            "name": "symfony/templating",
+            "version": "v5.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/templating.git",
+                "reference": "b56005834b101ca8253292bbd23917e81883f8cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/templating/zipball/b56005834b101ca8253292bbd23917e81883f8cd",
+                "reference": "b56005834b101ca8253292bbd23917e81883f8cd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "require-dev": {
+                "psr/log": "~1.0"
+            },
+            "suggest": {
+                "psr/log-implementation": "For using debug logging in loaders"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Templating\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Templating Component",
+            "homepage": "https://symfony.com",
+            "time": "2020-03-27T16:56:45+00:00"
+        },
+        {
+            "name": "symfony/translation",
+            "version": "v5.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/translation.git",
+                "reference": "99b831770e10807dca0979518e2c89edffef5978"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/99b831770e10807dca0979518e2c89edffef5978",
+                "reference": "99b831770e10807dca0979518e2c89edffef5978",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5",
+                "symfony/polyfill-mbstring": "~1.0",
+                "symfony/translation-contracts": "^2"
+            },
+            "conflict": {
+                "symfony/config": "<4.4",
+                "symfony/dependency-injection": "<5.0",
+                "symfony/http-kernel": "<5.0",
+                "symfony/twig-bundle": "<5.0",
+                "symfony/yaml": "<4.4"
+            },
+            "provide": {
+                "symfony/translation-implementation": "2.0"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "^4.4|^5.0",
+                "symfony/console": "^4.4|^5.0",
+                "symfony/dependency-injection": "^5.0",
+                "symfony/finder": "^4.4|^5.0",
+                "symfony/http-kernel": "^5.0",
+                "symfony/intl": "^4.4|^5.0",
+                "symfony/service-contracts": "^1.1.2|^2",
+                "symfony/yaml": "^4.4|^5.0"
+            },
+            "suggest": {
+                "psr/log-implementation": "To use logging capability in translator",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Translation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Translation Component",
+            "homepage": "https://symfony.com",
+            "time": "2020-03-27T16:56:45+00:00"
         },
         {
             "name": "symfony/translation-contracts",

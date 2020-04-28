@@ -1,0 +1,12 @@
+# Read the documentation: https://github.com/1up-lab/OneupUploaderBundle/blob/master/Resources/doc/index.md
+oneup_uploader:
+    mappings:
+        uploader_mapping:
+            frontend: dropzone
+            storage:
+                directory: '%kernel.project_dir%/public/uploads/images'
+            enable_progress: true
+            enable_cancelation: true
+            namer: oneup_uploader.namer.uniqid
+
+    twig: true
