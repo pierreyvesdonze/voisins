@@ -137,7 +137,7 @@ class GalleryController extends AbstractController
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
                 $photo->move(
-                    $this->getParameter('image_directory'),
+                    $this->getParameter('images_directory'),
                     $fichier
                 );
 
@@ -151,7 +151,7 @@ class GalleryController extends AbstractController
 
             $this->addFlash("success", "La galerie a bien été mise à jour !");
 
-            return $this->redirectToRoute('gallery_update');            
+            return $this->redirectToRoute('gallery_update', ['id' => $gallery->getId()]);            
         }
 
         return $this->render('galeries/edit.html.twig', [
@@ -170,7 +170,7 @@ class GalleryController extends AbstractController
             $em->remove($gallery);
             $em->flush();
         }
-        return $this->redirectToRoute('galeries');
+        return $this->redirectToRoute('gallery_index');
     }
 
     /**

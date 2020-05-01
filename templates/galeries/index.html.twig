@@ -1,35 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galeries index{% endblock %}
+{% block title %}Galeries index
+{% endblock %}
 
 {% block body %}
-    <h1>Galeries index</h1>
+	<h1>Galeries index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for gal in gallery %}
-            <tr>
-                <td>{{ gal.title }}</td>
-                <td>
-                    <a href="{{ path('gallery_show', {'id': gal.id}) }}">show</a>
-                    <a href="{{ path('gallery_update', {'id': gal.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom de la galerie</th>
+				<th>Voir la galerie</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for gal in gallery %}
+				<tr>
+					<td>{{ gal.title }}</td>
+					<td>
+						<a href="{{ path('gallery_show', {'id': gal.id}) }}">Voir</a>
+					</td>
+					<td>
+						<a href="{{ path('gallery_update', {'id': gal.id}) }}">Éditer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucune galerie pour le moment</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('gallery_create') }}">Create new</a>
+	<a href="{{ path('gallery_create') }}">Create new</a>
 {% endblock %}
