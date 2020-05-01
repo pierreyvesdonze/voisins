@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une galerie{% endblock %}
+
+{% block body %}
+    <h1>Créer une galerie</h1>
+
+    {{ include('galeries/_form.html.twig') }}
+
+    <a href="{{ path('gallery_index') }}">Retour à l'index</a>
+{% endblock %}

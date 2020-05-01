@@ -30,7 +30,7 @@ class Event
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     *  @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $date;
 

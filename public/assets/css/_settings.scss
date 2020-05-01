@@ -7,7 +7,7 @@ COLORS & FONTS
   --primary-color: #000000;
   --secondary-color: rgb(176, 193, 240);
   --tertiary-color: white;
-  --link-button-color: black;
+  --link-button-color: rgb(145, 142, 142);
   --link-color: #b3e1ff;
 
   --header-color: radial-gradient(
@@ -415,9 +415,6 @@ FORMS
   box-shadow: 8px 8px 7px -2px rgba(0, 0, 0, 0.75);
 }
 
-.form-group button {
-  //width: auto;
-}
 
 #shopping_list {
   width: 60%;
