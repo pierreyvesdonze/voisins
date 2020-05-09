@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galeries
+{% endblock %}
+
+{% block body %}
+
+
+	<input id="fileupload" type="file" name="files[]" data-url="{{ oneup_uploader_endpoint('uploader_mapping') }}" multiple/>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript">
+		$(document).ready(function () {
+$('#fileupload').fileupload({});
+});
+	</script>
+{% endblock %}
