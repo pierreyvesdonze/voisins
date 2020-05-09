@@ -313,7 +313,7 @@ COLORS & FONTS
   --primary-color: #000000;
   --secondary-color: rgb(176, 193, 240);
   --tertiary-color: white;
-  --link-button-color: black;
+  --link-button-color: rgb(145, 142, 142);
   --link-color: #b3e1ff;
   --header-color: radial-gradient(
     circle farthest-corner at 10% 20%,
@@ -775,19 +775,6 @@ FORMS
       justify-content: space-around;
   height: 15%;
   width: 100%;
-}
-
-/*INPUT MOBILE CAMERA*/
-input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: none;
 }
 
 /*

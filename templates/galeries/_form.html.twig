@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+
+{% if app.request.attributes.get('_route') == 'gallery_update' %}
+	<h2>Images</h2>
+	{% for photo in gallery.photos %}
+		<div>
+			<img src="{{ asset('uploads/images/'~ photo.title) }}" alt="" width="150">
+
+			<div class='progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+				<div class='percent' id='percent1'>0%</div>
+
+				<a href="{{ path('delete_photo', {id: photo.id})}}" data-delete data-token="{{ csrf_token('delete' ~ photo.id )}}">Supprimer</a>
+			</div>
+		{% endfor %}
+	{% endif %}
+	<button class="button">{{ button_label|default('Save') }}</button>
+	{{ form_end(form) }}

@@ -3,18 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Gallery;
+use App\Entity\Photo;
 use App\Form\Type\GalleryType;
-use App\Service\FileUploader;
+use App\Repository\GalleryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/gallery")
- * 
  */
 class GalleryController extends AbstractController
 {
@@ -26,46 +29,58 @@ class GalleryController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="galeries", methods={"GET","POST"})
+     * @Route("/index", name="gallery_index", methods={"GET"})
      */
-    public function galleryList()
+    public function galeriesIndex(GalleryRepository $galleryRepository): Response
     {
-        /** @var GalleryRepository */
-        $galleryRepository = $this->getDoctrine()->getRepository(gallery::class);
-        $galeries = $galleryRepository->findExceptPast();
-
         return $this->render(
-            'galeries/galeries.html.twig',
+            "galeries/index.html.twig",
             [
-                'galeries' => $galeries,
+                'gallery' => $galleryRepository->findAll()
             ]
         );
     }
 
     /**
-     * @Route("/create", name="gallery_create", methods={"GET","POST"})
-     * @IsGranted("ROLE_USER")
+     * @Route("/{id}", name="gallery_show", methods={"GET"})
      */
-    public function galleryCreate(Request $request, MailerInterface $mailer, FileUploader $fileUploader)
+    public function show(Gallery $gallery): Response
+    {
+
+        return $this->render('galeries/show.html.twig', [
+            'gallery' => $gallery,
+        ]);
+    }
+
+    /**
+     * @Route("/create/new", name="gallery_create", methods={"GET","POST"})
+     */
+    public function galleryCreate(Request $request, MailerInterface $mailer): Response
     {
         $user = $this->getUser();
 
-        $gallery = new Gallery;
-
+        $gallery = new Gallery();
         $form = $this->createForm(GalleryType::class, $gallery);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /** @var UploadedFile $brochureFile */
-            $brochureFile = $form['brochure']->getData();
+            // Get submitted photos
+            $photos = $form->get('photos')->getData();
 
-            if ($brochureFile) {
-                $brochureFileName = $fileUploader->upload($brochureFile);
-                $product->setBrochureFilename($brochureFileName);
+            foreach ($photos as $photo) {
+                $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
+
+                $photo->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+
+                $img = new Photo();
+                $img->setTitle($fichier);
+                $gallery->addPhoto($img);
             }
 
-            $gallery = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($gallery);
             $manager->flush();
@@ -91,77 +106,94 @@ class GalleryController extends AbstractController
 
             $mailer->send($message);
 
-            return $this->redirectToRoute('galeries');
+            return $this->redirectToRoute('gallery_index');
         }
 
         return $this->render(
-            "galeries/gallery_add.html.twig",
+            "galeries/new.html.twig",
             [
-                "form" => $form->createView()
+                "form"    => $form->createView(),
+                "gallery" => $gallery
             ]
         );
     }
 
     /**
      * @Route("/{id}/update", name="gallery_update", methods={"GET","POST"})
-     * @IsGranted("ROLE_USER")
      */
-    public function galleryUpdate(Request $request, gallery $gallery)
+    public function galleryUpdate(Request $request, Gallery $gallery): Response
     {
-        $this->denyAccessUnlessGranted('edit', $gallery);
+        $manager = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
 
-        $form = $this->createForm(galleryType::class, $gallery);
+        $form = $this->createForm(GalleryType::class, $gallery);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $brochureFile = $form->get('brochure')->getData();
+            $photos = $form->get('photos')->getData();
 
-            if ($brochureFile) {
+            foreach ($photos as $photo) {
+                $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
-                $brochureFile = $form['brochure']->getData();
-                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads/images';
-                $safeFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
-                $brochureFile->move(
-                    $destination,
-                    $newFilename
+                $photo->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
                 );
 
-                $gallery->setBrochureFilename($newFilename);
+                $img = new Photo();
+                $img->setTitle($fichier);
+                $gallery->addPhoto($img);
             }
 
-            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($gallery);
             $manager->flush();
 
-            $this->addFlash("success", "L'événement a bien été modifié");
+            $this->addFlash("success", "La galerie a bien été mise à jour !");
 
-            return $this->redirectToRoute('gallery_view', ['id' => $gallery->getId()]);
+            return $this->redirectToRoute('gallery_update', ['id' => $gallery->getId()]);            
         }
 
-        return $this->render(
-            "gallerys/edit.html.twig",
-            [
-                "gallery" => $gallery,
-                "form" => $form->createView()
-            ]
-        );
+        return $this->render('galeries/edit.html.twig', [
+            'gallery' => $gallery,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/{id}/delete", name="gallery_delete", methods={"GET","POST"})
-     * @IsGranted("ROLE_USER")
+     * @Route("/{id}/delete", name="gallery_delete", methods={"DELETE"})
      */
-    public function galleryDelete(gallery $gallery)
+    public function deleteGallery(Gallery $gallery, Request $request)
     {
-        $this->denyAccessUnlessGranted('edit', $gallery);
+        if ($this->isCsrfTokenValid('delete' . $gallery->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($gallery);
+            $em->flush();
+        }
+        return $this->redirectToRoute('gallery_index');
+    }
 
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($gallery);
-        $manager->flush();
+    /**
+     * @Route("/delete/photo/{id})", name="delete_photo", methods={"DELETE"})
+     */
+    public function deletePhoto(Photo $photo, Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
 
-        $this->addFlash("success", "L'événement a bien été supprimé");
+        // On vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $photo->getId(), $data['_token'])) {
+            // On récupère le nom de l'image
+            $name = $photo->getTitle();
+            // On supprime le fichier
+            unlink($this->getParameter('images_directory') . '/' . $name);
 
-        return $this->redirectToRoute('gallery_list');
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($photo);
+            $em->flush();
+
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
     }
 }

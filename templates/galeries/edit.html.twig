@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Éditer la galerie{% endblock %}
+
+{% block body %}
+
+<h1>Éditer la galerie</h1>
+
+{{ include("galeries/_form.html.twig", {'button_label': 'Udpate'}) }}
+
+<a href="{{ path('gallery_index') }}">Retour à l'index</a>
+
+{{ include("galeries/_delete_form.html.twig") }}
+
+{% endblock %}
