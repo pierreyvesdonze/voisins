@@ -102,5 +102,17 @@ function addArticleFormDeleteLink($articleFormLi) {
         // remove the li for the article form
         $articleFormLi.remove();
     });
-
 }
+
+////////////////////////////////////////
+// Prevent double click/submit function
+///////////////////////////////////////
+
+$('form').submit(function(e) {
+    // if the form is disabled don't allow submit
+    if ($(this).hasClass('disabled')) {
+        e.preventDefault();
+        return;
+    }
+    $(this).addClass('disabled');
+});

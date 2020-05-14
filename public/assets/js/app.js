@@ -23,14 +23,14 @@ var app = {
         app.close.remove();
     },
 
-    handleSubmitForm: function (form) {
+/*     handleSubmitForm: function (form) {
 
         console.log('disable submit button');
         setTimeout(function () {
             app.submitButton.attr('disabled', true);
         }, 300);
         return true;
-    },
+    }, */
 }
 
 // App Loading

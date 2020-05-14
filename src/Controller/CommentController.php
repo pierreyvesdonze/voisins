@@ -73,7 +73,7 @@ class CommentController extends AbstractController
                     $user->getEmail(),
                     'pyd3.14@gmail.com'
                 )
-                ->subject('Nouvel événement de "voisins"')
+                ->subject('Nouveau commentaire de "voisins"')
                 ->htmlTemplate('emails/comment.notification.html.twig')
                 ->context([
                     'user'  => $user,
