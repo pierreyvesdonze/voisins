@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "fzaninotto/faker": "^1.9",
         "oneup/uploader-bundle": "^3.0",
+        "ramsey/uuid-doctrine": "^1.6",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "5.0.*",

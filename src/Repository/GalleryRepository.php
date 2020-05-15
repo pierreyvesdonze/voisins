@@ -5,46 +5,26 @@ namespace App\Repository;
 use App\Entity\Gallery;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @method Gallery|null find($id, $lockMode = null, $lockVersion = null)
- * @method Gallery|null findOneBy(array $criteria, array $orderBy = null)
- * @method Gallery[]    findAll()
- * @method Gallery[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
 class GalleryRepository extends ServiceEntityRepository
 {
+    /** @var  EntityRepository */
+    private $repository;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Gallery::class);
+        $this->repository = $registry->getRepository(Gallery::class);
     }
 
-    // /**
-    //  * @return Gallery[] Returns an array of Gallery objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findNewest($limit = 5)
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('g.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->repository->findBy([], ['createdAt' => 'DESC'], $limit);
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Gallery
+    public function findRelated(Gallery $gallery, $limit = 5)
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->repository->findBy(['user' => $gallery->getUser()], ['createdAt' => 'DESC'], $limit);
     }
-    */
 }
