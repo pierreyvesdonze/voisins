@@ -5,7 +5,7 @@
 	<h2>Images</h2>
 	{% for photo in gallery.photos %}
 		<div>
-			<img src="{{ asset('uploads/images/'~ photo.title) }}" alt="" width="150">
+		    <img src="{{ asset('uploads/images/' ~ galleryTitle ~ '/' ~ photo.title) }}" alt="" width="150">
 
 			<div class='progress' id="progress_div">
 				<div class='bar' id='bar1'></div>

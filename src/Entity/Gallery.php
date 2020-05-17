@@ -24,6 +24,11 @@ class Gallery
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $path;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="gallery",
      * orphanRemoval=true, cascade={"persist"})
      */
@@ -78,6 +83,18 @@ class Gallery
                 $photo->setGallery(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    public function setPath(string $path): self
+    {
+        $this->path = $path;
 
         return $this;
     }

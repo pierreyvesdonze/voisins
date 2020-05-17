@@ -16,8 +16,9 @@
 		</thead>
 		<tbody>
 			{% for gal in gallery %}
+			{% set galleryTitle = gal.title|split('.') %}
 				<tr>
-					<td>{{ gal.title }}</td>
+					<td>{{ galleryTitle[0] }}</td>
 					<td>
 						<a href="{{ path('gallery_show', {'id': gal.id}) }}">Voir</a>
 					</td>

@@ -26,16 +26,7 @@ services:
         tags: ['controller.service_arguments']
 
     Twig\Extensions\IntlExtension: ~ 
-    
-    App\Service\FileUploader:
-        arguments:
-            $targetDirectory: '%brochures_directory%'
-
-    App\EventListener\UploadListener:
-        arguments: ["@doctrine.orm.entity_manager"]
-        tags:
-            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
-    
+        
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

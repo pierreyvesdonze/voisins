@@ -9,6 +9,8 @@ use App\Repository\GalleryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,10 +35,12 @@ class GalleryController extends AbstractController
      */
     public function galeriesIndex(GalleryRepository $galleryRepository): Response
     {
+        $gallery = $galleryRepository->findAll();
+
         return $this->render(
             "galeries/index.html.twig",
             [
-                'gallery' => $galleryRepository->findAll()
+                'gallery' => $gallery,
             ]
         );
     }
@@ -46,9 +50,14 @@ class GalleryController extends AbstractController
      */
     public function show(Gallery $gallery): Response
     {
+        $galleryTitle = $gallery->getTitle();
+        $split = explode('.',$galleryTitle);
+        $galleryUserTitle = $split[0];
 
         return $this->render('galeries/show.html.twig', [
-            'gallery' => $gallery,
+            'gallery'          => $gallery,
+            'galleryTitle'     => $galleryTitle,
+            'galleryUserTitle' => $galleryUserTitle
         ]);
     }
 
@@ -68,13 +77,28 @@ class GalleryController extends AbstractController
             // Get submitted photos
             $photos = $form->get('photos')->getData();
 
+            // Create a new folder
+            $filesystem = new Filesystem();
+
+            //make a new directory into current
+            $galleryDirectory = $this->getParameter('images_directory');
+            $galleryNewTitle = $gallery->getTitle() . '.' . md5(uniqid());
+
+            $gallery->setTitle($galleryNewTitle);
+            $newGalleryPath = $galleryDirectory
+                . "/"
+                . $galleryNewTitle;
+
+            $filesystem->mkdir($newGalleryPath);
+            $gallery->setPath($newGalleryPath);
+
+            //dd($newGalleryPath);
+
+            // Move new photos into new directory
             foreach ($photos as $photo) {
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
-                $photo->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
+                $photo->move($newGalleryPath, $fichier);
 
                 $img = new Photo();
                 $img->setTitle($fichier);
@@ -87,7 +111,7 @@ class GalleryController extends AbstractController
 
             $this->addFlash("success", "La galerie a bien été créé !");
 
-            $message = (new TemplatedEmail())
+            /*   $message = (new TemplatedEmail())
                 ->from('pyd3.14@gmail.com')
                 ->to(
                     'pyd3.14@gmail.com',
@@ -104,7 +128,7 @@ class GalleryController extends AbstractController
                     'gallery' => $gallery
                 ]);
 
-            $mailer->send($message);
+            $mailer->send($message); */
 
             return $this->redirectToRoute('gallery_index');
         }
@@ -129,6 +153,10 @@ class GalleryController extends AbstractController
         $form = $this->createForm(GalleryType::class, $gallery);
         $form->handleRequest($request);
 
+        $galleryTitle = $gallery->getTitle();
+        $split = explode('.',$galleryTitle);
+        $galleryUserTitle = $split[0];
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $photos = $form->get('photos')->getData();
@@ -137,8 +165,7 @@ class GalleryController extends AbstractController
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
                 $photo->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
+                   $gallery->getPath(), $fichier
                 );
 
                 $img = new Photo();
@@ -151,12 +178,14 @@ class GalleryController extends AbstractController
 
             $this->addFlash("success", "La galerie a bien été mise à jour !");
 
-            return $this->redirectToRoute('gallery_update', ['id' => $gallery->getId()]);            
+            return $this->redirectToRoute('gallery_update', ['id' => $gallery->getId()]);
         }
 
         return $this->render('galeries/edit.html.twig', [
-            'gallery' => $gallery,
-            'form' => $form->createView(),
+            'gallery'          => $gallery,
+            'form'             => $form->createView(),
+            'galleryTitle'     => $galleryTitle,
+            'galleryUserTitle' => $galleryUserTitle
         ]);
     }
 
@@ -166,10 +195,18 @@ class GalleryController extends AbstractController
     public function deleteGallery(Gallery $gallery, Request $request)
     {
         if ($this->isCsrfTokenValid('delete' . $gallery->getId(), $request->request->get('_token'))) {
+            $filesystem = new Filesystem;
+            $imagesDirectory = $this->getParameter('images_directory');
+            $galleryDirectory = $gallery->getTitle();
+
             $em = $this->getDoctrine()->getManager();
             $em->remove($gallery);
             $em->flush();
+            $filesystem->remove($imagesDirectory . '/' . $galleryDirectory);
         }
+
+       
+
         return $this->redirectToRoute('gallery_index');
     }
 
@@ -185,6 +222,7 @@ class GalleryController extends AbstractController
             // On récupère le nom de l'image
             $name = $photo->getTitle();
             // On supprime le fichier
+
             unlink($this->getParameter('images_directory') . '/' . $name);
 
             $em = $this->getDoctrine()->getManager();
