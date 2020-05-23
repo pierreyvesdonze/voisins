@@ -98,8 +98,6 @@ class GalleryController extends AbstractController
             foreach ($photos as $photo) {
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
-                $photo = $form->get('photos')->getData();
-
                 $photo->move($newGalleryPath, $fichier);
 
                 $img = new Photo();
