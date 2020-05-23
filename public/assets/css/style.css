@@ -328,13 +328,6 @@ COLORS & FONTS
   transition: .3s;
 }
 
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
-}
-
 /*
 ***********************************
 SECURITY
@@ -715,7 +708,7 @@ input {
 }
 
 .form-control {
-  /*  margin: 20px !important; */
+  margin: 20px !important;
 }
 
 .form-group {
@@ -805,6 +798,28 @@ input {
 
 /*
 ***********************************
+LOGIN
+***********************************
+*/
+.login-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login-form label {
+  color: var(--secondary-color);
+}
+
+/*
+***********************************
 MEDIA QUERIES
 ***********************************
 */
@@ -837,28 +852,6 @@ HOMPAGE
 
 .table-homepage tbody tr {
   height: 100px;
-}
-
-/*
-***********************************
-LOGIN
-***********************************
-*/
-.login-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.login-form label {
-  color: var(--secondary-color);
 }
 
 /*

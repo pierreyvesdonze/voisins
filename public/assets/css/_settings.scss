@@ -22,11 +22,7 @@ COLORS & FONTS
   transition: .3s;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+
 
 /*
 ***********************************
@@ -423,7 +419,7 @@ input {
 }
 
 .form-control {
- /*  margin: 20px !important; */
+  margin: 20px !important;
 }
 
 .form-group {
@@ -494,6 +490,23 @@ input {
   height: 15%;
   width: 100%;
 }
+
+/*
+***********************************
+LOGIN
+***********************************
+*/
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form label {
+color: var(--secondary-color);
+}
+
 
 
 /*
