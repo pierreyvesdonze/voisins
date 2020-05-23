@@ -34,6 +34,12 @@ class Gallery
      */
     private $photos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="galleries")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -95,6 +101,18 @@ class Gallery
     public function setPath(string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

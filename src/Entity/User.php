@@ -71,12 +71,18 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="user")
+     */
+    private $galleries;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->shoppingLists = new ArrayCollection();
         $this->participates = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->galleries = new ArrayCollection();
     }
 
     public function __toString()
@@ -326,6 +332,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Gallery[]
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): self
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+            $gallery->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->galleries->contains($gallery)) {
+            $this->galleries->removeElement($gallery);
+            // set the owning side to null (unless already changed)
+            if ($gallery->getUser() === $this) {
+                $gallery->setUser(null);
             }
         }
 

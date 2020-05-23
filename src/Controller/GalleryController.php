@@ -91,8 +91,7 @@ class GalleryController extends AbstractController
 
             $filesystem->mkdir($newGalleryPath);
             $gallery->setPath($newGalleryPath);
-
-            //dd($newGalleryPath);
+            $gallery->setUser($user);
 
             // Move new photos into new directory
             foreach ($photos as $photo) {

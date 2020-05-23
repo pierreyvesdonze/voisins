@@ -652,7 +652,6 @@ CONTROL
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 10%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center !important;
