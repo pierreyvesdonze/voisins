@@ -328,6 +328,13 @@ COLORS & FONTS
   transition: .3s;
 }
 
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
 /*
 ***********************************
 SECURITY

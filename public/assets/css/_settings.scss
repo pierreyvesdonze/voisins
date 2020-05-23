@@ -22,7 +22,11 @@ COLORS & FONTS
   transition: .3s;
 }
 
-
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 /*
 ***********************************
@@ -498,13 +502,13 @@ LOGIN
 */
 
 .login-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .login-form label {
-color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 
