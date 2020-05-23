@@ -328,6 +328,13 @@ COLORS & FONTS
   transition: .3s;
 }
 
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
 /*
 ***********************************
 SECURITY
@@ -645,6 +652,7 @@ CONTROL
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 10%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center !important;
@@ -687,6 +695,14 @@ SCROLLBAR
 FORMS
 ***********************************
 */
+input {
+  border-radius: 20px;
+}
+
+.custom-file-label::after {
+  display: none;
+}
+
 .container {
   height: 80vh;
   overflow-y: scroll;
@@ -699,7 +715,7 @@ FORMS
 }
 
 .form-control {
-  width: auto !important;
+  margin: 20px !important;
 }
 
 .form-group {

@@ -17,6 +17,9 @@ jQuery(document).ready(function () {
             url.match(/request/))) {
         $headerIcon = $('.button-group > .iconAdd');
         $headerIcon.toggleClass('active');
+    } else if (url.match(/gallery/)) {
+        $headerIcon = $('.button-group > .iconCamera');
+        $headerIcon.toggleClass('active');
     } else if (url.match(/myprofile/) || url.match('/user/')) {
         $headerIcon = $('.button-group > .iconUser');
         $headerIcon.toggleClass('active');
@@ -108,7 +111,7 @@ function addArticleFormDeleteLink($articleFormLi) {
 // Prevent double click/submit function
 ///////////////////////////////////////
 
-$('form').submit(function(e) {
+$('form').submit(function (e) {
     // if the form is disabled don't allow submit
     if ($(this).hasClass('disabled')) {
         e.preventDefault();

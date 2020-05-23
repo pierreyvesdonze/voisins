@@ -4,11 +4,13 @@
 {% endblock %}
 
 {% block body %}
+	<h1>Créer un événement</h1>
+	<hr class="hr">
 	<div class="card">
 		<div class="event-body">
 
-			<div class="left">
-				<h2>Créer un événement</h2>
+			<div class="form-container">
+			
 				{{ form_start(form) }}
 
 				<div class="errors">
@@ -17,10 +19,10 @@
 
 				<div class="row">
 					<div class="col">
-						{{ form_row(form.title) }}
+						{{ form_widget(form.title) }}
 					</div>
 					<div class="col">
-						{{ form_row(form.lieu) }}
+						{{ form_widget(form.lieu) }}
 					</div>
 				</div>
 				<div class="row row-datetime">
@@ -32,13 +34,13 @@
 
 			<div class="row">
 				<div class="col">
-					{{ form_row(form.type) }}
+					{{ form_widget(form.type) }}
 				</div>
 			</div>
 			<div class="row">
 				{{ form_widget(form.text) }}
 			</div>
-			<div class="row">
+			<div class="row img-input">
 				{{ form_widget(form.brochure) }}
 			</div>
 

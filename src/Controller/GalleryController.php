@@ -98,6 +98,8 @@ class GalleryController extends AbstractController
             foreach ($photos as $photo) {
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
+                $photo = $form->get('photos')->getData();
+
                 $photo->move($newGalleryPath, $fichier);
 
                 $img = new Photo();
@@ -162,6 +164,7 @@ class GalleryController extends AbstractController
             $photos = $form->get('photos')->getData();
 
             foreach ($photos as $photo) {
+
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
                 $photo->move(
@@ -174,8 +177,7 @@ class GalleryController extends AbstractController
                 $gallery->addPhoto($img);
             }
 
-            /*     $manager->persist($gallery);
-            $manager->flush(); */
+            $manager->flush();
 
             $this->addFlash("success", "La galerie a bien été mise à jour !");
 

@@ -61,11 +61,11 @@
 						</a>
 					</div>
 
-					{# 	<div class="black-navbar iconAdd">
-																<a href="{{ path('gallery_index') }}">
-																	gallery
-																</a>
-															</div> #}
+					<div class="black-navbar iconCamera">
+						<a href="{{ path('gallery_index') }}">
+							{{ source('svg/camera.svg') }}
+						</a>
+					</div>
 
 					<div class="black-navbar iconUser">
 						<a href="{{ path('user_profile') }}">
@@ -118,7 +118,6 @@
 		<script src="{{ asset('assets/js/functions.js') }}"></script>
 		<script src="{{ asset('assets/js/app.js') }}"></script>
 		<script src="{{ asset('assets/js/photos.js') }}"></script>
-		<script src="{{ asset('assets/js/lightbox.js') }}"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 

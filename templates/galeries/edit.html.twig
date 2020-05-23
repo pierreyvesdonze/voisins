@@ -1,30 +1,42 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<div class="card-header">
-		<h1>Éditer la Galerie
-			{{ galleryUserTitle }}</h1>
-	</div>
+	<h1>Éditer la Galerie
+		{{ galleryUserTitle }}</h1>
 
 	<hr class="hr">
 
 	{% if app.request.attributes.get('_route') == 'gallery_update' %}
 		<div class="card-gallery">
-			<div class="container-gallery">
+			<div class="container-gallery-edit">
+				<div class="form-container">
+					{{ form_start(form) }}
+					<div class="errors">
+						{{ form_errors(form) }}
+					</div>
 
-				{{ form_start(form) }}
-				{{ form_widget(form) }}
+					<div class="row">
+						<div class="col">
+							{{ form_widget(form.title) }}
+						</div>
+					</div>
 
+					<div class="row">
+						<div class="col">
+							{{ form_widget(form.photos) }}
+						</div>
+					</div>
+				</div>
 				<hr class="hr">
 
 				<div class="edit-photos-container">
 					{% for photo in gallery.photos %}
 						<div class="box">
-								<span>
-									<a href="{{ path('delete_photo', {'id': photo.id})}}" data-delete data-token="{{ csrf_token('delete' ~ photo.id )}}" class="button delete-photo">
-										<span>&times;</span>
-									</a>
-								</span>
+							<span class="delete-img">
+								<a href="{{ path('delete_photo', {'id': photo.id})}}" data-delete data-token="{{ csrf_token('delete' ~ photo.id )}}" class="button delete-photo">
+									<span class="deletebutton"></span>
+								</a>
+							</span>
 							<div class="image">
 								<img src="{{ asset('uploads/images/' ~ galleryTitle ~ '/' ~ photo.title) }}" alt="" class="zoom-edit">
 							</div>
@@ -37,17 +49,23 @@
 		<hr class="hr">
 
 		<div class="control">
-			<button class="button">{{ button_label|default('Save') }}</button>
-			{{ form_end(form) }}
-
-			<a href="{{ path('gallery_index') }}">Retour à l'index</a>
-
-			<form method="post" action="{{ path('gallery_delete', {'id': gallery.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-				<input type="hidden" name="_method" value="DELETE">
-				<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gallery.id) }}">
-				<button class="btn">Delete</button>
-			</form>
+			<div class="col">
+				<a href="{{ path('gallery_index') }}" class="button">
+					<span class="backto"></span>
+				</a>
+			</div>
+			<div class="col">
+				<button class="button">{{ button_label|default('Save') }}</button>
+				{{ form_end(form) }}
+			</div>
+			<div class="col">
+				<form method="post" action="{{ path('gallery_delete', {'id': gallery.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+					<input type="hidden" name="_method" value="DELETE">
+					<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gallery.id) }}">
+					<button class="button">Delete</button>
+				</form>
+			</div>
 		</div>
 	</div>
-    
+
 {% endblock %}

@@ -4,16 +4,19 @@
 
 .container-gallery {
     display: flex;
+    flex-wrap: wrap; 
     justify-content: center;
-    flex-flow: wrap;
-    width: 80%;
+}
+
+.container-gallery, .container-gallery-edit {
     height: 70%;
     border-radius: 20px;
     overflow-y: scroll;
     margin: auto;
-    padding: 20px 20px;
     -webkit-box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
     box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+    margin: 1.5em auto;
+    column-gap: 1.5em;
 }
 
 .container-gallery form {
@@ -27,6 +30,8 @@
 }
 
 .zoomD {
+    padding: 1px;
+    margin: 0 0 3px;
     width: 20%;
     height: auto;
     cursor: pointer;
@@ -48,9 +53,7 @@
 .delete-img span {
     height: 30px;
     width: 30px;
-    background-color: black;
     border-radius: 50%;
-    display: block;
 }
 
 .box{
@@ -119,3 +122,32 @@
     height: auto;
     margin: 0 auto; 
 }
+
+
+
+/*
+**************************************
+RESPONSIVE
+**************************************
+*/
+  
+  /* Masonry on large screens */
+  @media only screen and (min-width: 1024px) {
+    .container-gallery  {
+      column-count: 4;
+    }
+  }
+  
+  /* Masonry on medium-sized screens */
+  @media only screen and (max-width: 1023px) and (min-width: 768px) {
+    .container-gallery  {
+      column-count: 3;
+    }
+  }
+  
+  /* Masonry on small screens */
+  @media only screen and (max-width: 767px) and (min-width: 540px) {
+    .container-gallery  {
+      column-count: 2;
+    }
+  }

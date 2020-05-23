@@ -4,10 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<div class="card-header">
-		<h1>Galerie
-			{{ galleryUserTitle }}</h1>
-	</div>
+	<h1>Galerie
+		{{ galleryUserTitle }}</h1>
 
 	<hr class="hr">
 
@@ -22,8 +20,6 @@
 				<img src="{{ asset('uploads/images/' ~ galleryTitle ~ '/' ~ photo.title) }}" alt="" class="zoomD">
 			{% endfor %}
 		</div>
-
-		<hr class="hr">
 
 		<div class="control">
 			<a href="{{ path('gallery_index') }}" class="button">

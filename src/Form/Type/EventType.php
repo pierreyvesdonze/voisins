@@ -93,7 +93,7 @@ class EventType extends AbstractType
 
         $builder->add('brochure', FileType::class, [
 
-            'label'         =>false,
+            'label'         => false,
             'mapped'        => false,
             'required'      => false,
             'attr'  => [

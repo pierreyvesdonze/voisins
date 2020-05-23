@@ -1,5 +1,6 @@
+// Delete images with Ajax
 window.onload = () => {
-    // Gestion des boutons "Supprimer"
+
     let links = document.querySelectorAll("[data-delete]")
 
     for (link of links) {
@@ -34,4 +35,33 @@ window.onload = () => {
             }
         })
     }
-} 
+}
+
+// Zoom in Lightbox
+var zoomImg = function () {
+
+    var clone = this.cloneNode();
+    clone.classList.remove("zoomD");
+
+    var lb = document.getElementById("lb-img");
+    lb.innerHTML = "";
+    lb.appendChild(clone);
+
+    lb = document.getElementById("lb-back");
+    lb.classList.add("show");
+};
+
+window.addEventListener("load", function () {
+    // Attach on click events to all .zoomD images
+    var images = document.getElementsByClassName("zoomD");
+    if (images.length > 0) {
+        for (var img of images) {
+            img.addEventListener("click", zoomImg);
+        }
+    }
+
+    // Click event to hide the lightbox
+    document.getElementById("lb-back").addEventListener("click", function () {
+        this.classList.remove("show");
+    })
+});

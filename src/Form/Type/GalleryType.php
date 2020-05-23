@@ -35,6 +35,9 @@ class GalleryType extends AbstractType
             'multiple' => true,
             'mapped' => false,
             'required' => false,
+            'attr'  => [
+                'placeholder' => 'Ajouter des photos'
+            ],
         ]);
     }
 

@@ -22,6 +22,12 @@ COLORS & FONTS
   transition: .3s;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 /*
 ***********************************
 SECURITY
@@ -354,7 +360,7 @@ CONTROL
 */
 .control {
   display: flex;
-  //position: fixed;
+  margin-top: 10%;
   justify-content: space-around;
   align-items: center !important;
   height: 15%;
@@ -395,6 +401,16 @@ FORMS
 ***********************************
 */
 
+input {
+  border-radius: 20px;
+}
+
+
+.custom-file-label::after
+{
+  display: none;
+}
+
 .container {
   height: 80vh;
   overflow-y: scroll;
@@ -407,7 +423,7 @@ FORMS
 }
 
 .form-control {
-  width: auto !important;
+  margin: 20px !important;
 }
 
 .form-group {
