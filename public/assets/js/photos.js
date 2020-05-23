@@ -1,34 +1,37 @@
 window.onload = () => {
     // Gestion des boutons "Supprimer"
     let links = document.querySelectorAll("[data-delete]")
-    
-    // On boucle sur links
-    for(link of links){
-        // On écoute le clic
-        link.addEventListener("click", function(e){
-            // On empêche la navigation
-            e.preventDefault()
 
-            // On demande confirmation
-            if(confirm("Voulez-vous supprimer cette image ?")){
-                // On envoie une requête Ajax vers le href du lien avec la méthode DELETE
+    for (link of links) {
+
+        link.addEventListener("click", function (e) {
+            e.preventDefault()
+            let img = $(this).parent().parent();
+
+            if (confirm("Voulez-vous supprimer cette image ?")) {
                 fetch(this.getAttribute("href"), {
                     method: "DELETE",
+                    dataType: "json",
                     headers: {
                         "X-Requested-With": "XMLHttpRequest",
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({"_token": this.dataset.token})
+                    body: JSON.stringify({ "_token": this.dataset.token })
                 }).then(
-                    // On récupère la réponse en JSON
-                    response => response.json()
-                ).then(data => {
-                    if(data.success)
-                        this.parentElement.remove()
-                    else
-                        alert(data.error)
-                }).catch(e => alert(e))
+                    img.remove()
+
+                )/* .then(
+
+                        response => { console.log($(this).find('.image')) }
+                        //response => response.json()
+
+                    ).then(data => {
+                        if (data.success)
+                            this.parentElement.remove()
+                        else
+                            alert(data.error)
+                    }).catch(e => alert(e)) */
             }
         })
     }
-}
+} 

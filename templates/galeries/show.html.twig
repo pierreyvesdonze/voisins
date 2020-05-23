@@ -1,29 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galeries{% endblock %}
+{% block title %}Galeries
+{% endblock %}
 
 {% block body %}
-    <h1>Galeries</h1>
+	<div class="card-header">
+		<h1>Galerie
+			{{ galleryUserTitle }}</h1>
+	</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ gallery.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ galleryUserTitle }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<hr class="hr">
 
-{% for photo in gallery.photos %}
-    <img src="{{ asset('uploads/images/' ~ galleryTitle ~ '/' ~ photo.title) }}" alt="" width="150">
-    {% endfor %}
+	<div class="card-gallery">
+		<div class="container-gallery">
 
-    <a href="{{ path('gallery_index') }}">back to list</a>
+			<div id="lb-back">
+				<div id="lb-img"></div>
+			</div>
 
-    <a href="{{ path('gallery_update', {'id': gallery.id}) }}">edit</a>
+			{% for photo in gallery.photos %}
+				<img src="{{ asset('uploads/images/' ~ galleryTitle ~ '/' ~ photo.title) }}" alt="" class="zoomD">
+			{% endfor %}
+		</div>
+
+		<hr class="hr">
+
+		<div class="control">
+			<a href="{{ path('gallery_index') }}" class="button">
+				<span class="backto"></span>
+			</a>
+
+			<a href="{{ path('gallery_update', {'id': gallery.id}) }}" class="button">
+				<span class="update"></span>
+			</a>
+		</div>
+	</div>
+
 
 {% endblock %}

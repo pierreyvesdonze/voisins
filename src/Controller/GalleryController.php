@@ -51,7 +51,7 @@ class GalleryController extends AbstractController
     public function show(Gallery $gallery): Response
     {
         $galleryTitle = $gallery->getTitle();
-        $split = explode('.',$galleryTitle);
+        $split = explode('.', $galleryTitle);
         $galleryUserTitle = $split[0];
 
         return $this->render('galeries/show.html.twig', [
@@ -154,7 +154,7 @@ class GalleryController extends AbstractController
         $form->handleRequest($request);
 
         $galleryTitle = $gallery->getTitle();
-        $split = explode('.',$galleryTitle);
+        $split = explode('.', $galleryTitle);
         $galleryUserTitle = $split[0];
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -165,7 +165,8 @@ class GalleryController extends AbstractController
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
                 $photo->move(
-                   $gallery->getPath(), $fichier
+                    $gallery->getPath(),
+                    $fichier
                 );
 
                 $img = new Photo();
@@ -173,8 +174,8 @@ class GalleryController extends AbstractController
                 $gallery->addPhoto($img);
             }
 
-            $manager->persist($gallery);
-            $manager->flush();
+            /*     $manager->persist($gallery);
+            $manager->flush(); */
 
             $this->addFlash("success", "La galerie a bien été mise à jour !");
 
@@ -205,17 +206,19 @@ class GalleryController extends AbstractController
             $filesystem->remove($imagesDirectory . '/' . $galleryDirectory);
         }
 
-       
-
         return $this->redirectToRoute('gallery_index');
     }
 
     /**
-     * @Route("/delete/photo/{id})", name="delete_photo", methods={"DELETE"})
+     * @Route("/delete/photo/{id}", name="delete_photo", methods={"DELETE"})
      */
     public function deletePhoto(Photo $photo, Request $request)
     {
         $data = json_decode($request->getContent(), true);
+
+        $filesystem = new Filesystem;
+        $imagesDirectory = $this->getParameter('images_directory');
+        $galleryDirectory = $photo->getGallery()->getTitle();
 
         // On vérifie si le token est valide
         if ($this->isCsrfTokenValid('delete' . $photo->getId(), $data['_token'])) {
@@ -223,7 +226,7 @@ class GalleryController extends AbstractController
             $name = $photo->getTitle();
             // On supprime le fichier
 
-            unlink($this->getParameter('images_directory') . '/' . $name);
+            $filesystem->remove($imagesDirectory . '/' . $galleryDirectory . '/' .  $name);
 
             $em = $this->getDoctrine()->getManager();
             $em->remove($photo);
