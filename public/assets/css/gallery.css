@@ -63,8 +63,8 @@
 .box{
     width: calc((100% - 30px) * 0.333);
     margin: 5px;
-    height: 250px;
-    background: #CCCCCC;
+    height: 140px;
+    background: transparent;
     float: left;
     box-sizing: border-box;
     position: relative;

@@ -99,6 +99,7 @@
 			{{ source('svg/svgfilters.svg') }}
 		</nav>
 
+		{# Flash messages #}
 		<div class="flash-container">
 			{% for label, messages in app.flashes %}
 				{% for message in messages %}
@@ -109,6 +110,9 @@
 				{% endfor %}
 			{% endfor %}
 		</div>
+
+		{# Loading animation #}
+		<div id="loader" class="center"></div>
 		{% block body %}{% endblock %}
 
 		<!--***************************FOOTER****************************-->

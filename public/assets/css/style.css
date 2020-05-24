@@ -142,6 +142,48 @@ NAVBAR
   width: 0;
 }
 
+/*
+*************************
+LOADING ANIMATION
+*************************
+*/
+#loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #444444;
+  width: 70px;
+  height: 70px;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+  z-index: 1000;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+/*
+SVG BUTTONS
+*/
 .button, .button-header,
 .button-save {
   display: block;
