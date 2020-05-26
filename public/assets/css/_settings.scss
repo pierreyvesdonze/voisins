@@ -422,7 +422,7 @@ input {
 }
 
 .form-control {
-  margin: 20px !important;
+  //margin: 20px !important;
 }
 
 .form-group {
@@ -493,6 +493,11 @@ input {
   height: 15%;
   width: 100%;
 }
+
+.form-container .row .col span {
+  text-align: center;
+}
+
 
 /*
 ***********************************

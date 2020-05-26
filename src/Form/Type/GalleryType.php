@@ -18,8 +18,10 @@ class GalleryType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => false,
-                'attr'  => [
+                'label'       => false,
+                'required'    => 'required',
+                'trim'        => false,
+                'attr'        => [
                     'placeholder' => 'Titre de la galerie'
                 ],
                 'constraints' => [
@@ -31,11 +33,11 @@ class GalleryType extends AbstractType
         // On ajoute le champ "photos" dans le formulaire
         // Il n'est pas lié à la base de données (mapped à false)
         $builder->add('photos', FileType::class, [
-            'label' => false,
+            'label'    => false,
             'multiple' => true,
-            'mapped' => false,
+            'mapped'   => false,
             'required' => false,
-            'attr'  => [
+            'attr'     => [
                 'placeholder' => 'Ajouter des photos'
             ],
         ]);

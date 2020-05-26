@@ -755,10 +755,6 @@ input {
   margin: 20px auto;
 }
 
-.form-control {
-  margin: 20px !important;
-}
-
 .form-group {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -842,6 +838,10 @@ input {
       justify-content: space-around;
   height: 15%;
   width: 100%;
+}
+
+.form-container .row .col span {
+  text-align: center;
 }
 
 /*
@@ -1028,7 +1028,7 @@ CARDS
 
 .custom-file {
   width: 70%;
-  margin: auto;
+  margin: 1em auto;
 }
 
 .lieu-events {

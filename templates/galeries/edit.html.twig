@@ -1,11 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<h1>Éditer la Galerie
-		{{ galleryUserTitle }}</h1>
-
-	<hr class="hr">
-
+	<h1>Éditer la Galerie</h1>
 	{% if app.request.attributes.get('_route') == 'gallery_update' %}
 		<div class="card-gallery">
 			<div class="container-gallery-edit">
@@ -15,7 +11,7 @@
 						{{ form_errors(form) }}
 					</div>
 
-					<div class="row">
+					<div class="row" style="display:none">
 						<div class="col">
 							{{ form_widget(form.title) }}
 						</div>
