@@ -738,6 +738,7 @@ FORMS
 */
 input {
   border-radius: 20px;
+  max-width: 70%;
 }
 
 .custom-file-label::after {
@@ -753,6 +754,10 @@ input {
 #user {
   width: 60%;
   margin: 20px auto;
+}
+
+.form-control {
+  margin: 20px auto !important;
 }
 
 .form-group {
@@ -860,10 +865,18 @@ LOGIN
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin: 1.6em;
 }
 
 .login-form label {
   color: var(--secondary-color);
+}
+
+.login-form button {
+  width: 30%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 /*
