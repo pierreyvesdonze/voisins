@@ -22,7 +22,8 @@ class GalleryType extends AbstractType
                 'required'    => 'required',
                 'trim'        => false,
                 'attr'        => [
-                    'placeholder' => 'Titre de la galerie'
+                    'placeholder' => 'Titre de la galerie',
+                    'class' => 'gal-img-to-resize'
                 ],
                 'constraints' => [
                     new NotBlank(),
@@ -38,7 +39,8 @@ class GalleryType extends AbstractType
             'mapped'   => false,
             'required' => false,
             'attr'     => [
-                'placeholder' => 'Ajouter des photos'
+                'placeholder' => 'Ajouter des photos',
+                'class' => 'img-to-resize'
             ],
         ]);
     }
@@ -49,4 +51,9 @@ class GalleryType extends AbstractType
             'data_class' => Gallery::class,
         ]);
     }
+
+    public function getBlockPrefix()
+	{
+		return 'photoetudiant';
+	}
 }

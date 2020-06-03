@@ -32,32 +32,22 @@
 					</div>
 				</div>
 
-				<hr
-				class="hr">
-
-
-				{# 
-								<div class="row">
-									<div class="col">
-										<span>Cliquer ci-dessous pour ajouter des photos</span>
-									</div>
-									<div class="col">
-										<form action="" method = "post" id="ajax-img-form">
-											<input type="text" placeholder="Titre de la galerie">
-											<input type="file" id="image-to-resize" multiple/>
-											<button type="submit">Valider</button>
-										</form>
-										<p id="img"></p>
-									</div>
-								</div>
-				 #}
-
-
-				<input type="file" id="image-to-resize" multiple/>
+				<hr class="hr">
 
 				<div class="row">
 					<div class="col">
 						{{ form_widget(form.photos, {'attr': {'name': 'fromCanvas' }}) }}
+
+						<div class="center-block text-warning">
+							<div id="prev_photo"></div>
+
+							<img id="prep_photo">
+						</div>
+						<br>
+
+						<input type="hidden" id="photocoupee" name="photocoupee">
+
+						<input id="btnLoad" type="submit" value="">
 					</div>
 				</div>
 

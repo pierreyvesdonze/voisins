@@ -66,4 +66,90 @@ window.addEventListener("load", function () {
     })
 });
 
+// Upload and resize images
+$(document).ready(function () {
 
+    $('#image-to-resize').change(function () {
+        let symfoInput = $('.img-to-resize').val();
+
+        if (this.files.length > 0) {
+
+            let url = Routing.generate('gallery_create', true),
+                dataImg = [],
+                formData = new FormData();
+
+            $.each(this.files, function (i, v) {
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+                    var image = new Image();
+                    image.src = event.target.result;
+
+                    image.onload = function () {
+                        var maxWidth = 1024,
+                            maxHeight = 1024,
+                            imageWidth = image.width,
+                            imageHeight = image.height;
+
+
+                        if (imageWidth > imageHeight) {
+                            if (imageWidth > maxWidth) {
+                                imageHeight *= maxWidth / imageWidth;
+                                imageWidth = maxWidth;
+                            }
+                        }
+                        else {
+                            if (imageHeight > maxHeight) {
+                                imageWidth *= maxHeight / imageHeight;
+                                imageHeight = maxHeight;
+                            }
+                        }
+
+                        var canvas = document.createElement('canvas');
+                        canvas.width = imageWidth;
+                        canvas.height = imageHeight;
+                        image.width = imageWidth;
+                        image.height = imageHeight;
+                        var ctx = canvas.getContext("2d");
+                        ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
+
+                        $('#img').append(image);
+
+                        var dataurl = canvas.toDataURL("image/png");
+                        formData.append('image', image + i);
+/* 
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", url);
+                        xhr.send(formData); */
+
+                        console.log(image);
+
+                        /*    symfoInput.prop(image)[i]; */
+                    }
+                };
+                reader.readAsDataURL(this);
+            });
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json",
+                },
+            })
+                .done(function (response) {
+                    console.log(formData);
+
+                })
+                .fail(function (jqXHR, textStatus, error) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(error);
+                });
+        }
+    });
+});

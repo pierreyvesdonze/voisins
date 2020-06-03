@@ -14,9 +14,12 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * @Route("/gallery")
@@ -62,7 +65,24 @@ class GalleryController extends AbstractController
     }
 
     /**
-     * @Route("/create/new", name="gallery_create", methods={"GET","POST"})
+     * @Route("/create/new/ajax", name="gallery_create_ajax", methods={"GET","POST"}, options = { "expose" = true })
+     */
+    public function galleryAjaxCreate(Request $request): Response
+    {
+        if ($request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+
+            $data = json_decode($request->getContent());
+            dd($data);
+
+            return new JsonResponse(['success' => 1]);
+        }
+
+        return $this->redirectToRoute('homepage');
+    }
+
+    /**
+     * @Route("/create/new", name="gallery_create", methods={"GET","POST"}, options = { "expose" = true })
      */
     public function galleryCreate(Request $request, MailerInterface $mailer): Response
     {
@@ -73,6 +93,23 @@ class GalleryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+/* 
+            if ($request->isXmlHttpRequest()) {
+
+                $data = json_decode($request->getContent());
+                dump('data Ajax : ' . $data);
+
+                return new JsonResponse(['success' => 1]);
+            }
+
+            if ($request->isMethod('POST')) {
+                $data  = $request->getContent();
+                //$data  = json_decode($data);
+
+                dump('data : ' . $data);
+            }
+ */
 
             // Get submitted photos
             $photos = $form->get('photos')->getData();
@@ -129,7 +166,7 @@ class GalleryController extends AbstractController
 
             $mailer->send($message); */
 
-            return $this->redirectToRoute('gallery_index');
+            //return $this->redirectToRoute('gallery_index');
         }
 
         return $this->render(
