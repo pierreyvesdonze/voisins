@@ -32,25 +32,8 @@
 					</div>
 				</div>
 
-				<hr
-				class="hr">
+				<hr class="hr">
 
-
-				{# 
-								<div class="row">
-									<div class="col">
-										<span>Cliquer ci-dessous pour ajouter des photos</span>
-									</div>
-									<div class="col">
-										<form action="" method = "post" id="ajax-img-form">
-											<input type="text" placeholder="Titre de la galerie">
-											<input type="file" id="image-to-resize" multiple/>
-											<button type="submit">Valider</button>
-										</form>
-										<p id="img"></p>
-									</div>
-								</div>
-				 #}
 
 
 				<input type="file" id="image-to-resize" multiple/>
@@ -87,7 +70,17 @@
 				{{ form_end(form) }}
 			</div>
 		</div>
-
 	</div>
+
+
+	<form id="form" action='{{ path('gallery_create_ajax') }}'  method='post' enctype='multipart/form-data'>
+		<input type='file' id='fileUpload' class='upload' name='userfile'/>
+	</form><br/>
+	<button type="button" id="sendImgToBack">Resize and Send to Server</button><br/><br/>
+	<div id="divServerResponse">
+	</div>
+
+
+	<hr class="hr">
 
 {% endblock %}

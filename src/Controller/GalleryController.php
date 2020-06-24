@@ -65,17 +65,17 @@ class GalleryController extends AbstractController
     }
 
     /**
-     * @Route("/create/new/ajax", name="gallery_create_ajax", methods={"GET","POST"}, options = { "expose" = true })
+     * @Route("/create/new/ajax", name="gallery_create_ajax", methods={"POST"}, options = { "expose" = true })
      */
     public function galleryAjaxCreate(Request $request): Response
     {
         if ($request->isXmlHttpRequest()) {
-            throw new NotFoundHttpException();
+           $data = base64_decode($request->getContent());
 
-            $data = json_decode($request->getContent());
-            dd($data);
-
-            return new JsonResponse(['success' => 1]);
+            return new JsonResponse([
+                'success' => 1,
+                'data' => $data
+            ]);
         }
 
         return $this->redirectToRoute('homepage');
@@ -93,23 +93,6 @@ class GalleryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-/* 
-            if ($request->isXmlHttpRequest()) {
-
-                $data = json_decode($request->getContent());
-                dump('data Ajax : ' . $data);
-
-                return new JsonResponse(['success' => 1]);
-            }
-
-            if ($request->isMethod('POST')) {
-                $data  = $request->getContent();
-                //$data  = json_decode($data);
-
-                dump('data : ' . $data);
-            }
- */
 
             // Get submitted photos
             $photos = $form->get('photos')->getData();
@@ -146,25 +129,6 @@ class GalleryController extends AbstractController
             $manager->flush();
 
             $this->addFlash("success", "La galerie a bien été créé !");
-
-            /*   $message = (new TemplatedEmail())
-                ->from('pyd3.14@gmail.com')
-                ->to(
-                    'pyd3.14@gmail.com',
-                    'blubelly@hotmail.fr',
-                    'mo.villemard@laposte.net',
-                    'renaud.vaudeville@gmail.com',
-                    'fredericcesar@hotmail.fr',
-                    'floriane.dechamp@gmail.com'
-                )
-                ->subject('Nouvel événement de "voisins"')
-                ->htmlTemplate('galeries/notification.html.twig')
-                ->context([
-                    'user'  => $user,
-                    'gallery' => $gallery
-                ]);
-
-            $mailer->send($message); */
 
             //return $this->redirectToRoute('gallery_index');
         }
@@ -227,7 +191,7 @@ class GalleryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="gallery_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="gallery_delete", methods="DELETE")
      */
     public function deleteGallery(Gallery $gallery, Request $request)
     {

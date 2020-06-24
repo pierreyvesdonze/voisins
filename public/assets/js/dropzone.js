@@ -171,7 +171,7 @@ function (_Emitter) {
          * provide a function that will be called with `files` and
          * must return the url (since `v3.12.0`)
          */
-        url: null,
+        url: Routing.generate('gallery_create', true),
 
         /**
          * Can be changed to `"put"` if necessary. You can also provide a function
