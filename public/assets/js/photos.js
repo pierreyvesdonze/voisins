@@ -190,6 +190,24 @@ $(document).ready(function () {
 
         }).done(function (resp) {
             $("#divServerResponse").html("SERVER RESPONSE (NEW IMAGE):<br/><img src='"+resp+"' style='max-width:400px'></img>");
+
+            var fd = new FormData();
+            var files = $('#fileUpload')[0].files[0];
+            fd.append('file',files);
+
+            $.ajax({
+                url: Routing.generate('gallery_create_ajax'),
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                console.log('ok : ' + JSON.stringify(response));
+                },
+            });
+
+
+
         }).fail(function (data) {
             console.log("error:" + error);
             console.log(data);

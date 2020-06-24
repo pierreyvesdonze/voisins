@@ -58,8 +58,8 @@ class GalleryController extends AbstractController
         $galleryUserTitle = $split[0];
 
         return $this->render('galeries/show.html.twig', [
-            'gallery'          => $gallery,
-            'galleryTitle'     => $galleryTitle,
+            'gallery' => $gallery,
+            'galleryTitle' => $galleryTitle,
             'galleryUserTitle' => $galleryUserTitle
         ]);
     }
@@ -69,16 +69,57 @@ class GalleryController extends AbstractController
      */
     public function galleryAjaxCreate(Request $request): Response
     {
-        if ($request->isXmlHttpRequest()) {
-           $data = base64_decode($request->getContent());
 
-            return new JsonResponse([
-                'success' => 1,
-                'data' => $data
-            ]);
+        if ($request->isXmlHttpRequest()) {
+            $data = base64_decode($request->getContent());
+            $gallery = new Gallery();
+            $form = $this->createForm(GalleryType::class, $gallery);
+            $form->handleRequest($request);
+
+            $files = $request->files->get('file');
+
+            $user = $this->getUser();
+
+            // Create a new folder
+            $filesystem = new Filesystem();
+
+            //make a new directory into current
+            //$galleryDirectory = $this->getParameter('images_directory');
+            $galleryDirectory = '../../public/uploads/images';
+            $galleryNewTitle = $gallery->getTitle() . '.' . md5(uniqid());
+
+            $gallery->setTitle($galleryNewTitle);
+            $newGalleryPath = $galleryDirectory
+                . "/"
+                . $galleryNewTitle;
+
+            $filesystem->mkdir($newGalleryPath, 0700, true);
+            $gallery->setPath($newGalleryPath);
+            $gallery->setUser($user);
+
+            // Move new photos into new directory
+            foreach ($files as $file) {
+                $fichier = md5(uniqid()) . '.' . $file->guessExtension();
+
+                $file->move($newGalleryPath, $fichier);
+
+                $img = new Photo();
+                $img->setTitle($fichier);
+                $gallery->addPhoto($img);
+            }
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($gallery);
+            $manager->flush();
+
+            $this->addFlash("success", "La galerie a bien été créé !");
+
         }
 
-        return $this->redirectToRoute('homepage');
+        return new JsonResponse([
+            'success' => 1,
+            'data' => $data
+        ]);
     }
 
     /**
@@ -136,7 +177,7 @@ class GalleryController extends AbstractController
         return $this->render(
             "galeries/new.html.twig",
             [
-                "form"    => $form->createView(),
+                "form" => $form->createView(),
                 "gallery" => $gallery
             ]
         );
@@ -183,9 +224,9 @@ class GalleryController extends AbstractController
         }
 
         return $this->render('galeries/edit.html.twig', [
-            'gallery'          => $gallery,
-            'form'             => $form->createView(),
-            'galleryTitle'     => $galleryTitle,
+            'gallery' => $gallery,
+            'form' => $form->createView(),
+            'galleryTitle' => $galleryTitle,
             'galleryUserTitle' => $galleryUserTitle
         ]);
     }
@@ -226,7 +267,7 @@ class GalleryController extends AbstractController
             $name = $photo->getTitle();
             // On supprime le fichier
 
-            $filesystem->remove($imagesDirectory . '/' . $galleryDirectory . '/' .  $name);
+            $filesystem->remove($imagesDirectory . '/' . $galleryDirectory . '/' . $name);
 
             $em = $this->getDoctrine()->getManager();
             $em->remove($photo);
