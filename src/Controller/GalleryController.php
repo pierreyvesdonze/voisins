@@ -93,7 +93,7 @@ class GalleryController extends AbstractController
                 . "/"
                 . $galleryNewTitle;
 
-            $filesystem->mkdir($newGalleryPath, 0700, true);
+            $filesystem->mkdir($newGalleryPath, 0775);
             $gallery->setPath($newGalleryPath);
             $gallery->setUser($user);
 
