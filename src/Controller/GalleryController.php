@@ -125,7 +125,7 @@ class GalleryController extends AbstractController
 
             $this->addFlash("success", "La galerie a bien été créée !");
 
-            //return $this->redirectToRoute('gallery_index');
+            return $this->redirectToRoute('gallery_show', ['id' => $gallery->getId()]);
         }
 
         return $this->render(
@@ -174,7 +174,7 @@ class GalleryController extends AbstractController
 
             $this->addFlash("success", "La galerie a bien été mise à jour !");
 
-            return $this->redirectToRoute('gallery_update', ['id' => $gallery->getId()]);
+            return $this->redirectToRoute('gallery_show', ['id' => $gallery->getId()]);
         }
 
         return $this->render('galeries/edit.html.twig', [

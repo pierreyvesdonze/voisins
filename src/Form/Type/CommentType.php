@@ -19,7 +19,8 @@ class CommentType extends AbstractType
             [
                 'label' => false,
                 'attr'  => [
-                    'placeholder' => 'Ajoute ton commentaire'
+                    'placeholder' => 'Ajoute ton commentaire',
+                    'class' => 'comment-textarea'
                 ]
             ]
         );

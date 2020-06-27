@@ -34,6 +34,16 @@ LOADING ANIMATION
 SVG BUTTONS
 */
 
+
+// Comments icons
+.comment a svg, .newcomment a svg {
+    width: 30px;
+}
+
+.fake-push {
+
+}
+
 .button {
     display: block;
     float: left;
@@ -166,6 +176,7 @@ SVG BUTTONS
 .update:after {
     content: ' \267B';
 }
+
 .closebutton:hover {
     color: rgb(223, 32, 32) !important;
     text-shadow: -1px -1px 1px #000;

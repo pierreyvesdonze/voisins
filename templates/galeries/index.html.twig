@@ -32,7 +32,9 @@
 								<form method="post" action="{{ path('gallery_delete', {'id': gal.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
 									<input type="hidden" name="_method" value="DELETE">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gal.id) }}">
-									<button class="deletebutton"></button>
+									<button class="button">
+										<span class="deletebutton"></span>
+									</button>
 								</form>
 							</td>
 						</tr>
@@ -46,7 +48,7 @@
 		</div>
 		<div class="control">
 			<a href="{{ path('gallery_create') }}" class="button">
-				<span class="add"></span>
+				<span>Créer</span>
 			</a>
 		</div>
 	</div>

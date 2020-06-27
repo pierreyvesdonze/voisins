@@ -40,12 +40,6 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col">
-					<p id="imgCanvas"></p>
-				</div>
-			</div>
-
 			{% for photo in gallery.photos %}
 			<div>
 				<img src="{{ asset('uploads/images/'~ photo.title) }}" alt="" width="150">
@@ -64,7 +58,7 @@
 			</a>
 		</div>
 		<div class="col">
-			{{ form_widget(form.button) }}
+			{{ form_widget(form.save) }}
 			{{ form_end(form) }}
 		</div>
 	</div>

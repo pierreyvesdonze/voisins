@@ -45,8 +45,11 @@ class GalleryType extends AbstractType
             ],
         ]);
 
-        $builder->add('button', SubmitType::class, [
-            'label' => 'Envoyer'
+        $builder->add('save', SubmitType::class, [
+            'label' => 'Save',
+            'attr'  => [
+                'class' => 'button'
+            ]
         ]);
     }
 
