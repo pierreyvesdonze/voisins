@@ -4,83 +4,69 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Créer une galerie</h1>
-	<hr class="hr">
-	<div class="card">
-		<div class="event-body">
+<h1>Créer une galerie</h1>
+<hr class="hr">
+<div class="card">
+	<div class="event-body">
 
-			<div class="form-container">
+		<div class="form-container">
 
-				{{ form_start(form) }}
+			{{ form_start(form) }}
 
-				<div class="errors">
-					{{ form_errors(form) }}
-				</div>
-
-				<div class="row">
-					<div class="col">
-						<span>
-							Nom de la galerie
-							<br>
-							(sans espaces)
-						</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						{{ form_widget(form.title) }}
-					</div>
-				</div>
-
-				<hr class="hr">
-
-
-
-				<input type="file" id="image-to-resize" multiple/>
-
-				<div class="row">
-					<div class="col">
-						{{ form_widget(form.photos, {'attr': {'name': 'fromCanvas' }}) }}
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col">
-						<p id="img"></p>
-					</div>
-				</div>
-
-				{% for photo in gallery.photos %}
-					<div>
-						<img src="{{ asset('uploads/images/'~ photo.title) }}" alt="" width="150">
-						<a href="{{ path('delete_photo', {id: photo.id})}}" data-delete data-token="{{ csrf_token('delete' ~ photo.id )}}">Supprimer</a>
-					</div>
-				{% endfor %}
-
+			<div class="errors">
+				{{ form_errors(form) }}
 			</div>
-		</div>
-		<div class="control">
-			<div class="col">
-				<a href="{{ path('gallery_index') }}" class="button">
-					<span class="backto"></span>
-				</a>
+
+			<div class="row">
+				<div class="col">
+					<span>
+						Nom de la galerie
+						<br>
+						(sans espaces)
+					</span>
+				</div>
 			</div>
-			<div class="col">
-				<button class="button">{{ button_label|default('Save') }}</button>
-				{{ form_end(form) }}
+			<div class="row">
+				<div class="col">
+					{{ form_widget(form.title) }}
+				</div>
 			</div>
+
+			<hr class="hr">
+
+			<div class="row">
+				<div class="col">
+					{{ form_widget(form.photos, {'attr': {'name': 'fromCanvas' }}) }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<p id="imgCanvas"></p>
+				</div>
+			</div>
+
+			{% for photo in gallery.photos %}
+			<div>
+				<img src="{{ asset('uploads/images/'~ photo.title) }}" alt="" width="150">
+				<a href="{{ path('delete_photo', {id: photo.id})}}" data-delete
+					data-token="{{ csrf_token('delete' ~ photo.id )}}">Supprimer</a>
+			</div>
+			{% endfor %}
+
 		</div>
 	</div>
 
-
-	<form id="form" action='{{ path('gallery_create_ajax') }}'  method='post' enctype='multipart/form-data'>
-		<input type='file' id='fileUpload' class='upload' name='userfile'/>
-	</form><br/>
-	<button type="button" id="sendImgToBack">Resize and Send to Server</button><br/><br/>
-	<div id="divServerResponse">
+	<div class="control">
+		<div class="col">
+			<a href="{{ path('gallery_index') }}" class="button">
+				<span class="backto"></span>
+			</a>
+		</div>
+		<div class="col">
+			{{ form_widget(form.button) }}
+			{{ form_end(form) }}
+		</div>
 	</div>
-
-
-	<hr class="hr">
-
+</div>
 {% endblock %}

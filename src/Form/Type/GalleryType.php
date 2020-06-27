@@ -44,6 +44,10 @@ class GalleryType extends AbstractType
                 'class' => 'img-to-resize'
             ],
         ]);
+
+        $builder->add('button', SubmitType::class, [
+            'label' => 'Envoyer'
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

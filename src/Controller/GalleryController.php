@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Intervention\Image\ImageManager;
 
 /**
  * @Route("/gallery")
@@ -57,68 +58,12 @@ class GalleryController extends AbstractController
         $split = explode('.', $galleryTitle);
         $galleryUserTitle = $split[0];
 
+        //dump($galleryTitle);
+
         return $this->render('galeries/show.html.twig', [
             'gallery' => $gallery,
             'galleryTitle' => $galleryTitle,
             'galleryUserTitle' => $galleryUserTitle
-        ]);
-    }
-
-    /**
-     * @Route("/create/new/ajax", name="gallery_create_ajax", methods={"POST"}, options = { "expose" = true })
-     */
-    public function galleryAjaxCreate(Request $request): Response
-    {
-
-        if ($request->isXmlHttpRequest()) {
-            $data = base64_decode($request->getContent());
-            $gallery = new Gallery();
-            $form = $this->createForm(GalleryType::class, $gallery);
-            $form->handleRequest($request);
-
-            $files = $request->files->get('file');
-
-            $user = $this->getUser();
-
-            // Create a new folder
-            $filesystem = new Filesystem();
-
-            //make a new directory into current
-            //$galleryDirectory = $this->getParameter('images_directory');
-            $galleryDirectory = '../../public/uploads/images';
-            $galleryNewTitle = $gallery->getTitle() . '.' . md5(uniqid());
-
-            $gallery->setTitle($galleryNewTitle);
-            $newGalleryPath = $galleryDirectory
-                . "/"
-                . $galleryNewTitle;
-
-            $filesystem->mkdir($newGalleryPath, 0700, true);
-            $gallery->setPath($newGalleryPath);
-            $gallery->setUser($user);
-
-            // Move new photos into new directory
-            foreach ($files as $file) {
-                $fichier = md5(uniqid()) . '.' . $file->guessExtension();
-
-                $file->move($newGalleryPath, $fichier);
-
-                $img = new Photo();
-                $img->setTitle($fichier);
-                $gallery->addPhoto($img);
-            }
-
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($gallery);
-            $manager->flush();
-
-            $this->addFlash("success", "La galerie a bien été créé !");
-
-        }
-
-        return new JsonResponse([
-            'success' => 1,
-            'data' => $data
         ]);
     }
 
@@ -156,12 +101,21 @@ class GalleryController extends AbstractController
 
             // Move new photos into new directory
             foreach ($photos as $photo) {
-                $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
-                $photo->move($newGalleryPath, $fichier);
+                // Resize photos
+                $ImgManager = new ImageManager(array('driver' => 'imagick'));
+                $resizedPhoto = $ImgManager->make($photo)->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            
+
+                $photoName = md5(uniqid()) . '.' . $resizedPhoto . '.jpeg';
+
+                $resizedPhoto->save($newGalleryPath . '/' . $photoName);
+   /*              $resizedPhoto->move($newGalleryPath); */
 
                 $img = new Photo();
-                $img->setTitle($fichier);
+                $img->setTitle($photoName);
                 $gallery->addPhoto($img);
             }
 
@@ -169,7 +123,7 @@ class GalleryController extends AbstractController
             $manager->persist($gallery);
             $manager->flush();
 
-            $this->addFlash("success", "La galerie a bien été créé !");
+            $this->addFlash("success", "La galerie a bien été créée !");
 
             //return $this->redirectToRoute('gallery_index');
         }
